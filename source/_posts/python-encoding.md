@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "python2.7编码小结"
+title: "python2.7编码处理小结"
 date: 2016-04-23 23:52
 comments: true
 tags: 
@@ -65,34 +65,52 @@ python2.7编程中遇到的一些编码问题小结
 
 ### 介绍两个函数
 >repr(): 返回机器存储方式
+
 ```js
 	buf = u'这是一个编码'
 	print repr(buf)
 	>>u'\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801'
-	buf = repr(buf)
-	print buf
-	>>u'\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801'
+	buf = '这是一个编码'
+	print repr(buf) 
+	>>'\xe8\xbf\x99\xe6\x98\xaf\xe4\xb8\x80\xe4\xb8\xaa\xe7\xbc\x96\xe7\xa0\x81'
 ```
 
 
 >eval(): 将字符串str当成有效的表达式来运行并返回结果
+
 ```js	
 	result = eval('12+3')
 	print type(result), result
 	>><type 'int'> 15
 ```
+
 是不是想到了sql注入攻击?
 
-### 回到中文编码转化问题,直接给出代码
+### 回到调皮编码的问题
+
+```js
+	buf = '\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898' 或 buf = '乱码字符串'
+```
+
+以上编码离repr('这是一个编码')在存储上只差一个'u'
+个人处理chardet.dect解决后仍有问题的编码,通常按一下方式解决:
+>1.透过现象看本质,repr()后查看字符串的机器存储方式
+>2.查找这些编码方式和已知编码方式的相似处和区别
+>3.修改机器存储方式,通过eval()函数整合为新的编码的字符串
+
+解决问题过程大概如下:
+
 ```js
 	import chardet
-	buf = '\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898'
-	buf_repr = 'u"%s"' % buf
-	print buf_repr
-	>>u"\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898"
-	buf = eval(buf_repr)
-	print type(buf), buf
+	buf = '\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898' #或 buf = '一堆乱码'
+	print repr(buf)
+	>>'\\u8fd9\\u662f\\u4e00\\u4e2a\\u7f16\\u7801\\u95ee\\u9898'
+	new_buf_repr = 'u"%s"' % buf #或new_buf_repr = 'u"%s"' % repr(buf)
+	print new_buf_repr
+	>>"\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898"
+	new_buf = eval(new_buf_repr)
+	print type(new_buf), new_buf
 	>><type 'unicode'> 这是一个编码问题
-
 ```
-### 这种数据虽然有点狗血,不过确是我在工作中碰到的.如果是成批量的话可参考以上程序.另外极少数的编码方式是混合编码,这部分有要的时候需要用re来解决
+
+### 这种数据虽然有点狗血.如果是成批量的话可参考以上解决方式.另外极少数的编码方式是混合编码,这部分有要的时候需要用re来解决
