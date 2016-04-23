@@ -14,7 +14,7 @@ python2.7编程中遇到的一些编码问题小结
 ## python code中指定编码方式
 
 **1.指定源文件的的编码方式**
-作用:代码中在存在中文的情况下,运行程序时报"Non-ASCII character".以utf8编码为例,大概有以下几种方式是等价的
+作用:解决python解释器载入py程序文件时编码报错问题
 ```js
 	#coding=utf8  
 ```
@@ -29,14 +29,16 @@ python2.7编程中遇到的一些编码问题小结
 以上方式效果是等价的,选择一种使用即可
 
 **2.指定中文代码默认解码方式**
-当存在未知编码时选用的解码方式
+作用:解决解释器环境输出文本时乱码的部分问题
 ```js
 	import sys
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
 ```
-关于reload(sys)?:setdefaultencoding函数在第一次系统调用后会被删除,另外由于python的import的"ifndefine"机制,import sys不能保证sys被加载,所以由reload显式加载sys
+关于reload(sys)?:
+setdefaultencoding函数在第一次系统调用后会被删除,另外由于python的import的"ifndefine"机制,import sys不能保证sys被加载,所以由reload显式加载sys
 
+> 综上,python常见解决编码问题
 
 ## 关于未知编码转utf8编码
 
