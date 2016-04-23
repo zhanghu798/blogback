@@ -38,7 +38,6 @@ python2.7编程中遇到的一些编码问题小结
 关于reload(sys)?:
 setdefaultencoding函数在第一次系统调用后会被删除,另外由于python的import的"ifndefine"机制,import sys不能保证sys被加载,所以由reload显式加载sys
 
-> 综上,python常见解决编码问题
 
 ## 关于未知编码转utf8编码
 
