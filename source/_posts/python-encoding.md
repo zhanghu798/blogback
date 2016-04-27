@@ -5,7 +5,7 @@ date: 2016-04-23 23:52
 comments: true
 tags: 
 	- python
-	- tip
+	- tips
 ---
 
 python2.7编程中遇到的一些编码问题小结
