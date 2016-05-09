@@ -71,6 +71,7 @@ setdefaultencoding函数在第一次系统调用后会被删除,另外由于pyth
 	buf = u'这是一个编码'
 	print repr(buf)
 	>>u'\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801'
+
 	buf = '这是一个编码'
 	print repr(buf) 
 	>>'\xe8\xbf\x99\xe6\x98\xaf\xe4\xb8\x80\xe4\xb8\xaa\xe7\xbc\x96\xe7\xa0\x81'
@@ -106,10 +107,12 @@ setdefaultencoding函数在第一次系统调用后会被删除,另外由于pyth
 	buf = '\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898' #或 buf = '一堆乱码'
 	print repr(buf)
 	>>'\\u8fd9\\u662f\\u4e00\\u4e2a\\u7f16\\u7801\\u95ee\\u9898'
+
 	new_buf_repr = 'u"%s"' % buf #或new_buf_repr = 'u"%s"' % repr(buf)
 	print new_buf_repr
 	>>"\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898"
-	new_buf = eval(new_buf_repr)
+	
+    new_buf = eval(new_buf_repr)
 	print type(new_buf), new_buf
 	>><type 'unicode'> 这是一个编码问题
 ```
