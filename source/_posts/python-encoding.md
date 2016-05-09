@@ -15,22 +15,22 @@ python2.7编程中遇到的一些编码问题小结
 
 **1.指定源文件的的编码方式**
 作用:解决python解释器载入py程序文件时编码报错问题
-```js
+``` python
 	#coding=utf8  
 ```
 
-```js
+``` python
 	#coding:utf8
 ```
 
-```js
+``` python
 	# -*- coding: UTF-8 -*-
 ```
 以上方式效果是等价的,选择一种使用即可
 
 **2.指定中文代码默认解码方式**
 作用:解决解释器环境输出文本时乱码的部分问题
-```js
+``` python
 	import sys
 	reload(sys)
 	sys.setdefaultencoding('utf-8')
@@ -43,7 +43,7 @@ setdefaultencoding函数在第一次系统调用后会被删除,另外由于pyth
 
 > 一个实际数据场景:数据来源和存储形式多样,编码多样,需要将不同编码转化为utf8编码进行后续加工处理
 
-```js
+``` python
 	import chardet
 	buf = '这是一个编码'
 	str_detect_dict = chardet.detect(buf)
@@ -53,7 +53,7 @@ setdefaultencoding函数在第一次系统调用后会被删除,另外由于pyth
 ```
 
 以上代码可以解决遇到的比较多得编码转换问题,但之前有碰到一些调皮些的编码问题
-```js
+``` python
 	import chardet
 	buf = '\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898'
 	str_detect_dict = chardet.detect(buf)
@@ -67,7 +67,7 @@ setdefaultencoding函数在第一次系统调用后会被删除,另外由于pyth
 ### 介绍两个函数
 >repr(): 返回机器存储方式
 
-```js
+``` python
 	buf = u'这是一个编码'
 	print repr(buf)
 	>>u'\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801'
@@ -79,7 +79,7 @@ setdefaultencoding函数在第一次系统调用后会被删除,另外由于pyth
 
 >eval(): 将字符串str当成有效的表达式来运行并返回结果
 
-```js	
+``` python
 	result = eval('12+3')
 	print type(result), result
 	>><type 'int'> 15
@@ -89,7 +89,7 @@ setdefaultencoding函数在第一次系统调用后会被删除,另外由于pyth
 
 ### 回到调皮编码的问题
 
-```js
+``` python
 	buf = '\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898' 或 buf = '乱码字符串'
 ```
 
@@ -101,7 +101,7 @@ setdefaultencoding函数在第一次系统调用后会被删除,另外由于pyth
 
 解决问题过程大概如下:
 
-```js
+``` python
 	import chardet
 	buf = '\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898' #或 buf = '一堆乱码'
 	print repr(buf)
