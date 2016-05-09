@@ -112,7 +112,7 @@ setdefaultencoding函数在第一次系统调用后会被删除,另外由于pyth
 	print new_buf_repr
 	>>"\u8fd9\u662f\u4e00\u4e2a\u7f16\u7801\u95ee\u9898"
 	
-    new_buf = eval(new_buf_repr)
+	new_buf = eval(new_buf_repr)
 	print type(new_buf), new_buf
 	>><type 'unicode'> 这是一个编码问题
 ```
