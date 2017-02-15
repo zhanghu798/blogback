@@ -1,14 +1,15 @@
----
 layout: post
-title: "python2.7编码处理小结"
-date: 2016-04-23 23:52
+title: "Python2.7编码处理小结"
 comments: true
 tags: 
 	- python
 	- tips
+date: 2016-04-23 23:52
+categories:
+    - Python
 ---
 
-python2.7编程中遇到的一些编码问题小结
+Python2.7编程中遇到的一些编码问题小结
 
 <!-- more -->
 ## python code中指定编码方式
