@@ -2,7 +2,7 @@ layout: post
 title: "Python2.7编码处理小结"
 comments: true
 tags: 
-	- python
+	- Python
 	- tips
 date: 2016-04-23 23:52
 categories:
@@ -12,7 +12,7 @@ categories:
 Python2.7编程中遇到的一些编码问题小结
 
 <!-- more -->
-## python code中指定编码方式
+## Python code中指定编码方式
 
 **1.指定源文件的的编码方式**
 作用:解决python解释器载入py程序文件时编码报错问题
