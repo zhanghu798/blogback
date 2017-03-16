@@ -3,7 +3,7 @@ title: "Python2.7编码处理小结"
 comments: true
 tags: 
 	- Python
-	- tips
+	- Tips
 date: 2016-04-23 23:52
 categories:
     - Python
