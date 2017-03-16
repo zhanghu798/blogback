@@ -4,7 +4,7 @@
 
 # Site
 title: 张虎的博客
-subtitle: test
+subtitle:
 description: 记录、交流、进步
 author: 张虎
 email: zhanghu798@gmail.com
@@ -76,3 +76,10 @@ deploy:
   type: git
   repo: https://github.com/zhanghu798/zhanghu798.github.io.git
   branch: master
+
+heading_index:
+ enable: true
+ index_styles: "{1} {1} {1} {1} {1} {1}"
+ connector: "."
+ global_prefix: ""
+ global_suffix: ". "
