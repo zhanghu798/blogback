@@ -101,7 +101,7 @@ $$
 - 凸集是仿射集的真子集
 
 ## 凸函数
-如果函数$\ f\ $定义域是凸集，对于定义域内的任意$\ x, y \in \boldsymbol{dom}\ f\ $ 和任意$\ 0 \leqslant \theta \leqslant 1\ $, 有 $f\Bigg\(\theta x + (1-\theta)y\Bigg) \leqslant \theta f(x) + (1-\theta)f(y)$, 即:
+如果函数$\ f\ $定义域是凸集，对于定义域内的任意$\ x, y \in \boldsymbol{dom}\ f\ $ 和任意$\ 0 \leqslant \theta \leqslant 1\ $, 有 $f\big\(\theta x + (1-\theta)y\big) \leqslant \theta f(x) + (1-\theta)f(y)$, 即:
 
 $$\\left.
 \begin{aligned}
@@ -205,7 +205,7 @@ $$\\left.
     \end{aligned}
     \\right\\} \\\\
     \\\\
-    & \Longrightarrow  \nabla_{x, y, \nu} \Bigg\[f\_0(x) + \nu h\_1(x) \Bigg\]  = 0
+    & \Longrightarrow  \nabla_{x, y, \nu} \big\[f\_0(x) + \nu h\_1(x) \big\]  = 0
     \\\\
     & \Longrightarrow 目标函数f(x,y)在一个等式约束条件下取得最值处的解与L=f\_(x, y) + \nu h\_1(x,y)极值的解等价
 \end{aligned}
@@ -225,7 +225,7 @@ $$\\left.
     & \nabla\_{\boldsymbol{x}} f(x) = \sum\_{i=1}^p \lambda\_i' \nabla_{\boldsymbol{\boldsymbol{x}}}  f\_i(\boldsymbol{x})  \\\\
     & f\_i(x) = 0, \ \ i \in [1,\ldots,  m]
 \end{aligned}
-\\right\\} \Longrightarrow \nabla\_{\boldsymbol{x}, \boldsymbol{\lambda}} \Bigg\[f\_0(x) + \sum\_{i=1}^p \lambda\_i f\_i(x)\Bigg\] = 0, \ \ \ \ 当\lambda\_i \neq 0时, \ \ i \in [1,\ldots, m]
+\\right\\} \Longrightarrow \nabla\_{\boldsymbol{x}, \boldsymbol{\lambda}} \big\[f\_0(x) + \sum\_{i=1}^p \lambda\_i f\_i(x)\big\] = 0, \ \ \ \ 当\lambda\_i \neq 0时, \ \ i \in [1,\ldots, m]
 $$
 
 ### 一个不等式等式约束
@@ -320,7 +320,7 @@ $$
 $$
 \begin{aligned}
 原始约束问题的最值=拉格朗日对偶问题的最值 \Rightarrow & \qquad\qquad\qquad\qquad f\_0(x^\*) & = & g(\lambda^\*, \nu^\*)  \\\\
-对偶问题的定义\Rightarrow & \qquad & = & \inf\_{x}\Bigg\(f\_0(x) + \sum\_{i=1}^m \lambda\_i^\* f\_i(x) + \sum\_{i=1}^p \nu^\*h\_i(x)\Bigg\) \\\\
+对偶问题的定义\Rightarrow & \qquad & = & \inf\_{x}\big\(f\_0(x) + \sum\_{i=1}^m \lambda\_i^\* f\_i(x) + \sum\_{i=1}^p \nu^\*h\_i(x)\big\) \\\\
 任意x的逐点求下解值小于其中一个x的值\Rightarrow &\qquad & \leqslant & f\_0(x^\*) + \sum\_{i=1}^m \lambda\_i^\* f\_i(x^\*) + \sum\_{i=1}^p \nu^\*h\_i(x^\*) \\\\
 不等式约束项小于等于0，等式约束项等于0 \Rightarrow & \qquad & \leqslant & f\_0(x^\*) \\\\
 \end{aligned}
@@ -345,7 +345,7 @@ f\_0(x^\*) + \sum\_{i=1}^m \lambda\_i^\* f\_i(x^\*) + \sum\_{i=1}^p \nu\_i^\*h\_
 f\_i(x) \leqslant 0，   i = 1,2, \ldots, p \ \ \ \ &  \\\\
 h\_i(x) = 0， i = 1,2, \ldots, p \ \ \ \ &  \\\\
 \lambda\_i \geqslant 0，  i = 1,2, \ldots, m \ \ \ \ &  \\\\
-拉格朗日函数在x^\*处取得极小值： \nabla\_{\boldsymbol{x}} \Bigg\[f\_0(x) + \sum\_{i=1}^m \lambda\_i f\_i(x) + \sum\_{i=1}^m \nu\_i^\*h\_i(x) \Bigg\]_{x=x^\*} = 0  \ \ \ \ &
+拉格朗日函数在x^\*处取得极小值： \nabla\_{\boldsymbol{x}} \big\[f\_0(x) + \sum\_{i=1}^m \lambda\_i f\_i(x) + \sum\_{i=1}^m \nu\_i^\*h\_i(x) \big\]_{x=x^\*} = 0  \ \ \ \ &
 \end{aligned}
 \\right\\} KKT条件
 \end{aligned}
