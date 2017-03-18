@@ -345,7 +345,7 @@ f\_0(x^\*) + \sum\_{i=1}^m \lambda\_i^\* f\_i(x^\*) + \sum\_{i=1}^p \nu\_i^\*h\_
 f\_i(x) \leqslant 0，   i = 1,2, \ldots, p \ \ \ \ &  \\\\
 h\_i(x) = 0， i = 1,2, \ldots, p \ \ \ \ &  \\\\
 \lambda\_i \geqslant 0，  i = 1,2, \ldots, m \ \ \ \ &  \\\\
-拉格朗日函数在x^\*处取得极小值： \nabla\_{\boldsymbol{x}} \big\[f\_0(x) + \sum\_{i=1}^m \lambda\_i f\_i(x) + \sum\_{i=1}^m \nu\_i^\*h\_i(x) \big\]_{x=x^\*} = 0  \ \ \ \ &
+拉格朗日函数在x^\*处取得极小值： \nabla\_{\boldsymbol{x}} \big\[f\_0(x) + \sum\_{i=1}^m \lambda\_i^\* f\_i(x) + \sum\_{i=1}^m \nu\_i^\*h\_i(x) \big\]_{x=x^\*} = 0  \ \ \ \ &
 \end{aligned}
 \\right\\} KKT条件
 \end{aligned}
@@ -366,7 +366,7 @@ $$
 对于凸的问题， 满足KKT条件即为原始约束问题的最优解， KKT条件是最优性充要条件
 
 
-# 参考资料
+# 主要参考资料
 [1] 《凸优化》，清华出版社 Stephen Boyd 等著， 王书宁等译
 [2] 维基百科-Lagrange multiplier <https://en.wikipedia.org/wiki/Lagrange_multiplier>
 [3] 维基百科-拉格朗日乘数 <https://zh.wikipedia.org/wiki/拉格朗日乘数>
