@@ -341,7 +341,7 @@ f\_0(x^\*) + \sum\_{i=1}^m \lambda\_i^\* f\_i(x^\*) + \sum\_{i=1}^p \nu\_i^\*h\_
 优化问题的等式约束， h\_i(x) = 0 \\\\
 \lambda\_i \geqslant 0
 \end{aligned}
-\\right\\} \Longrightarrow \lambda\_i^\*f\_i(x^\*)，  i = 1,2, \ldots, m \ \ \ \ & \\\\
+\\right\\} \Longrightarrow \lambda\_i^\*f\_i(x^\*) = 0，  i = 1,2, \ldots, m \ \ \ \ & \\\\
 f\_i(x) \leqslant 0，   i = 1,2, \ldots, p \ \ \ \ &  \\\\
 h\_i(x) = 0， i = 1,2, \ldots, p \ \ \ \ &  \\\\
 \lambda\_i \geqslant 0，  i = 1,2, \ldots, m \ \ \ \ &  \\\\
