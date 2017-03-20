@@ -338,18 +338,14 @@ $$\kappa(x, z) = tanh(\gamma x \cdot z  + r)$$
 
 
 
-## 损失函数
+# 损失函数
 
-## 与感知机的区别
+# 与感知机的区别
 
-## 支持向量回归
+# 支持向量回归
 
-## 多分类SVM
+# 多分类SVM
 
-
-### 与感知机的联系区别
-
-## 几点想法
 
 # 多分类SVM
 <https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>
