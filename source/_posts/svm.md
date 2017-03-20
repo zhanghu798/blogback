@@ -346,8 +346,9 @@ $$\kappa(x, z) = tanh(\gamma x \cdot z  + r)$$
 
 # 多分类SVM
 
+# sklearn中的SVM
 
-# 多分类SVM
+
 <https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>
 
 [\[!PDF\] Multi-Class Support Vector Machine - Springer](http://www.springer.com/cda/content/document/cda_downloaddocument/9783319022994-c1.pdf?SGWID=0-0-45-1446422-p175468473)
@@ -356,7 +357,7 @@ $$\kappa(x, z) = tanh(\gamma x \cdot z  + r)$$
 
 
 
-# sklearn中的SVM
+
 
 
 
