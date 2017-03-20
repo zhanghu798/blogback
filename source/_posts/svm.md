@@ -60,7 +60,7 @@ $$
 
 1，$\ $由于$\lVert\boldsymbol{w}\rVert > 0$， 则假设条件可以写成 $y_i(\boldsymbol{w} ^ \mathsf{T}\boldsymbol{x_i} + b) > 0$
 
-2，$\ $由于超平面$ \boldsymbol{w} ^ \mathsf{T}\boldsymbol{x} + b = 0$ 有无穷多个等价超平面 $ k(\boldsymbol{w} ^ \mathsf{T}\boldsymbol{x} + b) = 0$， 所以存在等价超平面 $\boldsymbol{w'} ^ \mathsf{T}\boldsymbol{x} + b' = 0$使得不在该超平面上的点$x_0$满足$\left|\boldsymbol{w'} ^ \mathsf{T}\boldsymbol{x_0} + b'\right| = 1$
+2，$\ $由于超平面$ \boldsymbol{w} ^ \mathsf{T}\boldsymbol{x} + b = 0$ 有无穷多个等价超平面 $ \kappa(\boldsymbol{w} ^ \mathsf{T}\boldsymbol{x} + b) = 0$， 所以存在等价超平面 $\boldsymbol{w'} ^ \mathsf{T}\boldsymbol{x} + b' = 0$使得不在该超平面上的点$x_0$满足$\left|\boldsymbol{w'} ^ \mathsf{T}\boldsymbol{x_0} + b'\right| = 1$
 
 3，$\ $固定点到所有等价超平面的距离相等
 
@@ -190,14 +190,12 @@ $$\sum\_{i=1}^m a\_i^\* y\_i(\boldsymbol{x} \cdot \boldsymbol{x\_i}) + b^\* = 0�
 分类决策函数为：
 $$f(x) = sign \big\[\sum\_{i=1}^m a\_i^\* y\_i(\boldsymbol{x\_i} \cdot \boldsymbol{x}) + b^\* \big\] \ \ \ (\boldsymbol{x} 为待预测样本)$$
 
-
-
-### SMO
+具体解法见SMO
 
 # 线性不可分SVM
 
 ## 问题表示及拉格朗日函数
-对每个样本点引入一个松弛变量$\xi\_i \geqslant 0$， 使得函数距离约束变松。同时对每个松弛因子加入惩罚项。以上被称为软件个最大化，具体描述为：
+对每个样本点引入一个松弛变量$\xi\_i \geqslant 0$，使得线性不可分的点对应的支持超平面向着平行于其法线且朝着分离超平面的方向移动$\frac{\xi\_i}{\lVert\boldsymbol{w}\rVert^2} $作为伪支撑超平面上为参照（该点在此伪支撑超平面上）， 使得函数距离约束变松。同时对松弛因子加入惩罚系数（超参数C， C > 0）。以上被称为软件个最大化，数学描述为：
 
 $$\\left\\{
 \begin{aligned}
@@ -237,7 +235,7 @@ $$
 ## 求解
 ### $\min\_{\boldsymbol{w}, b, \boldsymbol{\xi}}   L(\boldsymbol{w}, b, \boldsymbol{\xi}, \boldsymbol{\alpha}, \boldsymbol{\mu})$的求解
 
-将(1),(2),(3)带入拉格朗日函数：的，
+将(1),(2),(3)带入拉格朗日函数得，
 $$
 \begin{aligned}
 & \min\_{\boldsymbol{w}, b} L(\boldsymbol{w}, b, \boldsymbol{\xi}, \boldsymbol{\alpha}, \boldsymbol{\mu}) \\\\
@@ -265,17 +263,29 @@ $$
 \end{aligned}
 $$
 
+具体解法见SMO
+
 
 求得$a\_i^\*$后
-$$ b^\* = y\_j - \sum\_{i=i}^m \alpha\_i ^ \* y\_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j}) ， \ j = 1, \ldots, m $$
+$$ b^\* = y\_j - \sum\_{i=i}^n \alpha\_i ^ \* y\_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j}) ， 0 < a\_j < C， j = 1, \ldots, n $$
+
 
 分离超平面为：
-$$\sum\_{i=1}^m a\_i^\* y\_i(\boldsymbol{x} \cdot \boldsymbol{x\_i}) + b^\* = 0， (其中(\boldsymbol{x\_i}, y\_i）为训练样本及对应标签)$
+$$\sum\_{i=1}^m a\_i^\* y\_i(\boldsymbol{x} \cdot \boldsymbol{x\_i}) + b^\* = 0， (其中(\boldsymbol{x\_i}, y\_i）为训练样本及对应标签)$$
 
 分类决策函数为：
 $$f(x) = sign \big\[\sum\_{i=1}^m a\_i^\* y\_i(\boldsymbol{x\_i} \cdot \boldsymbol{x}) + b^\* \big\] \ \ \ (\boldsymbol{x} 为待预测样本)$$
 
 当惩罚系数$C \to +\infty$ 时，退化为线性可分的情况
+
+> $\alpha\_i^\* = 0$：非支持向量
+> $\alpha\_i^\* = C$：支持向量，但不在支撑超平面上， 支持向量$\boldsymbol{x\_i}$离对应正确分类支撑超平面的距离为:$\frac{\xi\_i}{\lVert\boldsymbol{w}\rVert^2} $
+> - $\xi\_i^\* > 1$： x\_i为误分类点
+> - $\xi\_i^\* = 1$： x\_i为在分隔超平面上
+> - $0 < \xi^\* < 1$： x\_i在分隔超平面和正确支撑超平面之间
+>
+> $0 < \alpha\_i^\* < C$： 在支撑超平面上的支持向量
+
 
 
 
@@ -290,7 +300,7 @@ $$
  & \max\_\boldsymbol{\alpha} \min\_{\boldsymbol{w}, b}  L(\boldsymbol{w}, b, \boldsymbol{\alpha}) \\\\
 = & \\left\\{
 \begin{aligned}
-    obj\ :\ &\max\_{\boldsymbol{\alpha}} -\frac{1}{2} \sum\_{i=1}^m\sum\_{j=1}^m \alpha\_i \alpha\_j y\_i y\_j  K(\boldsymbol{x\_i}, \boldsymbol{x\_j}) + \sum\_{i=1}^m \alpha\_i, \ \ \ \  i，j  \in [1,\ldots, m]\\\\
+    obj\ :\ &\max\_{\boldsymbol{\alpha}} -\frac{1}{2} \sum\_{i=1}^m\sum\_{j=1}^m \alpha\_i \alpha\_j y\_i y\_j  \kappa(\boldsymbol{x\_i}, \boldsymbol{x\_j}) + \sum\_{i=1}^m \alpha\_i, \ \ \ \  i，j  \in [1,\ldots, m]\\\\
     st\ :\ &\ \sum\_{i=1}^m \alpha^\* y\_i = 0，i  \in [1,\ldots, m] \\\\
     &\ 0 \leqslant \alpha\_i \leqslant C， i  \in [1,\ldots, m]
 \end{aligned}
@@ -298,42 +308,44 @@ $$
 \end{aligned}
 $$
 
+具体解法见SMO
 
 求得$a\_i^\*$后
-$$ b^\* = y\_j - \sum\_{i=i}^m \alpha\_i ^ \* y\_i  K(\boldsymbol{x\_i}, \boldsymbol{x\_j}) ， \ j = 1, \ldots, m $$
+$$ b^\* = y\_j - \sum\_{i=i}^n \alpha\_i ^ \* y\_i \kappa(\boldsymbol{x\_i}, \boldsymbol{x\_j})  ， 0 < a\_j < C， j = 1, \ldots, n $$
+
+
 
 分离超平面为：
-$$\sum\_{i=1}^m a\_i^\* y\_i K(\boldsymbol{x\_i}, \boldsymbol{x\_j}) + b^\* = 0， (其中(\boldsymbol{x\_i}, y\_i）为训练样本及对应标签)$$
+$$\sum\_{i=1}^m a\_i^\* y\_i \kappa(\boldsymbol{x\_i}, \boldsymbol{x\_j}) + b^\* = 0， (其中(\boldsymbol{x\_i}, y\_i）为训练样本及对应标签)$$
 
 分类决策函数为：
-$$f(x) = sign \big\[\sum\_{i=1}^m a\_i^\* y\_i  K(\boldsymbol{x\_i}, \boldsymbol{x}) + b^\* \big\] \ \ \ (\boldsymbol{x} 为待预测样本)$$
+$$f(x) = sign \big\[\sum\_{i=1}^m a\_i^\* y\_i  \kappa(\boldsymbol{x\_i}, \boldsymbol{x}) + b^\* \big\] \ \ \ (\boldsymbol{x} 为待预测样本)$$
 
 
 ### 核函数
-pass
+- 线性核
+$$\kappa(x, z) = (x \cdot z)$$
+
+
+- 多项式核
+$$\kappa(x, z) = (\gamma x \cdot z + r)^p$$
+
+- rbf核（高斯核）
+$$\kappa(x, z) = exp \big\(-\frac{\lVert x - z\rVert^2 }{2 \sigma^2}\big\)$$
+
+- 双曲正切核（sigmoid核）
+$$\kappa(x, z) = tanh(\gamma x \cdot z  + r)$$
 
 
 
+## 损失函数
 
+## 与感知机的区别
 
+## 支持向量回归
 
+## 多分类SVM
 
-
-# 损失函数
-
-
-## 引入松弛变量
-### 问题求解
-
-# 非线性不可分SVM
-
-## 核函数
-
-## SMO
-算法描述， 流程图..
-
-### 损失函数
-图片
 
 ### 与感知机的联系区别
 
@@ -343,6 +355,8 @@ pass
 <https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>
 
 [\[!PDF\] Multi-Class Support Vector Machine - Springer](http://www.springer.com/cda/content/document/cda_downloaddocument/9783319022994-c1.pdf?SGWID=0-0-45-1446422-p175468473)
+
+[机器学习核函数手册](https://my.oschina.net/lfxu/blog/478928)
 
 
 
