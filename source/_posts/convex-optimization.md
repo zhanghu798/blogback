@@ -14,8 +14,8 @@ SVM中的凸优化
 <!-- more -->
 
 # 几个基本概念
+
 ## 凸集
----
 
 如果集合$C$中任意两点间的**线段**仍然在$C$中，即满足:
 $$\left.
@@ -182,7 +182,7 @@ $$\theta_p(x) = \max_{\boldsymbol{\lambda}, \boldsymbol{\nu}}{L(x, \boldsymbol{\
 $$
 
 ## 拉格朗日函数的理解
-<img src="/pic/ml/down/LagrangeMultipliers2D.svg.png" width="50%" height="50%" style="margin: 0 auto"> <center>([图1](https://en.wikipedia.org/wiki/Lagrange_multiplier), $\ f_0(x)$等高线示与约束条件示意图,蓝色箭头方向为等高线对应值降低的方向,<br>当$g(x, y) - c = 0$时红色线表示等式约束;<br>当$g(x, y) - c \leqslant 0$ 红色线箭头方向为不等式约束成立的方向)
+<img src="/pic/ml/down/LagrangeMultipliers2D.svg.png" width="50%" height="50%" style="margin: 0 auto"> <center>([图1](https://en.wikipedia.org/wiki/Lagrange_multiplier), $\ f_0(x)$等高线示与约束条件示意图,蓝色箭头方向为等高线对应值降低的方向,<br>当$g(x, y) - c = 0$时红色线表示等式约束;<br>当$g(x, y) - c \leqslant 0$ 红色线箭头方向为不等式约束成立的方向)</center>
 
 
 - 等高线:
@@ -215,9 +215,10 @@ $\nu = -\nu'$
 
 ### 多个等式约束问题
 
-<img src="/pic/ml/down/600px-As_wiki_lgm_parab.svg.png" width="45%" height="45%" style="margin: 0 auto"> <center>([图2](https://en.wikipedia.org/wiki/Lagrange_multiplier),等高线及含有两个约束条件的情况示意图)
+<img src="/pic/ml/down/600px-As_wiki_lgm_parab.svg.png" width="45%" height="45%" style="margin: 0 auto"> <center>([图2](https://en.wikipedia.org/wiki/Lagrange_multiplier),等高线及含有两个约束条件的情况示意图)</center>
 
-极值多个等式约束看作在满足约束条件下集合处， 定义极值处的梯度方向为多个约束加权后得到的梯度和目标函数$f_0(极点)$处的梯度平行
+
+多个等式约束看作在满足约束条件下集合处， 定义极值处的梯度方向为多个约束加权后得到的梯度和目标函数$f_0(极点)$处的梯度平行
 即极值处满足:
 $$\left.
 \begin{aligned}
@@ -318,7 +319,7 @@ $$
 ## KKT条件
 强对偶成立时，最优解需要满足的条件
 
-令$x^\*$是原问题的最优解，$(\lambda^\*， \nu^*)$对偶问题的最优解
+令$x^*$是原问题的最优解，$(\lambda^*， \nu^*)$对偶问题的最优解
 则，
 $$
 \begin{aligned}
@@ -359,7 +360,7 @@ h_i(x) = 0， i = 1,2, \ldots, p \ \ \ \ &  \\
 \right.
 $$
 
-其中 $\lambda_i^\*f_i(x^\*)$为松弛条件
+其中 $\lambda_i^*f_i(x^*)$为松弛条件
 有：
 $$\left\{
 \begin{aligned}

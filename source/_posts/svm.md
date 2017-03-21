@@ -14,20 +14,18 @@ categories:
 
 # 线性可分SVM
 
-<img src="/pic/ml/down/440px-Svm_max_sep_hyperplane_with_margin.png" border="0" width="40%" height="40%" style="margin: 0 auto"><center>（[图1](https://zh.wikipedia.org/wiki/支持向量机), 线性支持向量机示意图）
+<img src="/pic/ml/down/440px-Svm_max_sep_hyperplane_with_margin.png" border="0" width="40%" height="40%" style="margin: 0 auto"><center>（[图1](https://zh.wikipedia.org/wiki/支持向量机), 线性支持向量机示意图）</center>
 
 ## 问题引出
 
 
-有样本集 $D=\\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\\}$。其中， $x_i$是一个样本，列向量；标签$y_i\in\\{-1， 1\\}$且$D$是线性可分的。 找到一个最优超平面$ \boldsymbol{w}^T\boldsymbol{x} + b = 0$($\boldsymbol{w}$为是超平面系数，列向量；$b$为截距；$\boldsymbol{x}$为列向量)，使得在保证正确分类的情况下，样本点到超平面的*最小*距离*最大*化
+有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $x_i$是一个样本，列向量；标签$y_i\in\{-1， 1\}$且$D$是线性可分的。 找到一个最优超平面$ \boldsymbol{w}^T\boldsymbol{x} + b = 0$($\boldsymbol{w}$为是超平面系数，列向量；$b$为截距；$\boldsymbol{x}$为列向量)，使得在保证正确分类的情况下，样本点到超平面的*最小*距离*最大*化
 
 
-
----
 * *最小*距离：所以样本点到超平面的距离
 * 支持向量：每个类别中到超平面距离最小的点
 * *最大*化：使得两类支持向量到超平面最小距离最大化，即两类支持向量点到超平面的距离相等
----
+
 如上图:
 $\boldsymbol{w}^T\boldsymbol{x} + b = 0$: 分离超平面
 $\boldsymbol{w}^T\boldsymbol{x} + b = 1$: 正例支撑超平面
@@ -56,19 +54,17 @@ st: & \frac{\left|\boldsymbol{w}^T\boldsymbol{x_i} + b\right|}{\lVert\boldsymbol
 \right.
 $$
 
----
 
 点到直线的距离:
 二维空间中，点$(x_0， y_0)$到直线$Ax+By+C=0$的距离$d=\frac{\left|Ax_0+By_0+C\right|}{\sqrt{A^{2}+B^{2}}}$.
-多纬空间中，点$\boldsymbol{x_0}$到$\boldsymbol{w}^T\boldsymbol{x} + b = 0$的距离$d=\frac{\left|\boldsymbol{w}^T\boldsymbol{x_0} + b\right|}{\lVert\boldsymbol{w}\rVert} $
+多纬空间中，点$\boldsymbol{x_0}$到$\boldsymbol{w}^T\boldsymbol{x} + b = 0$的距离  $d=\frac{\left| \boldsymbol{w}^T\boldsymbol{x_0} + b \right|}{\lVert \boldsymbol{w} \rVert_2}$
 
----
 
-1，$\ $由于$\lVert\boldsymbol{w}\rVert > 0$， 则假设条件可以写成 $y_i(\boldsymbol{w}^T\boldsymbol{x_i} + b) > 0$
+1，由于$\lVert\boldsymbol{w}\rVert > 0$， 则假设条件可以写成 $y_i(\boldsymbol{w}^T\boldsymbol{x_i} + b) > 0$
 
-2，$\ $由于超平面$ \boldsymbol{w}^T\boldsymbol{x} + b = 0$ 有无穷多个等价超平面 $ \kappa(\boldsymbol{w}^T\boldsymbol{x} + b) = 0$， 所以存在等价超平面 $\boldsymbol{w'}^T\boldsymbol{x} + b' = 0$使得不在该超平面上的点$x_0$满足$\left|\boldsymbol{w'}^T\boldsymbol{x_0} + b'\right| = 1$
+2，由于超平面$\boldsymbol{w}^T \boldsymbol{x} + b = 0$ 有无穷多个等价超平面 $\kappa(\boldsymbol{w}^T\boldsymbol{x} + b) = 0$， 所以存在等价超平面 $\boldsymbol{w'}^T\boldsymbol{x} + b' = 0$使得不在该超平面上的点$x_0$满足$\left|\boldsymbol{w'}^T\boldsymbol{x_0} + b'\right| = 1$
 
-3，$\ $固定点到所有等价超平面的距离相等
+3，固定点到所有等价超平面的距离相等
 
 基于以上，合并正确分类条件和最大间隔条件
 
@@ -96,7 +92,7 @@ $$
 *注*:$\ $此时所求$\boldsymbol{w}^T\boldsymbol{x} + b = 0$ 为原始假设超平面的等价超平面
 
 问题目标：
-找到满足上是约束的分离超平面参数$ \boldsymbol{w^\*} $, $b^\*$，求的分离超平面为$\boldsymbol{w^\*} \cdot \boldsymbol{x} + b^\* = 0$, 对于待预测样本$\boldsymbol{x_i}$分类决策函数为：$$f(x) = sign(\boldsymbol{w^*} \cdot \boldsymbol{x_i} + b)$$
+找到满足上是约束的分离超平面参数$ \boldsymbol{w^*} $, $b^*$，求的分离超平面为$\boldsymbol{w^*} \cdot \boldsymbol{x} + b^* = 0$, 对于待预测样本$\boldsymbol{x_i}$分类决策函数为：$$f(x) = sign(\boldsymbol{w^*} \cdot \boldsymbol{x_i} + b)$$
 
 
 ## 求解
@@ -111,7 +107,7 @@ st: & 1 - y_i(\boldsymbol{w}^T\boldsymbol{x_i} + b)\leqslant
 $$
 由于目标函数是二次函数是凸的，约束函数是关于$w_i$ 和 $b$的仿射函数，所以此问题的为凸优化问题
 
-引入拉格朗日乘子$\alpha_i, i \in [1, ldots, m]$， 其拉格朗日函数为
+引入拉格朗日乘子$\alpha_i, i \in [1, \ldots, m]$， 其拉格朗日函数为
 $$L(\boldsymbol{w}, b, \boldsymbol{\alpha}) = \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 + \sum_{i=1}^m \alpha_i \big[1 - y_i(\boldsymbol{w}^T\boldsymbol{x_i} + b) \big]$$
 
 ### 问题的拉格朗日函数
@@ -159,7 +155,7 @@ $$\begin{aligned}
 \end{aligned}
 $$
 
-- 当$a_i^\* = 0$时，其对应的不等式约束$y_i (\boldsymbol{w^\*} \cdot \boldsymbol{x_i} + b^\*)  -1 < 0, i = 1,\ldots, m$为非边界条件，该样本不在支撑超平面
+- 当$a_i^* = 0$时，其对应的不等式约束$y_i (\boldsymbol{w^*} \cdot \boldsymbol{x_i} + b^*)  -1 < 0, i = 1,\ldots, m$为非边界条件，该样本不在支撑超平面
 
 综合考虑$a_i^* \geqslant 0$情况：
 $$ b^* = y_j - \sum_{i=i}^m \alpha_i ^ * y_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j}) ， \ j = 1, \ldots, m \ \ \ \ (8)$$
@@ -293,7 +289,7 @@ $$f(x) = sign \big[\sum_{i=1}^m a_i^* y_i(\boldsymbol{x_i} \cdot \boldsymbol{x})
 超参数$C$越大，表示惩罚项惩罚系数, 分离超平面和支持超平面越距离越近, 训练集的准确率越高, 模型泛化能里越弱
 当惩罚系数$C \to +\infty$ 时，退化为线性可分的情况
 
-> $\alpha_i^\* = 0$：非支持向量
+> $\alpha_i^* = 0$：非支持向量
 > $\alpha_i^* = C$：支持向量，但不在支撑超平面上， 支持向量$\boldsymbol{x_i}$离对应正确分类支撑超平面的距离为:$\frac{\xi_i}{\lVert\boldsymbol{w}\rVert^2} $
 > - $\xi_i^* > 1$： x_i为误分类点
 > - $\xi_i^* = 1$： x_i为在分隔超平面上
@@ -365,7 +361,7 @@ $$\kappa(x, z) = tanh(\gamma x \cdot z  + r)$$
 > + 对于正例($y_i = 1$): 正支撑超平面的下方样本点有损失, hinge损失为点到正支撑超平面的函数距离
 > + 对于负例($y_i = -1$): 负支撑超平面的上方样本点有损失, hinge损失为点到负支撑超平面的函数距离
 
-<img src="/pic/ml/down/loss_functions.png" border="0" width="60%" height="60%" style="margin: 0 auto"><center>（图2, hinge损失, 0-损失, Logistic损失）
+<img src="/pic/ml/down/loss_functions.png" border="0" width="60%" height="60%" style="margin: 0 auto"><center>（图2, hinge损失, 0-损失, Logistic损失）</center>
 
 > hige核心在于只关心核心点(支持向量)造成的损失,且这部分损失是线性的(区别与0-1损失),放弃一定范围外且正确分类点(区别于logistic损失)
 
@@ -380,7 +376,7 @@ $$
 
 > 对于SVM在只关注核心点的同时, 选择分离超平面的原则使得熵最大, 即使得两支撑超平面到分离超平面的距离相等,保证了其泛化能力, 比较适合稀疏样本分类
 
-<img src="/pic/ml/down/hinge.png" border="0" width="40%" height="40%" style="margin: 0 auto"><center>（[图3](http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html), 合叶, hinge损失亦被称为合叶损失）
+<img src="/pic/ml/down/hinge.png" border="0" width="40%" height="40%" style="margin: 0 auto"><center>（[图3](http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html), 合叶, hinge损失亦被称为合叶损失</center>
 
 # SVM与感知机异同
 
@@ -455,7 +451,7 @@ $$\arg \max_{a, b}l(a, b)$$
 [3]《Machine Learning - A Probabilistic Perspective》，Kevin P. Murphy
 [4] 维基百科-支持向量机：<https://zh.wikipedia.org/wiki/支持向量机>
 [5] 多分类SVM：<https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>
-[6] 多分类SVM：[[!PDF] Multi-Class Support Vector Machine - Springer](http://www.springer.com/cda/content/document/cda_downloaddocument/9783319022994-c1.pdf?SGWID=0-0-45-1446422-p175468473)
+[6] 多分类SVM：[[!PDF] Multi-Class Support Vector Machine - Springer](http://www.springer  .com/cda/content/document/cda_downloaddocument/9783319022994-c1.pdf?SGWID=0-0-45-1446422-p175468473)
 [7] 机器学习核函数手册：<https://my.oschina.net/lfxu/blog/478928>
 [8] <http://scikit-learn.org/stable/modules/svm.html#svm-kernels>
 [9] <http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>
