@@ -14,7 +14,7 @@ categories:
 
 # 线性可分SVM
 
-<img src="/pic/ml/down/440px-Svm_max_sep_hyperplane_with_margin.png" border="0" width="40%" height="40%" style="margin: 0 auto"><center>（[图1](https://zh.wikipedia.org/wiki/支持向量机), 线性支持向量机示意图）</center>
+<img src="/pic/ml/down/440px-Svm_max_sep_hyperplane_with_margin.png" border="0" width="40%" height="40%" style="margin: 0 auto"><center>（[图1](https://zh.wikipedia.org/wiki/支持向量机)， 线性支持向量机示意图）</center>
 
 ## 问题引出
 
@@ -209,12 +209,12 @@ $$f(x) = sign \big[\sum_{i=1}^m a_i^* y_i(\boldsymbol{x_i} \cdot \boldsymbol{x})
 
 $$\left\{
 \begin{aligned}
-obj: \ &  \min_{\boldsymbol{w}，b} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 + C \sum_{i=1}^m \xi_i， \ C \geqslant 0 , & i\in[1， m] & \\
+obj: \ &  \min_{\boldsymbol{w},b,\boldsymbol{\xi}} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 + C \sum_{i=1}^m \xi_i， \ C \geqslant 0 , & i\in[1， m] & \\
 st: \ & y_i(\boldsymbol{w}^T\boldsymbol{x_i} + b)\geqslant 1 - \xi_i, & i\in[1， m]& \\
  & \xi_i \geqslant 0 , &\ i\in[1， m]& \\
 & 满足y_0(\boldsymbol{w}^T\boldsymbol{x_0} + b) = 1 的点为支撑向量 &
 \end{aligned}
-\right.
+\right. \tag{2.1}
 $$
 
 为松弛变量$\boldsymbol{\xi}$引入拉格朗日乘子$\boldsymbol{\mu}$，其拉格朗日函数为：
@@ -354,8 +354,8 @@ $$\kappa(x, z) = tanh(\gamma x \cdot z  + r)$$
 (待续...)
 
 # 损失函数
-线性支持向量机的损失为hige损失,形式如下:
-> $$\sum_{i=1}^m \max \left\{ 0, 1 - (\boldsymbol{w}^T x_i + b) y_i \right\} $$
+考虑约束问题式(2.1)，将不等式约束部分和约束整合，可以得到线性支持向量机的损失为hinge损失，形式如下：
+$$\sum_{i=1}^m \max \left\{ 0, 1 - (\boldsymbol{w}^T x_i + b) y_i \right\}$$
 
 >当随时函数点样本点到正确分类的超平面的集合距离小于1时, 有损失, 损失为该点到对应正确分类支撑超平面的函数距离.即:
 > + 对于正例($y_i = 1$): 正支撑超平面的下方样本点有损失, hinge损失为点到正支撑超平面的函数距离
@@ -365,28 +365,54 @@ $$\kappa(x, z) = tanh(\gamma x \cdot z  + r)$$
 
 > hige核心在于只关心核心点(支持向量)造成的损失,且这部分损失是线性的(区别与0-1损失),放弃一定范围外且正确分类点(区别于logistic损失)
 
-> hinge损失 + L2正则的结构风险最小化问题等价为线性支持向量机的最优化问题.即支持向量最优化问题可以表示为如下:
-
+> hinge损失 + L2正则的最小化问题等价为线性支持向量机的最优化问题.即支持向量最优化问题可以表示为如下:  
 $$
 \min\limits_{\boldsymbol{w}, b} \left[
 \sum_{i=1}^m \max \left\{ 0, 1 - (\boldsymbol{w}^T x_i + b) y_i \right\}
 + \lambda \lVert \boldsymbol{w} \rVert^2
 \right]
 $$
+$$\lambda=\frac{1}{2C},\  C > 0$$
 
-> 对于SVM在只关注核心点的同时, 选择分离超平面的原则使得熵最大, 即使得两支撑超平面到分离超平面的距离相等,保证了其泛化能力, 比较适合稀疏样本分类
+从hinge损失的角度考虑，因为全局不可导，所以可以用随机梯度下降的来求参数：
+为方便推导， 每个样本扩充一个常数1， 则有$x_i \to (x_i, 1)^T$， 则  $\boldsymbol{w}^T x_i + b \to \boldsymbol{w}^T x_i$
 
-<img src="/pic/ml/down/hinge.png" border="0" width="40%" height="40%" style="margin: 0 auto"><center>（[图3](http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html), 合叶, hinge损失亦被称为合叶损失</center>
+$$
+\nabla_\boldsymbol{w} ＝ 
+\left\{
+\begin{aligned}
+   & 2 \lambda \boldsymbol{w} - \boldsymbol{x_i} y_i &，& if \ \ \boldsymbol{w}^T \boldsymbol{x_i} < 1 \\
+   & 2 \lambda \boldsymbol{w}&  ， &other \\
+\end{aligned}
+\right.
+$$
+
+则学习率为第t次步长$\eta_t$的随机梯度下降算法为：
+$$
+\boldsymbol{w_{t+1}} ＝ 
+\left\{
+\begin{aligned}
+   & \boldsymbol{w_t} - \eta_t (2 \lambda \boldsymbol{w_t} - \boldsymbol{x_i} y_i) &，& if \ \ \boldsymbol{w}^T \boldsymbol{x_i} < 1 \\
+   & \boldsymbol{w_t} - \eta_t (2 \lambda \boldsymbol{w_t})& ，& other \\
+\end{aligned} 
+\right.
+$$
+
+
+> 对于SVM在只关注核心点的同时, 选择分离超平面的原则使得熵最大, 即使得两支撑超平面到分离超平面的距离相等,保证了其泛化能力, 比较适合稀疏样本分类。
+> 但如果支持向量是个噪声点的话会对结果有较大的影响， 可以通过降低原约束问题的$C$降低对噪声点的敏感程度
+
+<img src="/pic/ml/down/hinge.png" border="0" width="50%" height="50%" style="margin: 0 auto"><center>（[图3](http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html), 合叶, hinge损失亦被称为合叶损失)</center>
 
 # SVM与感知机异同
 
 感知机是误分类点算法驱动的, 其损失函数:
-$$\sum_{i=1}^m \max \left\{ 0,  - (\boldsymbol{w}^T x_i + b) y_i \right\}$$
+$$\sum_{i=1}^m \max \left\{ 0,  - (\boldsymbol{w}^T \boldsymbol{x_i} + b) y_i \right\}$$
 
 最优化问题可以表示为
 $$
 \min\limits_{\boldsymbol{w}, b} \left[
-\sum_{i=1}^m \max \left\{ 0,  - (\boldsymbol{w}^T x_i + b) y_i \right\}
+\sum_{i=1}^m \max \left\{ 0,  - (\boldsymbol{w}^T \boldsymbol{x_i} + b) y_i \right\}
 \right]
 $$
 
@@ -408,7 +434,15 @@ $$\left\{
 \right. \tag{6.1}
 $$
 
-对于SVM,假设训练好参数$\boldsymbol{w}$, $b$. 令$f(x) = \boldsymbol{w} \cdot \boldsymbol{x} + b $, 则有
+对于SVM，假设训练好参数$\boldsymbol{w}$, $b$. 令$f(x) = \boldsymbol{w} \cdot \boldsymbol{x} + b$, 则有
+$$\left\{
+\begin{aligned}
+   & f(x) > 0: &认为样本类别为 +1 \\
+   & f(x) < 0: &认为样本类别为 -1 \\
+\end{aligned}
+\right. \tag{6.2}
+$$
+
 $$\left\{
 \begin{aligned}
    & f(x) > 0: &认为样本类别为 +1 \\
@@ -428,40 +462,68 @@ $$L=\prod_{i=1}^m \big[\frac{1}{1+exp^{af(x_i) + b}}\big]^\frac{y_i+1}{2} \cdot 
 $$l(a, b) =\sum_{i=1}^m \Bigg[\frac{y_i+1}{2} \frac{1}{1+exp^{af(x_i) + b}} -\frac{y_i+1}{2} \frac{af(x_i) + b}{1+exp^{af(x_i) + b}}\Bigg]$$
 
 所以问题的解如下:
-$$\arg \max_{a, b}l(a, b)$$
+$$\arg \min_{a, b}-l(a, b)$$
 
-通过梯度下降或拟牛顿方法求得a, b
+可以通过梯度下降或拟牛顿等方法求得a, b
+
 
 ! 但是mlapp中指出验证效果并不理想, 同时相关向量机(Relevance Vector Machine)可以较好的拟合概率
 
 # 多分类SVM
 
+
+## 直接公式法
+$$
+\left\{
+\begin{aligned}
+obj: \ &  \min_{\boldsymbol{w}, b, \boldsymbol{\xi}} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 + C \sum_{i=1}^m \xi_i， \ C \geqslant 0 , & i\in[1， m] & \\
+st: \ & y_i(\boldsymbol{w}^T\boldsymbol{x_i} + b)\geqslant 1 - \xi_i, & i\in[1， m]& \\
+ & \xi_i \geqslant 0 , &\ i\in[1， m]& \\
+& 满足y_0(\boldsymbol{w}^T\boldsymbol{x_0} + b) = 1 的点为支撑向量 &
+\end{aligned}
+\right.
+$$
+
+## 一对剩余（One Versus Rest， OVR）
+把其中一个类别做为$＋1$类， 其他类别做为$－1$类， 训练K个二分SVM，选择 $y_i(\boldsymbol{w}^T x_i + b)$的最大的对应的距离， 因为是一对多的情况所以不平衡样本的问题突出，可以通过正例重采样，Lee et al. (2001) 提出修改负例的标签为$-\frac{1}{k-1}$,因为不是在同一参考下生成的模型，所以通过直接找出函数距离最大的作为最终分类可信度受限。
+
+## 一对一（One Versus One, OVO） 
+一次拿出两类训练分类器， k类一共有$\frac{k(k-1)}{2}$个分类器，对每个样本的类别结果做统计，众数对应的类别为最后对应的类别
+
 # 支持向量回归
 
-(待续...)
+(...)
 
 
-# sklearn中的SVM
+# sklearn中的SVM  
 
+<http://scikit-learn.org/stable/modules/svm.html#svm>
 
+```python
+from sklearn import svm
+
+clf = svm.SVC()         # 分类
+
+clf = svm.SVR()         # 回归  
+
+```
+分类问题中，针对不平衡样本， 通过class_weight参数，达到提高少数样本的召回率
 
 # 参考资料
-[1]《统计学习方法》，李航著
-[2]《机器学习》，周志华著
-[3]《Machine Learning - A Probabilistic Perspective》，Kevin P. Murphy
-[4] 维基百科-支持向量机：<https://zh.wikipedia.org/wiki/支持向量机>
-[5] 多分类SVM：<https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>
-[6] 多分类SVM：[[!PDF] Multi-Class Support Vector Machine - Springer](http://www.springer  .com/cda/content/document/cda_downloaddocument/9783319022994-c1.pdf?SGWID=0-0-45-1446422-p175468473)
-[7] 机器学习核函数手册：<https://my.oschina.net/lfxu/blog/478928>
-[8] <http://scikit-learn.org/stable/modules/svm.html#svm-kernels>
-[9] <http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>
-[10] <http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html>
-
-
-
-
-
-
+[1]《统计学习方法》，李航著，2012
+[2]《机器学习》，周志华著，2016 
+[3]《Machine Learning - A Probabilistic Perspective》，Kevin P. Murphy ，2012 
+[4]《Pattern Recognition And Machine Learning》，Christopher Bishop，2007
+[5] 维基百科-支持向量机：<https://zh.wikipedia.org/wiki/支持向量机>  
+[6] 随机梯度求SVM <http://ttic.uchicago.edu/~nati/Publications/PegasosMPB.pdf>  
+[7] 多分类SVM：<https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>  
+[8] 多分类SVM：[[!PDF] Multi-Class Support Vector Machine - Springer](http://www.springer  .com/cda/content/document/  cda_downloaddocument/9783319022994-c1.pdf?SGWID=0-0-45-1446422-p175468473)  
+[9] 机器学习核函数手册：<https://my.oschina.net/lfxu/blog/478928>  
+[10] sklearn－核函数：<http://scikit-learn.org/stable/modules/svm.html#svm-kernels>  
+[11] <http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>  
+[12] <http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html>  
+[13] 维基百科－Platt_scaling <https://en.wikipedia.org/wiki/Platt_scaling>
+[14] sklearn－svm：<http://scikit-learn.org/stable/modules/svm.html#svm>
 
 
 
