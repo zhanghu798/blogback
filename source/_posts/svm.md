@@ -466,6 +466,8 @@ $$\arg \min_{a, b}-l(a, b)$$
 
 可以通过梯度下降或拟牛顿等方法求得a, b
 
+Platt 建议用转化把标签概率化，转化方法见<https://en.wikipedia.org/wiki/Platt_scaling>
+
 
 ! 但是mlapp中指出验证效果并不理想, 同时相关向量机(Relevance Vector Machine)可以较好的拟合概率
 
@@ -487,7 +489,6 @@ $$
 ## 一对剩余（One Versus Rest， OVR）
 把其中一个类别做为$＋1$类， 其他类别做为$－1$类， 训练K个二分SVM，选择 $y_i(\boldsymbol{w}^T x_i + b)$的最大的对应的距离， 因为是一对多的情况所以不平衡样本的问题突出，可以通过正例重采样，Lee et al. (2001) 提出修改负例的标签为$-\frac{1}{k-1}$,因为不是在同一参考下生成的模型，所以通过直接找出函数距离最大的作为最终分类可信度受限。
 
-## 一对一（One Versus One, OVO） 
 一次拿出两类训练分类器， k类一共有$\frac{k(k-1)}{2}$个分类器，对每个样本的类别结果做统计，众数对应的类别为最后对应的类别
 
 # 支持向量回归
@@ -510,19 +511,19 @@ clf = svm.SVR()         # 回归
 分类问题中，针对不平衡样本， 通过class_weight参数，达到提高少数样本的召回率
 
 # 参考资料
-[1]《统计学习方法》，李航著，2012
-[2]《机器学习》，周志华著，2016 
-[3]《Machine Learning - A Probabilistic Perspective》，Kevin P. Murphy ，2012 
-[4]《Pattern Recognition And Machine Learning》，Christopher Bishop，2007
-[5] 维基百科-支持向量机：<https://zh.wikipedia.org/wiki/支持向量机>  
-[6] 随机梯度求SVM <http://ttic.uchicago.edu/~nati/Publications/PegasosMPB.pdf>  
-[7] 多分类SVM：<https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>  
+[1]《统计学习方法》，李航著，2012  
+[2]《机器学习》，周志华著，2016  
+[3]《Machine Learning - A Probabilistic Perspective》，Kevin P. Murphy ，2012   
+[4]《Pattern Recognition And Machine Learning》，Christopher Bishop，2007  
+[5] 维基百科-支持向量机：<https://zh.wikipedia.org/wiki/支持向量机>   
+[6] 随机梯度求SVM <http://ttic.uchicago.edu/~nati/Publications/PegasosMPB.pdf>   
+[7] 多分类SVM：<https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>   
 [8] 多分类SVM：[[!PDF] Multi-Class Support Vector Machine - Springer](http://www.springer  .com/cda/content/document/  cda_downloaddocument/9783319022994-c1.pdf?SGWID=0-0-45-1446422-p175468473)  
 [9] 机器学习核函数手册：<https://my.oschina.net/lfxu/blog/478928>  
 [10] sklearn－核函数：<http://scikit-learn.org/stable/modules/svm.html#svm-kernels>  
 [11] <http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>  
 [12] <http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html>  
-[13] 维基百科－Platt_scaling <https://en.wikipedia.org/wiki/Platt_scaling>
+[13] 维基百科－Platt_scaling <https://en.wikipedia.org/wiki/Platt_scaling>  
 [14] sklearn－svm：<http://scikit-learn.org/stable/modules/svm.html#svm>
 
 
