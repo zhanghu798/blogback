@@ -299,7 +299,7 @@ $$f(x) = sign \big[\sum_{i=1}^m a_i^* y_i(\boldsymbol{x_i} \cdot \boldsymbol{x})
 
 
 
-### 非线性可分SVM  
+### 非线性不可分SVM  
 
 #### 问题求解  
 对于线性不可分的情况，使用核函数将原特征映射到更高维度后进行分类  
@@ -520,7 +520,7 @@ clf = svm.SVR()         # 回归
 [10] sklearn－核函数：<http://scikit-learn.org/stable/modules/svm.html#svm-kernels>  
 [11] 支持向量回归：<http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>  
 [12] SVM等于Hinge损失 + L2正则化：<http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html>  
-[13] 维基百科－Platt_scaling <https://en.wikipedia.org/wiki/Platt_scaling>  
+[13] 维基百科－Platt_scaling： <https://en.wikipedia.org/wiki/Platt_scaling>  
 [14] sklearn－svm：<http://scikit-learn.org/stable/modules/svm.html#svm>
 
 
