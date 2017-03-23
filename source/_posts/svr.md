@@ -27,12 +27,13 @@ $$
 利用误差＋L2正则 形式：
 $$J = C \sum_{i=1}^m  L_\epsilon(y, \widehat{y}) + \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 \tag{2}$$ 
 
+设所求回归线为$f(x) = \boldsymbol{w} \cdot \boldsymbol{x} + b$  
 对于固定的$\epsilon$，所有点均在回归带上的情况：
 $$
 \left\{
 \begin{aligned}
 obj\ :\ \ & \min_{\boldsymbol{w},b,\epsilon} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2  \\
-st\ :\ \ & \lvert  \boldsymbol{w} \cdot \boldsymbol{x_i} + b - y_i \rvert  < \epsilon
+st\ :\ \ & \lvert  f(\boldsymbol{x_i})- y_i \rvert  \leqslant \epsilon
 \end{aligned}
 \right. \tag{3}
 $$  
@@ -44,20 +45,32 @@ $$
 \left\{
 \begin{aligned}
 obj\ :\ \ & \min_{\boldsymbol{w},b,\epsilon} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 ＋ C \xi_i  \\
-st\ :\ \ & \lvert  \boldsymbol{w} \cdot \boldsymbol{x_i} + b - y_i \rvert < \epsilon + \xi_i \\
-& \xi_i > 0
+st\ :\ \ & \lvert  f(\boldsymbol{x_i})  - y_i \rvert \leqslant \epsilon + \xi_i \\
+& \xi_i \geqslant 0
 \end{aligned}
 \right. \tag{4}
 $$  
 
-考虑上式约束不连续可导，去掉绝对值：
+考虑上式约束不连续可导，分情况去掉绝对值，考虑两种情况：
+
+$$
+\begin{aligned}  
+隔离带上方的样本：& f(x_i)    &  & <   y_i <  f(x_i) + \epsilon + \xi^+_i  \\
+隔离带下方的样本：& f(x_i) - \epsilon &  - \xi^-_i &  <   y_i <   f(x_i)  \\
+隔离带上的样本： & f(x_i) - \epsilon &  &  \leqslant  y_i   \leqslant   f(x_i) + \epsilon 
+\end{aligned}  
+$$
+
+所以式(4)等价于：
 $$
 \left\{
 \begin{aligned}
 obj\ :\ \ & \min_{\boldsymbol{w},b,\epsilon} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 ＋ C \xi_i  \\
-st\ :\ \ &  \boldsymbol{w} \cdot \boldsymbol{x_i} + b - y_i  < \epsilon + \xi_i  \\
-&  \boldsymbol{w} \cdot \boldsymbol{x_i} + b - y_i  > -\epsilon - \xi_i \\
-& \xi_i > 0
+st\ :\ \ & y_i \leqslant f(x_i) + \epsilon + \xi^+_i\\
+& f(x_i) - \epsilon  - \xi^-_i  \leqslant y_i \\
+& \xi^-_i \geqslant 0 \\
+& \xi^+_i \geqslant 0 \\
 \end{aligned}
-\right. \tag{5}
+\right. \tag{4}
 $$  
+
