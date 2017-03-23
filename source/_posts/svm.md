@@ -3,7 +3,7 @@ title: "SVM"
 comments: true
 tags:
 	- SVM
-date: 2017-11-03 23:52
+date: 2017-11-23 23:52
 categories:
     - 机器学习
 ---
