@@ -2,21 +2,21 @@ layout: post
 title: "Sublime使用过程中的tips"
 comments: true
 tags:
-	- Tips
+    - Sublime
 date: 2017-03-22 15:21
 updated: 2017-03-23 15:50:57
 categories:
-    - Sublime
+	- Tools
 ---
 
 测试环境：Mac  
 
+<!-- more --> 
+
 # 为Sublime添加自动输入日期插件  
 
-<!-- more -->  
-
-参考：<http://www.phperz.com/article/14/1125/37633.html>   
-
+2017-03-23 18:17:45  
+来源：<http://www.phperz.com/article/14/1125/37633.html>     
 1. 创建插件：Tools → New Plugin   
 替换代码为：
 
@@ -34,9 +34,9 @@ class AddCurrentTimeCommand(sublime_plugin.TextCommand):
 
 保存为：addCurrentTime.py
 
-2. 创建快捷键：  
+2. 创建快捷键：Preference → Key Bindings - User:  
 
-```
+``` python
 [
     {
         "command": "add_current_time",
@@ -50,12 +50,12 @@ class AddCurrentTimeCommand(sublime_plugin.TextCommand):
 保存。"ctrl+shift+."为自动插入日期快捷键  
 
 
-# 在文件内部显示与git版本库修改和新增记号
-
+# Sublime标记相对git版本库有修改的行  
+2017-03-22 18:18:10  
+来源：<https://github.com/gornostal/Modific>  
 ```
 Cmd+Shift+P -> Package Control: Install Package -> Input: "Modific" -> install...
 ```
 
-参考：  
-<https://github.com/gornostal/Modific>  
+ 
 
