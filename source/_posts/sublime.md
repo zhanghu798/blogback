@@ -1,5 +1,5 @@
 layout: post
-title: "sublime使用过程中的tips"
+title: "Sublime使用过程中的tips"
 comments: true
 tags:
 	- Tips
