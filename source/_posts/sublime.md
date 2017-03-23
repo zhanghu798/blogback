@@ -4,7 +4,7 @@ comments: true
 tags:
     - Sublime
 date: 2017-03-22 15:21
-updated: 2017-03-23 15:50:57
+updated: 2017-03-24 01:04:31
 categories:
 	- Tools
 ---
@@ -17,7 +17,7 @@ categories:
 
 2017-03-23 18:17:45  
 来源：<http://www.phperz.com/article/14/1125/37633.html>     
-1. 创建插件：Tools → New Plugin   
+1. 创建插件：Tools → Developer → New Plugin   
 替换代码为：
 
 ``` python
@@ -56,6 +56,3 @@ class AddCurrentTimeCommand(sublime_plugin.TextCommand):
 ```
 Cmd+Shift+P -> Package Control: Install Package -> Input: "Modific" -> install...
 ```
-
- 
-
