@@ -2,18 +2,19 @@ layout: post
 title: "Hexo使用过程中遇到的问题"
 comments: true
 tags:
-	- Tips
+	- Hexo
 date: 2017-03-21 15:56 
 updated: 2017-03-23 17:13:56
 categories:
-    - Hexo
+    - Tools
 ---
 
 Hexo 正文标题标号， 数学公式问题
 <!-- more -->
 
-# Hexo 为文章添加更新日期  
-参考: <http://wuchenxu.com/2015/12/13/Static-Blog-hexo-github-7-display-updated-date>
+# Hexo 为文章添加更新日期    
+2017-03-22 18:32:20  
+来源: <http://wuchenxu.com/2015/12/13/Static-Blog-hexo-github-7-display-updated-date>
 
 1，增加主题代码  
 在hexo/themes/next/layout/_macro/post.swig的theme.post_meta.created_at 的"endif"模块后添加  
@@ -54,7 +55,8 @@ updated: 2015-12-13 20:18:54
 ```
 
 
-# Hexo 数学公式问题
+# Hexo 数学公式问题  
+2017-03-23 18:32:41  
 配置主题目录下的_config.yml的开关mathja
 ```
 enable: true
@@ -64,8 +66,8 @@ enable: true
 
 解决:
 
-- 方案2(建议):更换Hexo的markdown渲染引擎   
-参考： 在Hexo中渲染MathJax数学公式，<http://www.jianshu.com/p/7ab21c7f0674> 
+- 方案2(建议):更换Hexo的markdown渲染引擎    
+来源 在Hexo中渲染MathJax数学公式，<http://www.jianshu.com/p/7ab21c7f0674> 
 
 卸载后重新安装:
 ```
