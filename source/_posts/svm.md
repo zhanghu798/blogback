@@ -139,26 +139,25 @@ $$
  1，\ i\in[1， m]$ 约束中的$\boldsymbol{x_i}$和$y_i$为一个样本及其对应的类别，为已知常数
 
 
-### $\min_{\boldsymbol{w}, b}  L(\boldsymbol{w}, b, \boldsymbol{\alpha})$的求解
+### $\min_{\boldsymbol{w}, b}  L(\boldsymbol{w}, b, \boldsymbol{\alpha})$的求解  
 
+由KKT条件(1)可得：
 $$\boldsymbol{w^*} - \sum_{i=1}^m \alpha_i y_i \boldsymbol{x_i} = \boldsymbol{0} \Longrightarrow \boldsymbol{w^*} = \sum_{i=1}^m \alpha_i y_i \boldsymbol{x_i} \ \ \ \ (6)$$
 
 由KKT条件(2)可得：
 $$ \sum_{i=1}^m \alpha_i y_i  = 0 \ \ \ \ (7)$$
 
-由KKT条件(3)，(4)，(5)联立可得：
+由KKT条件(3)，(4)，(5)联立可得： 
+
 - 当$a_i^* > 0$时，其对应不等式约束为为边界条件，对应样本点为支持向量，有：
 $$\begin{aligned}
 & y_j(\boldsymbol{w}^* \cdot \boldsymbol{x_j} + b^*) -1 = 0， i = 1, \ldots, n。\ \ ( 其中n为支撑向量个数) \\
-& \because (6)式，且 1 = y_j \cdot y_j \\
-& \therefore b^* = y_j - \sum_{i=i}^n \alpha_i ^ * y_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j})
+& 将(6)式带入上式，且 1 = y_j \cdot y_j \\
+& \therefore b^* = y_j - \sum_{i=i}^m \alpha_i ^ * y_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j})
 \end{aligned}
 $$
 
 - 当$a_i^* = 0$时，其对应的不等式约束$y_i (\boldsymbol{w^*} \cdot \boldsymbol{x_i} + b^*)  -1 < 0, i = 1,\ldots, m$为非边界条件，该样本不在支撑超平面
-
-综合考虑$a_i^* \geqslant 0$情况：
-$$ b^* = y_j - \sum_{i=i}^m \alpha_i ^ * y_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j}) ， \ j = 1, \ldots, m \ \ \ \ (8)$$
 
 $$
 \begin{aligned}
@@ -172,9 +171,7 @@ $$
 $$
 
 
-### $\max_\boldsymbol{\alpha} \min_{\boldsymbol{w}, b}  L(\boldsymbol{w}, b, \boldsymbol{\alpha}) $ 函数的解
-
-
+### $\max_\boldsymbol{\alpha} \min_{\boldsymbol{w}, b}  L(\boldsymbol{w}, b, \boldsymbol{\alpha})$ 函数的解  
 考虑KKT条件中上式仍有约束的条件，有如下：
 $$
 \begin{aligned}
@@ -184,10 +181,12 @@ $$
     obj\ :\ &\max_{\boldsymbol{\alpha}} -\frac{1}{2} \sum_{i=1}^m\sum_{j=1}^m \alpha_i \alpha_j y_i y_j(\boldsymbol{x_i} \cdot \boldsymbol{x_j}) + \sum_{i=1}^m \alpha_i, \ \ \ \  i，j  \in [1,\ldots, m]\\
     st\ :\ &\ \sum_{i=1}^m \alpha^* y_i = 0，i  \in [1,\ldots, m] \\
     &\ \alpha_i \geqslant 0， i  \in [1,\ldots, m]
-\end{aligned}
+\end{aligned} 
 \right.
 \end{aligned}
 $$
+
+上式可以通过SMO方法求得
 
 求得$a_i^*$后，分离超平面为：
 $$\sum_{i=1}^m a_i^* y_i(\boldsymbol{x} \cdot \boldsymbol{x_i}) + b^* = 0， (其中(\boldsymbol{x_i}, y_i）为训练样本及对应标签)$$
@@ -197,9 +196,7 @@ $$f(x) = sign \big[\sum_{i=1}^m a_i^* y_i(\boldsymbol{x_i} \cdot \boldsymbol{x})
 
 
 
-具体解法见SMO
-
-线性可分的情况下有且只有一个解, 具体证明见《统计学习方法》- 李航
+线性可分支持向量机有且只有一个最优解, 具体证明见《统计学习方法》- 李航
 
 
 # 线性不可分SVM
@@ -273,11 +270,11 @@ $$
 \end{aligned}
 $$
 
-具体解法见SMO
 
-
-求得$a_i^*$后
-$$ b^* = y_j - \sum_{i=i}^n \alpha_i ^ * y_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j}) ， 0 < a_j < C， j = 1, \ldots, n $$
+用SMO求得$\boldsymbol{\alpha}$，对于 $0 < a_i < C$ 的样本点：
+假设满足$0 < a_i < C$的个数为n  
+$$ b^j = y_j - \sum_{i=i}^m \alpha_i ^ * y_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j})，j \in [1, n]$$
+由于软间隔特性，所求分离超平面不唯一，所以有$$b^*=\frac{1}{n} \sum_{j=1}^n b^j$$
 
 
 分离超平面为：
@@ -286,26 +283,29 @@ $$\sum_{i=1}^m a_i^* y_i(\boldsymbol{x} \cdot \boldsymbol{x_i}) + b^* = 0， (�
 分类决策函数为：
 $$f(x) = sign \big[\sum_{i=1}^m a_i^* y_i(\boldsymbol{x_i} \cdot \boldsymbol{x}) + b^* \big] \ \ \ (\boldsymbol{x} 为待预测样本)$$
 
-超参数$C$越大，表示惩罚项惩罚系数, 分离超平面和支持超平面越距离越近, 训练集的准确率越高, 模型泛化能里越弱
+
+超参数$C$为正则化常数，$C$越大，, 分离超平面和支持超平面越距离越近, 训练集的准确率越高, 模型泛化能里越弱
 当惩罚系数$C \to +\infty$ 时，退化为线性可分的情况
 
-> $\alpha_i^* = 0$：非支持向量
-> $\alpha_i^* = C$：支持向量，但不在支撑超平面上， 支持向量$\boldsymbol{x_i}$离对应正确分类支撑超平面的距离为:$\frac{\xi_i}{\lVert\boldsymbol{w}\rVert^2} $
-> - $\xi_i^* > 1$： x_i为误分类点
-> - $\xi_i^* = 1$： x_i为在分隔超平面上
-> - $0 < \xi^* < 1$： x_i在分隔超平面和正确支撑超平面之间
+> $\alpha_i^* = 0$：非支持向量  
 >
-> $0 < \alpha_i^* < C$： 在支撑超平面上的支持向量
+> $\alpha_i^* = C$：支持向量，但不在支撑超平面上， 支持向量$\boldsymbol{x_i}$离对应正确分类支撑超平面的距离为:$\frac{\xi_i}{\lVert\boldsymbol{w}\rVert^2} $  
+> - $\xi_i^* > 1$： x_i为误分类点  
+> - $\xi_i^* = 1$： x_i为在分隔超平面上  
+> - $0 < \xi^* < 1$： x_i在分隔超平面和正确支撑超平面之间  
+>  
+> $0 < \alpha_i^* < C$： 在支撑超平面上的支持向量  
 
 
 
 
-### 非线性可分SVM
-#### 问题求解
-对于线性不可分的情况，使用核函数将原特征映射到更高维度后进行分类
-核函数表示为 $\kappa(x, z) = \varphi(x) \cdot  \varphi(z)$，其中$\varphi(x)$ 为某种映射函数
+### 非线性可分SVM  
 
-对于线性不可分的情况
+#### 问题求解  
+对于线性不可分的情况，使用核函数将原特征映射到更高维度后进行分类  
+核函数表示为 $\kappa(x, z) = \varphi(x) \cdot  \varphi(z)$，其中$\varphi(x)$ 为某种映射函数  
+
+对于线性不可分的情况  
 $$
 \begin{aligned}
  & \max_\boldsymbol{\alpha} \min_{\boldsymbol{w}, b}  L(\boldsymbol{w}, b, \boldsymbol{\alpha}) \\
@@ -319,30 +319,27 @@ $$
 \end{aligned}
 $$
 
-具体解法见SMO
 
-求得$a_i^*$后
-$$ b^* = y_j - \sum_{i=i}^n \alpha_i ^ * y_i \kappa(\boldsymbol{x_i}, \boldsymbol{x_j})  ， 0 < a_j < C， j = 1, \ldots, n $$
+求得$a_i^*$后  
+$$ b^* = \frac{1}{n} \sum_{j=1}^n \big[y_j - \sum_{i=i}^m \alpha_i ^ * y_i \kappa(\boldsymbol{x_i}, \boldsymbol{x_j}) \big]， 0 < a_j < C$$
 
-
-
-分离超平面为：
+分离超平面为：  
 $$\sum_{i=1}^m a_i^* y_i \kappa(\boldsymbol{x_i}, \boldsymbol{x_j}) + b^* = 0， (其中(\boldsymbol{x_i}, y_i）为训练样本及对应标签)$$
 
-分类决策函数为：
+分类决策函数为：  
 $$f(x) = sign \big[\sum_{i=1}^m a_i^* y_i  \kappa(\boldsymbol{x_i}, \boldsymbol{x}) + b^* \big] \ \ \ (\boldsymbol{x} 为待预测样本)$$
 
 
-### 核函数
+### 核函数  
 以下x,z为向量
 
-- 线性核
+- 线性核  
 $$\kappa(x, z) = x \cdot z$$
 
-- 多项式核
+- 多项式核  
 $$\kappa(x, z) = (\gamma x \cdot z + r)^p$$
 
-- rbf核（高斯核）
+- rbf核（高斯核）  
 $$\kappa(x, z) = exp \big(-\frac{\lVert x - z\rVert^2 }{2 \sigma^2}\big)$$
 
 - 双曲正切核（sigmoid核）
@@ -428,8 +425,8 @@ $ln(\frac{p}{1-p}) = \phi(x)$, $\phi(x)$发生与不发生的概率比取对数,
 
 $$\left\{
 \begin{aligned}
-   & \frac{p}{1-p} > 1 \Rightarrow \phi(x) > 0: \ \ & 认为样本类别为 +1 \\
-   & \frac{p}{1-p} < 1 \Rightarrow \phi(x) < 0: \ \ & 认为样本类别为 -1 \\
+   & \frac{p}{1-p} > 1 \Rightarrow \phi(x) > 0： \ \ & 认为样本类别为 +1 \\
+   & \frac{p}{1-p} < 1 \Rightarrow \phi(x) < 0： \ \ & 认为样本类别为 -1 \\
 \end{aligned}
 \right. \tag{6.1}
 $$
@@ -437,16 +434,16 @@ $$
 对于SVM，假设训练好参数$\boldsymbol{w}$, $b$. 令$f(x) = \boldsymbol{w} \cdot \boldsymbol{x} + b$, 则有
 $$\left\{
 \begin{aligned}
-   & f(x) > 0: &认为样本类别为 +1 \\
-   & f(x) < 0: &认为样本类别为 -1 \\
+   & f(x) > 0：&认为样本类别为 +1 \\
+   & f(x) < 0：&认为样本类别为 -1 \\
 \end{aligned}
 \right. \tag{6.2}
 $$
 
 $$\left\{
 \begin{aligned}
-   & f(x) > 0: &认为样本类别为 +1 \\
-   & f(x) < 0: &认为样本类别为 -1 \\
+   & f(x) > 0：&认为样本类别为 +1 \\
+   & f(x) < 0：&认为样本类别为 -1 \\
 \end{aligned}
 \right. \tag{6.2}
 $$
@@ -456,17 +453,17 @@ $$p = \frac{1}{1+exp^{f(x)}}$$
 其中$a$, $b$通过极大似然估计,在mlapp中特别说明如果用原来数据集求解$a$,$b$容易过拟合, 建议用单独数据集训练
 
 其极大似然为:
-$$L=\prod_{i=1}^m \big[\frac{1}{1+exp^{af(x_i) + b}}\big]^\frac{y_i+1}{2} \cdot \big[\frac{af(x_i) + b}{1+exp^{af(x_i) + b}}\big]^ {-\frac{y_i+1}{2}}$$
+$$L=\prod_{i=1}^m \big[\frac{1}{1+exp^{af(x_i) + b}}\big]^\frac{y_i+1}{2} \cdot \big[\frac{af(x_i) + b}{1+exp^{af(x_i) + b}}\big]^ {-\frac{y_i - 1}{2}}$$
 
 对数极大似然问题为:
-$$l(a, b) =\sum_{i=1}^m \Bigg[\frac{y_i+1}{2} \frac{1}{1+exp^{af(x_i) + b}} -\frac{y_i+1}{2} \frac{af(x_i) + b}{1+exp^{af(x_i) + b}}\Bigg]$$
+$$l(a, b) =\sum_{i=1}^m \Bigg[\frac{y_i+1}{2} \frac{1}{1+exp^{af(x_i) + b}} -\frac{y_i - 1}{2} \frac{af(x_i) + b}{1+exp^{af(x_i) + b}}\Bigg]$$
 
 所以问题的解如下:
 $$\arg \min_{a, b}-l(a, b)$$
 
 可以通过梯度下降或拟牛顿等方法求得a, b
 
-Platt 建议用转化把标签概率化，转化方法见<https://en.wikipedia.org/wiki/Platt_scaling>
+Platt还提出把标签分别把正负例的y_i转化为和其类别样本数相关的概率数，转化方法见<https://en.wikipedia.org/wiki/Platt_scaling>
 
 
 ! 但是mlapp中指出验证效果并不理想, 同时相关向量机(Relevance Vector Machine)可以较好的拟合概率
@@ -475,20 +472,12 @@ Platt 建议用转化把标签概率化，转化方法见<https://en.wikipedia.o
 
 
 ## 直接公式法
-$$
-\left\{
-\begin{aligned}
-obj: \ &  \min_{\boldsymbol{w}, b, \boldsymbol{\xi}} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 + C \sum_{i=1}^m \xi_i， \ C \geqslant 0 , & i\in[1， m] & \\
-st: \ & y_i(\boldsymbol{w}^T\boldsymbol{x_i} + b)\geqslant 1 - \xi_i, & i\in[1， m]& \\
- & \xi_i \geqslant 0 , &\ i\in[1， m]& \\
-& 满足y_0(\boldsymbol{w}^T\boldsymbol{x_0} + b) = 1 的点为支撑向量 &
-\end{aligned}
-\right.
-$$
+<https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>
 
 ## 一对剩余（One Versus Rest， OVR）
 把其中一个类别做为$＋1$类， 其他类别做为$－1$类， 训练K个二分SVM，选择 $y_i(\boldsymbol{w}^T x_i + b)$的最大的对应的距离， 因为是一对多的情况所以不平衡样本的问题突出，可以通过正例重采样，Lee et al. (2001) 提出修改负例的标签为$-\frac{1}{k-1}$,因为不是在同一参考下生成的模型，所以通过直接找出函数距离最大的作为最终分类可信度受限。
 
+## 一对剩余（One Versus One， OVO）
 一次拿出两类训练分类器， k类一共有$\frac{k(k-1)}{2}$个分类器，对每个样本的类别结果做统计，众数对应的类别为最后对应的类别
 
 # 支持向量回归
@@ -497,8 +486,15 @@ $$
 
 
 # sklearn中的SVM  
+<http://scikit-learn.org/stable/modules/svm.html#svm>  
+SVC:  
+<http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC>   
+<http://scikit-learn.org/stable/modules/generated/sklearn.svm.NuSVC.html#sklearn.svm.NuSVC>   
 
-<http://scikit-learn.org/stable/modules/svm.html#svm>
+SVR:  
+<http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVR.html#sklearn.svm.SVR>  
+
+
 
 ```python
 from sklearn import svm
@@ -508,6 +504,7 @@ clf = svm.SVC()         # 分类
 clf = svm.SVR()         # 回归  
 
 ```
+
 分类问题中，针对不平衡样本， 通过class_weight参数，达到提高少数样本的召回率
 
 # 参考资料
