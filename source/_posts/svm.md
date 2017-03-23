@@ -518,8 +518,8 @@ clf = svm.SVR()         # 回归
 [8] 多分类SVM：[[!PDF] Multi-Class Support Vector Machine - Springer](http://www.springer  .com/cda/content/document/  cda_downloaddocument/9783319022994-c1.pdf?SGWID=0-0-45-1446422-p175468473)  
 [9] 机器学习核函数手册：<https://my.oschina.net/lfxu/blog/478928>  
 [10] sklearn－核函数：<http://scikit-learn.org/stable/modules/svm.html#svm-kernels>  
-[11] <http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>  
-[12] <http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html>  
+[11] 支持向量回归：<http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>  
+[12] SVM等于Hinge损失 + L2正则化：<http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html>  
 [13] 维基百科－Platt_scaling <https://en.wikipedia.org/wiki/Platt_scaling>  
 [14] sklearn－svm：<http://scikit-learn.org/stable/modules/svm.html#svm>
 
