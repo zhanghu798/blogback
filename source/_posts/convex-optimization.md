@@ -98,7 +98,7 @@ $$\left.
 $$
 类似凸集可推广到多点
 
-- 凸集是仿射集的真子集
+凸集是仿射集的真子集
 
 ## 凸函数
 如果函数$\ f\ $定义域是凸集，对于定义域内的任意$\ x, y \in \boldsymbol{dom}\ f\ $ 和任意$\ 0 \leqslant \theta \leqslant 1\ $, 有 $f\big(\theta x + (1-\theta)y\big) \leqslant \theta f(x) + (1-\theta)f(y)$, 即:
@@ -208,7 +208,7 @@ $$\left.
     & \Longrightarrow 目标函数f(x,y)在一个等式约束条件下取得最值处的解与L=f_(x, y) + \nu h_1(x,y)极值的解等价
 \end{aligned}
 \right.
-$$
+$$  
 - *注*:
 $\nu'$ 可以看作是两个等价切线(超平面)的系数, 同分割超平面的等价超平面的系数$k$
 $\nu = -\nu'$
@@ -375,8 +375,8 @@ $$
 
 
 # 参考资料
-[1] 《凸优化》，清华出版社 Stephen Boyd，Lieven Vandenberghe著， 王书宁等译
-[2] 维基百科-Lagrange multiplier <https://en.wikipedia.org/wiki/Lagrange_multiplier>
-[3] 维基百科-拉格朗日乘数 <https://zh.wikipedia.org/wiki/拉格朗日乘数>
-[4]《统计学习方法》，李航著
+[1] 《凸优化》，清华出版社 Stephen Boyd，Lieven Vandenberghe著， 王书宁等译  
+[2] 维基百科-Lagrange multiplier <https://en.wikipedia.org/wiki/Lagrange_multiplier>  
+[3] 维基百科-拉格朗日乘数 <https://zh.wikipedia.org/wiki/拉格朗日乘数>  
+[4]《统计学习方法》，李航著  
 
