@@ -3,10 +3,9 @@ title: "Python2.7编码处理小结"
 comments: true
 tags: 
 	- Python
-	- Tips
 date: 2016-04-23 23:52
 categories:
-    - Python
+    - Tools
 ---
 
 Python2.7编程中遇到的一些编码问题小结
