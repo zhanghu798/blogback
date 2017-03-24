@@ -17,8 +17,8 @@ $$
 L_\epsilon(y, \widehat{y}) = 
 \left\{
 \begin{aligned}
-& 0 & if & \|y -  \widehat{y}\| < \epsilon \\
-& \|y -  \widehat{y}\| - \epsilon &  & otherwise
+& 0 & if \ \  & \lvert y -  \widehat{y} \rvert < \epsilon \\
+& \lvert y -  \widehat{y} \rvert - \epsilon &  & otherwise
 \end{aligned}
 \right. \tag{1}
 $$  
@@ -51,26 +51,60 @@ st\ :\ \ & \lvert  f(\boldsymbol{x_i})  - y_i \rvert \leqslant \epsilon + \xi_i 
 \right. \tag{4}
 $$  
 
-考虑上式约束不连续可导，分情况去掉绝对值，考虑两种情况：
+考虑上式约束不连续可导，分情况去掉绝对值： 
+$$
+\begin{eqnarray}  
+隔离带上方的样本：& f(x_i) &            &            & <          & y_i     <        f(x_i) + \epsilon + \xi^+_i  \\
+隔离带下方的样本：& f(x_i) & - \epsilon &  - \xi^-_i &  <         & y_i     <        f(x_i)  \\
+隔离带上的样本：  & f(x_i) & - \epsilon &            &  \leqslant & y_i  \leqslant   f(x_i) + \epsilon 
+\end{eqnarray}  
+$$
 
-$$
-\begin{aligned}  
-隔离带上方的样本：& f(x_i)    &  & <   y_i <  f(x_i) + \epsilon + \xi^+_i  \\
-隔离带下方的样本：& f(x_i) - \epsilon &  - \xi^-_i &  <   y_i <   f(x_i)  \\
-隔离带上的样本： & f(x_i) - \epsilon &  &  \leqslant  y_i   \leqslant   f(x_i) + \epsilon 
-\end{aligned}  
-$$
+综上约束条件可以化为：  $$f(x_i) - \epsilon   - \xi^-_i \leqslant y_i  \leqslant f(x_i) + \epsilon + \xi^+_i$$
 
-所以式(4)等价于：
+式(4)中将$f(x) = \boldsymbol{w} \cdot \boldsymbol{x} + b$，替换等价约束可以转化为：
 $$
-\left\{
+\left.
 \begin{aligned}
-obj\ :\ \ & \min_{\boldsymbol{w},b,\epsilon} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 ＋ C \xi_i  \\
-st\ :\ \ & y_i \leqslant f(x_i) + \epsilon + \xi^+_i\\
-& f(x_i) - \epsilon  - \xi^-_i  \leqslant y_i \\
-& \xi^-_i \geqslant 0 \\
-& \xi^+_i \geqslant 0 \\
+obj\ :\ \ & \min_{\boldsymbol{w},b,\boldsymbol{\xi}} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 ＋ C\sum_{i=1}^m(\xi^+_i ＋ \xi^-_i ) \\
+st\ :\ \ &  \boldsymbol{w} \cdot \boldsymbol{x_i} + b - \epsilon - \xi^-_i - y_i \leqslant 0\\
+&  y_i - \boldsymbol{w} \cdot \boldsymbol{x_i} - b - \epsilon  - \xi^+_i   \leqslant 0   \\
+& -\xi^+_i \leqslant 0 \\
+& -\xi^-_i \leqslant 0 \\
+& C，\epsilon 为超参数，C >0，\epsilon \geqslant 0 
 \end{aligned}
-\right. \tag{4}
+\right. \tag{5}
 $$  
+对于一个样本点$x_i$其松弛因子$\xi^+_i$和$\xi^-_i$$至多只有一个大于0  
+
+式(5)为不带等式约束的[凸优化](http://0.0.0.0:4000/2017/03/18/convex-optimization/)，
+
+引入拉格朗日乘子$a_i^＋ \geqslant 0$， $a_i^－ \geqslant 0$，$mu^+_i \geqslant 0$和$mu^-_i \geqslant 0$，则拉格朗日函数为：
+$$
+\begin{aligned}
+L(\boldsymbol{w},b,\boldsymbol{\xi^+},\boldsymbol{\xi^-},\boldsymbol{\mu^+},\boldsymbol{\mu^-})= 
+& \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 ＋ C\sum_{i=1}^m(\xi^+_i ＋ \xi^-_i ) \\ 
+& + \sum_{i=1}^m a_i^-(\boldsymbol{w} \cdot \boldsymbol{x_i} + b - \epsilon - \xi^-_i - y_i)\\
+& + \sum_{i=1}^m a_i^+(y_i - \boldsymbol{w} \cdot \boldsymbol{x_i} - b - \epsilon  - \xi^+_i ) \\
+& - \sum_{i=1}^m \mu_i^+ \xi_i^+ \\
+& - \sum_{i=1}^m \mu_i^- \xi_i^-  
+\end{aligned}
+$$
+
+则：
+
+$$
+\begin{eqnarray}
+\nabla_{\boldsymbol{w}}L = 0 & \Longrightarrow & \boldsymbol{w} + \sum_{i=1}^m a_i^- \boldsymbol{x_i} - \sum_{i=1}^m a_i^+ \boldsymbol{x_i} = 0 \tag{8} \\
+\nabla_{\boldsymbol{b}}L = 0 & \Longrightarrow & \sum_{i=1}^m a_i^+   - \sum_{i=1}^m a_i^- ＝ 0 \tag{8}\\
+\nabla_{\boldsymbol{\xi_i^+}}L = 0 & \Longrightarrow  & C - a_i^+ - \mu_i^+ = 0 \tag{8} \\
+\nabla_{\boldsymbol{\xi_i^-}}L = 0 & \Longrightarrow & C - a_i^- - \mu_i^- = 0 \tag{8}\\
+\end{eqnarray}
+$$
+
+将上式代入$L$中，整理相关参数的KKT条件，得到拉格朗日对偶函数如下：
+
+。。。
+
+
 
