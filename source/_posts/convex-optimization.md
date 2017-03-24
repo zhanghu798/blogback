@@ -322,16 +322,16 @@ $$
 令$x^*$是原问题的最优解，$(\lambda^*， \nu^*)$对偶问题的最优解
 则，
 $$
-\begin{aligned}
+\begin{eqnarray}
 原始约束问题的最值=拉格朗日对偶问题的最值 \Rightarrow
-    & f_0(x^*) & = & g(\lambda^*, \nu^*)  \\
+    & \ f_0(x^*) & = & g(\lambda^*, \nu^*)  \\
 对偶问题的定义\Rightarrow
     &  & = & \inf_{x}\big(f_0(x) + \sum_{i=1}^m \lambda_i^* f_i(x) + \sum_{i=1}^p \nu^*h_i(x)\big) \\
 任意x的逐点求下解值小于其中一个x的值\Rightarrow
     & & \leqslant & f_0(x^*) + \sum_{i=1}^m \lambda_i^* f_i(x^*) + \sum_{i=1}^p \nu^*h_i(x^*) \\
 不等式约束项小于等于0，等式约束项等于0 \Rightarrow
     & & \leqslant & f_0(x^*) \\
-\end{aligned}
+\end{eqnarray}
 $$
 
 由$A \leqslant B \leqslant A$形式得， $B = A$
