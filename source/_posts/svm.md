@@ -235,7 +235,7 @@ $$\left\{
     & \mu_i^* \geqslant 0 ， &\ i\in[1， m]  \ \ \ \ (7) &  \\
     & \alpha_i^* \big[ 1 - \xi_i^* - y_i(\boldsymbol{w^*} \cdot \boldsymbol{x_i} + b^*) \big] = 0 ， &\ i\in[1， m]  \ \ \ \ (8)&  \\
     & \mu_i^* \xi_i^* = 0 ， &\ i\in[1， m]  \ \ \ \ (9) &  \\
-\end{aligned}
+\end{aligned} \tag{2.2}
 \right.
 $$
 
@@ -284,19 +284,18 @@ $$\sum_{i=1}^m a_i^* y_i(\boldsymbol{x} \cdot \boldsymbol{x_i}) + b^* = 0， (�
 $$f(x) = sign \big[\sum_{i=1}^m a_i^* y_i(\boldsymbol{x_i} \cdot \boldsymbol{x}) + b^* \big] \ \ \ (\boldsymbol{x} 为待预测样本)$$
 
 
-超参数$C$为正则化常数，$C$越大，, 分离超平面和支持超平面越距离越近, 训练集的准确率越高, 模型泛化能里越弱
+超参数$C$为正则化常数，$C$越大， 分离超平面和支持超平面越距离越近, 训练集的准确率越高, 模型泛化能里越弱
 当惩罚系数$C \to +\infty$ 时，退化为线性可分的情况  
 
 支持向量情况： 
 
 * $\alpha_i^* = 0$：非支持向量  
-* $\alpha_i^* = C$：支持向量，但不在支撑超平面上， 支持向量$\boldsymbol{x_i}$离对应正确分类支撑超平面的距离为:$\frac{\xi_i}{\lVert\boldsymbol{w}\rVert^2} $  
+* $\alpha_i^* = C$：支持向量
     - $\xi_i^* > 1$： $x_i$为误分类点  
     - $\xi_i^* = 1$： $x_i$为在分隔超平面上  
-    - $0 < \xi^* < 1$： $x_i$在分隔超平面和正确支撑超平面之间  
-* $0 < \alpha_i^* < C$： 在支撑超平面上的支持向量  
-
-
+    - $0 < \xi^* < 1$： $x_i$在分隔超平面和正确支撑超平面之间 
+    - $\xi^* = 0$：在支撑超平面上的支持向量 
+* $0 < \alpha_i^* < C$： 在支撑超平面上的支持向量。根据KKT条件$C - a_i^* - u_i^* = 0$，此时$u_i^* > 0$， 另有KKT条件$u_i^*\xi_i^* = 0$，可得$\xi_i^*=0$，即样本$\boldsymbol{x_i}$在支撑超平面上
 
 
 ### 非线性不可分SVM  
@@ -516,12 +515,13 @@ clf = svm.SVR()         # 回归
 [6] 随机梯度求SVM <http://ttic.uchicago.edu/~nati/Publications/PegasosMPB.pdf>   
 [7] 多分类SVM：<https://www.csie.ntu.edu.tw/~cjlin/papers/multisvm.pdf>   
 [8] 多分类SVM：[[!PDF] Multi-Class Support Vector Machine - Springer](http://www.springer  .com/cda/content/document/  cda_downloaddocument/9783319022994-c1.pdf?SGWID=0-0-45-1446422-p175468473)  
-[9] 机器学习核函数手册：<https://my.oschina.net/lfxu/blog/478928>  
-[10] sklearn－核函数：<http://scikit-learn.org/stable/modules/svm.html#svm-kernels>  
-[11] 支持向量回归：<http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>  
-[12] SVM等于Hinge损失 + L2正则化：<http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html>  
-[13] 维基百科－Platt_scaling： <https://en.wikipedia.org/wiki/Platt_scaling>  
-[14] sklearn－svm：<http://scikit-learn.org/stable/modules/svm.html#svm>
+[9] PRML翻译：<https://mqshen.gitbooks.io/prml/>  
+[10] 机器学习核函数手册：<https://my.oschina.net/lfxu/blog/478928>  
+[11] sklearn－核函数：<http://scikit-learn.org/stable/modules/svm.html#svm-kernels>  
+[12] 支持向量回归：<http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>  
+[13] SVM等于Hinge损失 + L2正则化：<http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html>  
+[14] 维基百科－Platt_scaling： <https://en.wikipedia.org/wiki/Platt_scaling>  
+[15] sklearn－svm：<http://scikit-learn.org/stable/modules/svm.html#svm>
 
 
 
