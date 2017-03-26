@@ -3,7 +3,8 @@ title: "SVM"
 comments: true
 tags:
 	- SVM
-date: 2017-11-23 23:52
+date: 2017-03-20 23:52
+updated: 2017-03-26 11:26:37
 categories:
     - 机器学习
 ---
@@ -19,7 +20,7 @@ categories:
 ## 问题引出
 
 
-有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $x_i$是一个样本，列向量；标签$y_i\in\{-1， 1\}$且$D$是线性可分的。 找到一个最优超平面$ \boldsymbol{w}^T\boldsymbol{x} + b = 0$($\boldsymbol{w}$为是超平面系数，列向量；$b$为截距；$\boldsymbol{x}$为列向量)，使得在保证正确分类的情况下，样本点到超平面的*最小*距离*最大*化
+有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $\boldsymbol{x_i}$是一个样本，列向量；标签$y_i\in\{-1， 1\}$且$D$是线性可分的。 找到一个最优超平面$ \boldsymbol{w}^T\boldsymbol{x} + b = 0$($\boldsymbol{w}$为是超平面系数，列向量；$b$为截距；$\boldsymbol{x}$为列向量)，使得在保证正确分类的情况下，样本点到超平面的*最小*距离*最大*化
 
 
 * *最小*距离：所以样本点到超平面的距离
@@ -480,9 +481,7 @@ Platt还提出把标签分别把正负例的y_i转化为和其类别样本数相
 一次拿出两类训练分类器， k类一共有$\frac{k(k-1)}{2}$个分类器，对每个样本的类别结果做统计，众数对应的类别为最后对应的类别
 
 # 支持向量回归
-
-(...)
-
+<http://reset.pub/2017/03/26/svr>
 
 # sklearn中的SVM  
 <http://scikit-learn.org/stable/modules/svm.html#svm>  
