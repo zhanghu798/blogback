@@ -10,10 +10,9 @@ categories:
 
 {% cq %} <font size=4>SVR，Support Vector Regression，支持向量回归</font>{% endcq %}
 
-<img src="/pic/ml/down/SVR.jpeg" border="0" width="60%" height="60%" style="margin: 0 auto"><center>（[图1](http://www.wendangku.net/doc/edabb87569dc5022abea0013.html)， 左图：支持向量回归示意图及epsilon回归带示意图；右图：epsilon不敏感损失</center>
-
 # SVR问题引出
 
+<img src="/pic/ml/down/SVR.jpeg" border="0" width="60%" height="60%" style="margin: 0 auto"><center>（[图1](http://www.wendangku.net/doc/edabb87569dc5022abea0013.html)， 左图：支持向量回归示意图及epsilon回归带示意图；右图：epsilon不敏感损失</center>
 
 <!-- more -->
 
