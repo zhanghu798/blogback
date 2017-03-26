@@ -10,8 +10,11 @@ categories:
 
 {% cq %} <font size=4>SVR，Support Vector Regression，支持向量回归</font>{% endcq %}
 
+<img src="/pic/ml/down/SVR.jpeg" border="0" width="60%" height="60%" style="margin: 0 auto"><center>（[图1](http://www.wendangku.net/doc/edabb87569dc5022abea0013.html)， 左图：支持向量回归示意图及epsilon回归带示意图；右图：epsilon不敏感损失</center>
+
 # SVR问题引出
-有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $\boldsymbol{x_i}$是一个样本，$y_i$是样本结果，$y_i\in \mathbb{R}$。 找到回归模型$f(\boldsymbol{x})= \boldsymbol{w}^T\boldsymbol{x} + b = 0$使得$f(\boldsymbol{x})$与$y_i$尽可能接近
+
+
 <!-- more -->
 
 # 数学表达
