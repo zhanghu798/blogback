@@ -3,7 +3,7 @@ title: "SVR"
 comments: true
 tags:
 	- SVR
-date: 2017-11-24 23:52
+date: 2017-03-26 11:26:22
 categories:
     - 机器学习
 ---
@@ -11,7 +11,7 @@ categories:
 {% cq %} <font size=4>SVR，Support Vector Regression，支持向量回归</font>{% endcq %}
 
 # SVR问题引出
-有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $x_i$是一个样本，$y_i$是样本结果，$y_i\in \mathbb{R}$。 找到回归模型$f(\boldsymbol{x})= \boldsymbol{w}^T\boldsymbol{x} + b = 0$使得$f(\boldsymbol{x})$与$y_i$尽可能接近
+有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $\boldsymbol{x_i}$是一个样本，$y_i$是样本结果，$y_i\in \mathbb{R}$。 找到回归模型$f(\boldsymbol{x})= \boldsymbol{w}^T\boldsymbol{x} + b = 0$使得$f(\boldsymbol{x})$与$y_i$尽可能接近
 <!-- more -->
 
 # 数学表达
@@ -55,6 +55,7 @@ st\ :\ \ & \lvert  f(\boldsymbol{x_i})  - y_i \rvert \leqslant \epsilon + \xi_i 
 $$  
 
 # 问题求解  
+
 ## 将转化为凸优化问题  
 
 考虑上式约束不连续可导，分情况去掉绝对值： 
@@ -103,8 +104,9 @@ L(\boldsymbol{w},b,\boldsymbol{\xi^+},\boldsymbol{\xi^-},\boldsymbol{\alpha^+}, 
 $$
 
 ## 拉格朗日对偶函数  
+
 ### 拉格朗日函数极小问题
-则，$L(\boldsymbol{w},b,\boldsymbol{\xi^+},\boldsymbol{\xi^-})$取最极小值时满足（KKT条件之一），以下公式均为取得最优值满足的条件，例：$\boldsymbol{w}$ 实际表示 $\boldsymbol{w^*}$：
+则，$L(\boldsymbol{w},b,\boldsymbol{\xi^+},\boldsymbol{\xi^-})$取最极小值时满足（KKT条件之一），以下公式均为取得最优值满足的条件，例：$\boldsymbol{w}$ 实际表示 $\boldsymbol{w^*}$，可参考[SVM](<http://reset.pub/2017/03/20/svm>)：
 $$
 \left\{
 \begin{eqnarray}
@@ -284,6 +286,14 @@ b^* = \left\{
 \end{aligned}
 \right.
 $$  
+
+# 参考资料
+[1]《机器学习》，周志华著，2016  
+[2]《Machine Learning - A Probabilistic Perspective》，Kevin P. Murphy ，2012   
+[3]《Pattern Recognition And Machine Learning》，Christopher Bishop，2007   
+[4] 支持向量回归：<http://blog.jasonding.top/2015/05/01/Machine%20Learning/【机器学习基础】支持向量回归>  
+
+
 
 
 
