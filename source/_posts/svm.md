@@ -399,7 +399,7 @@ $$
 > 对于SVM在只关注核心点的同时, 选择分离超平面的原则使得熵最大, 即使得两支撑超平面到分离超平面的距离相等,保证了其泛化能力, 比较适合稀疏样本分类。
 > 但如果支持向量是个噪声点的话会对结果有较大的影响， 可以通过降低原约束问题的$C$降低对噪声点的敏感程度
 
-<img src="/pic/ml/down/hinge.png" border="0" width="50%" height="50%" style="margin: 0 auto"><center>（[图3](http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html), 合叶, hinge损失亦被称为合叶损失)</center>
+<img src="/pic/ml/down/hinge.png" border="0" width="50%" height="50%" style="margin: 0 auto"><center>（[图3](http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html), 合页, hinge损失亦被称为合页损失)</center>
 
 # SVM与感知机异同
 
