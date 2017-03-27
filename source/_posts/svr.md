@@ -14,7 +14,7 @@ categories:
 # SVR问题引出
 <img src="/pic/ml/down/SVR.jpeg" border="0" width="60%" height="60%" style="margin: 0 auto"><center>（[图1](http://www.wendangku.net/doc/edabb87569dc5022abea0013.html)， 左图：支持向量回归示意图及epsilon回归带示意图；右图：epsilon不敏感损失</center>
 
-有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $\boldsymbol{x_i}$是一个样本，列向量；$y_i$为回归目标，$y_i \in \mathbb{R}$。 找到一个个回归模型$f(x) = \boldsymbol{w}^T\boldsymbol{x} + b$，使得$f(\boldsymbol{x})$与$y$在损失为$\epsilon$不敏感损失下尽可能接近，其中回归线由落在$\boldsymbol{w} \cdot \boldsymbol{x} + b - \epsilon = 0$与$\boldsymbol{w} \cdot \boldsymbol{x} + b + \epsilon = 0$区域内的点参与构建
+有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $\boldsymbol{x_i}$是一个样本，列向量；$y_i$为回归目标，$y_i \in \mathbb{R}$。 找到一个回归模型$f(x) = \boldsymbol{w}^T\boldsymbol{x} + b$，使得$f(\boldsymbol{x})$与$y$在损失为$\epsilon$不敏感损失下尽可能接近，其中回归线由落在$\boldsymbol{w} \cdot \boldsymbol{x} + b - \epsilon = 0$与$\boldsymbol{w} \cdot \boldsymbol{x} + b + \epsilon = 0$区域内的点参与构建
 
 
 <!-- more -->
