@@ -31,6 +31,7 @@ p = & 1 - (\frac{m - 1}{m}) ^ m \\
 \end{aligned}
 $$
 
+
 上市中e为[自然常数](https://zh.wikipedia.org/wiki/E_(数学常数))  
 将m看做未知数，则$1 - \frac{1}{m}$ 为增函数，则$(\frac{m - 1}{m}) ^ m$为增函数$p$为减函数
 
