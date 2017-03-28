@@ -12,19 +12,59 @@ categories:
 
 一个是boosting派系，它的特点是各个弱学习器之间有依赖关系。另一种是bagging流派，它的特点是各个弱学习器之间没有依赖关系，可以并行拟合。本文就对集成学习中Bagging与随机森林算法做一个总结
 
-# Bagging  
 
-能够减小训练方差
+# 两种基本集成学习思路
 
-Bootstrap aggregating
+## Bagging  
+Bootstrap aggregating  
 
 >
-给定一个大小为$n$的训练集$D$，Bagging算法从中均匀、有放回地选出$m$个大小为$n'$的子集$D_{i}$，作为新的训练集。在这$m$个训练集上使用分类、回归等算法，则可得到 $m$个模型，再通过取平均值、取多数票等方法，即可得到Bagging的结果  
->
-提高其准确率、稳定性的同时，通过降低结果的方差，避免过拟合的发生
+给定一个大小为$n$的训练集$D$，Bagging算法从中均匀、有放回地选出$m$个大小为$n'$的子集$D_{i}$，作为新的训练集。在这$m$个训练集上使用分类、回归等算法，则可得到 $m$个模型，再通过取平均值、投票等方法，即可得到Bagging的结果  
 
-# Boosting  
-由多个弱分类器组合训练为强分类器的方法
+对于样本总量为m，有放回的的随机抽样m次， 某一样本至少抽到一次的概率：
+$$
+\begin{aligned}
+p = & 1 - (\frac{m - 1}{m}) ^ m \\
+= & 1 - \frac{1}{(1 + \frac{1}{-m})^{-m}} \\
+= & 1 - \frac{1}{e} \ \ \ \ (当m \rightarrow \infty时)\\
+\approx & 63.2％ 
+\end{aligned}
+$$
+
+上市中e为[自然常数](https://zh.wikipedia.org/wiki/E_(数学常数))  
+将m看做未知数，则$1 - \frac{1}{m}$ 为增函数，则$(\frac{m - 1}{m}) ^ m$为增函数$p$为减函数
+
+能够减小训练方差  
+简单说明，考虑以下极端情况
+
+* 假设n个模型是完全独立的，即各模型任意组合的协方差为0
+	假设各个模型的方差均为$var$， 则
+	$$
+	\begin{aligned}
+	& VAR\big[\frac{1}{n}(X_1 + X_2 + \ldots + X_n)\big]  \\
+	= & \sum_{i=1}^n var(\frac{1}{n}X_1) \\
+	= & n \cdot \frac{1}{n^2} var \\
+	= & \frac{1}{n} var \\
+	\end{aligned}
+	$$
+
+* 假设各模型完全相同，则：
+$$
+VAR\big[\frac{1}{n}(X_1 + X_2 + \ldots + X_n)\big] = VAR(\frac{1}{n} \cdot n X_i) = var(x)
+$$  
+
+现实情况介于两者之间，所以Bagging可以降低方差
+
+
+## Boosting  
+> 通过多个弱分类器集成为强分类器方法的统称 
+
+根据以上定义，Bagging是boosting的一个子集，但是很多资料上Boosting特指，各个模型是训练基于整体模型的误差训练的。如AdaBost是串行训练模型，第n＋1
+个模型是针对前n个模型集成后的误差来训练的。下文也是将Boosting方法看成是多个模型基于误差协作组成强模型的的方法
+
+Boosting的主要特点：弱分类器之间有依赖关系
+
+因为Boosting的误差相关联性，所以Boosting是偏向于降低误差
 
 # AdaBost  
 Adaptive Boosting
