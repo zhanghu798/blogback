@@ -276,8 +276,9 @@ mathjax:
 # Duoshuo ShortName
 # duoshuo_shortname: reset
 
-# Disqus
+Disqus:
 disqus_shortname: reset-pub
+
 
 # Hypercomments
 #hypercomments_id:
