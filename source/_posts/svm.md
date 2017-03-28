@@ -20,7 +20,7 @@ categories:
 ## 问题引出
 
 
-有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $\boldsymbol{x_i}$是一个样本，列向量；标签$y_i\in\{-1， 1\}$且$D$是线性可分的。 找到一个最优超平面$ \boldsymbol{w}^T\boldsymbol{x} + b = 0$($\boldsymbol{w}$为是超平面系数，列向量；$b$为截距；$\boldsymbol{x}$为列向量)，使得在保证正确分类的情况下，样本点到超平面的*最小*距离*最大*化
+有样本集 $D=\{(\boldsymbol{x_1}，y_1)，(\boldsymbol{x_2}，y_2)，\ldots，(\boldsymbol{x_m}，y_m)\}$。其中， $\boldsymbol{x_i}$是一个样本，列向量；标签$y_i\in\{-1， 1\}$且$D$是线性可分的。 找到一个最优超平面$\boldsymbol{w}^T\boldsymbol{x} + b = 0$($\boldsymbol{w}$为是超平面系数，列向量；$b$为截距；$\boldsymbol{x}$为列向量)，使得在保证正确分类的情况下，样本点到超平面的*最小*距离*最大*化
 
 
 * *最小*距离：所以样本点到超平面的距离
@@ -93,7 +93,7 @@ $$
 *注*:$\ $此时所求$\boldsymbol{w}^T\boldsymbol{x} + b = 0$ 为原始假设超平面的等价超平面
 
 问题目标：
-找到满足上是约束的分离超平面参数$ \boldsymbol{w^*} $, $b^*$，求的分离超平面为$\boldsymbol{w^*} \cdot \boldsymbol{x} + b^* = 0$, 对于待预测样本$\boldsymbol{x_i}$分类决策函数为：$$f(x) = sign(\boldsymbol{w^*} \cdot \boldsymbol{x_i} + b)$$
+找到满足上是约束的分离超平面参数$\boldsymbol{w^*}$, $b^*$，求的分离超平面为$\boldsymbol{w^*} \cdot \boldsymbol{x} + b^* = 0$, 对于待预测样本$\boldsymbol{x_i}$分类决策函数为：$$f(x) = sign(\boldsymbol{w^*} \cdot \boldsymbol{x_i} + b)$$
 
 
 ## 求解
@@ -146,7 +146,7 @@ $$
 $$\boldsymbol{w^*} - \sum_{i=1}^m \alpha_i y_i \boldsymbol{x_i} = \boldsymbol{0} \Longrightarrow \boldsymbol{w^*} = \sum_{i=1}^m \alpha_i y_i \boldsymbol{x_i} \ \ \ \ (6)$$
 
 由KKT条件(2)可得：
-$$ \sum_{i=1}^m \alpha_i y_i  = 0 \ \ \ \ (7)$$
+$$\sum_{i=1}^m \alpha_i y_i  = 0 \ \ \ \ (7)$$
 
 由KKT条件(3)，(4)，(5)联立可得： 
 
@@ -274,7 +274,7 @@ $$
 
 用SMO求得$\boldsymbol{\alpha}$，对于 $0 < a_i < C$ 的样本点：
 假设满足$0 < a_i < C$的个数为n  
-$$ b^j = y_j - \sum_{i=i}^m \alpha_i ^ * y_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j})，j \in [1, n]$$
+$$b^j = y_j - \sum_{i=i}^m \alpha_i ^ * y_i(\boldsymbol{x_i} \cdot \boldsymbol{x_j})，j \in [1, n]$$
 实际求解过程中$$b^*=\frac{1}{n} \sum_{j=1}^n b^j$$
 
 
@@ -321,7 +321,7 @@ $$
 
 
 求得$a_i^*$后  
-$$ b^* = \frac{1}{n} \sum_{j=1}^n \big[y_j - \sum_{i=i}^m \alpha_i ^ * y_i \kappa(\boldsymbol{x_i}, \boldsymbol{x_j}) \big]， 0 < a_j < C$$
+$$b^* = \frac{1}{n} \sum_{j=1}^n \big[y_j - \sum_{i=i}^m \alpha_i ^ * y_i \kappa(\boldsymbol{x_i}, \boldsymbol{x_j}) \big]， 0 < a_j < C$$
 
 分离超平面为：  
 $$\sum_{i=1}^m a_i^* y_i \kappa(\boldsymbol{x_i}, \boldsymbol{x_j}) + b^* = 0， (其中(\boldsymbol{x_i}, y_i）为训练样本及对应标签)$$
@@ -399,7 +399,7 @@ $$
 > 对于SVM在只关注核心点的同时, 选择分离超平面的原则使得熵最大, 即使得两支撑超平面到分离超平面的距离相等,保证了其泛化能力, 比较适合稀疏样本分类。
 > 但如果支持向量是个噪声点的话会对结果有较大的影响， 可以通过降低原约束问题的$C$降低对噪声点的敏感程度
 
-<img src="/pic/ml/down/hinge.png" border="0" width="50%" height="50%" style="margin: 0 auto"><center>（[图3](http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html), 合叶, hinge损失亦被称为合叶损失)</center>
+<img src="/pic/ml/down/hinge.png" border="0" width="50%" height="50%" style="margin: 0 auto"><center>（[图3](http://breezedeus.github.io/2015/07/12/breezedeus-svm-is-hingeloss-with-l2regularization.html), 合页, hinge损失亦被称为合页损失)</center>
 
 # SVM与感知机异同
 
