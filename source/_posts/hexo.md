@@ -4,13 +4,17 @@ comments: true
 tags:
 	- Hexo
 date: 2017-03-21 15:56 
-updated: 2017-03-23 17:13:56
+updated: 2017-03-29 16:09:56
 categories:
     - Tools
 ---
-
-Hexo 正文标题标号， 数学公式问题
 <!-- more -->
+
+# kill占用4000端口的程序  
+2017-03-29 16:09:39
+```bash 
+lsof -i tcp:4000  | awk '{print $2}' | xargs kill -9
+```
 
 # Hexo 为文章添加更新日期    
 2017-03-22 18:32:20  
