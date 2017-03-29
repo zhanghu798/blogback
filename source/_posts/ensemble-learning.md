@@ -3,7 +3,7 @@ title: "集成方法"
 comments: true
 tags:
 	- 集成学习
-date:  2017-03-27 14:23:37
+date:  2017-03-29 16:55:28
 categories:
     - 机器学习
 ---
@@ -20,7 +20,7 @@ Bootstrap aggregating
 
 对于样本总量为m，有放回的的随机抽样$t(t =n \cdot s)$次， 任一样本至少抽到一次的概率：
 $$
-P = 1 - (\frac{m - 1}{m}) ^ {t} =  1 - (1 - \frac{1}{m})^{t}
+P = 1 - (1 - \frac{1}{m})^{t}
 $$
 
 特别的，当$m \rightarrow +\infty$且$t＝m$时，有如下：
@@ -98,11 +98,10 @@ multi-Grained Cascade forest
 
 # 参考
 
-<http://wenda.chinahadoop.cn/question/4155>
-<https://www.zhihu.com/question/26760839>
+<http://wenda.chinahadoop.cn/question/4155>  
+<https://www.zhihu.com/question/26760839>  
+<chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=http%3A%2F%2Fnew.sis-statistica.org%2Fwp-content%2Fuploads%2F2013%2F10%2FCO09-Variable-Selection-using-Random-Forests.pdf>
 
-
-
-
+<chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=https%3A%2F%2Fhal.inria.fr%2Ffile%2Findex%2Fdocid%2F755489%2Ffilename%2FPRLv4.pdf>
 
 
