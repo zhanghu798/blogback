@@ -74,8 +74,27 @@ Random Forests，<https://zh.wikipedia.org/wiki/随机森林> ， 是Bagging的�
 >回归问题：多个CART回归树结果求平均  
 
 
-# AdaBost  
-Adaptive Boosting
+# AdaBoost  
+Adaptive Boosting，<https://zh.wikipedia.org/wiki/AdaBoost>  
+AdaBoost是多个分类器组合算法，[维基百科AdaBoost算法过程](https://zh.wikipedia.org/wiki/AdaBoost)：  
+<img src="/pic/ml/down/AdaBoost_process.png" width="100%" height="100%" style="margin: 0 auto">
+
+- 最终分类器为：
+$$
+G(x) = sign\big(f(x)\big) = sign\big(\sum_{i=1}^{k_{max}} \alpha_i C_i(x)\big)
+$$  
+
+* 参数说明：
+	- $k$：循环次数
+	- $W_k(i)$：训练地k个分类器时，第i个样本的权重
+	- $E_k$：在训练集上的误差率。实际上是预测错误的样本按样本编号去重后，样本权重$W_k(i)$求和
+	- $h_k(x^i)$：第K个分类器$C_k$给出的对任一样本点xi类别的预测
+	- $Z_k$：归一化因子。$Z_k = \sum_{j=1}^{k} W_j(i)exp\big(-\alpha_j h_j(x^i)y_i\big)$。j：分类器标号
+
+* 算法说明：
+	- 如果一个算法对于某个样本预测错误的，其样本权重变高，下一步重点训练该样本。反之，预测正确的样本权重变高
+	- 单一模型的分类训练误差高，该模型的权重低。反之，权重变高
+
 
 # GBDT  
 Gradient Boosting Decision Tree  
