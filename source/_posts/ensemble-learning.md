@@ -10,9 +10,6 @@ categories:
 
 这个题目取得有点大，就当先挖个坑  
 
-一个是boosting派系，它的特点是各个弱学习器之间有依赖关系。另一种是bagging流派，它的特点是各个弱学习器之间没有依赖关系，可以并行拟合。本文就对集成学习中Bagging与随机森林算法做一个总结
-
-
 # 两种基本集成学习思路
 
 ## Bagging  
@@ -26,14 +23,13 @@ $$
 \begin{aligned}
 p = & 1 - (\frac{m - 1}{m}) ^ m \\
 = & 1 - \frac{1}{(1 + \frac{1}{-m})^{-m}} \\
-= & 1 - \frac{1}{e} \ \ \ \ (当m \rightarrow \infty时)\\
-\approx & 63.2％ 
+\geqslant & 1 - \frac{1}{e} \ \ \ \ (当m \rightarrow \infty时，取等号)\\
+\geqslant & 63.2％ 
 \end{aligned}
 $$
 
 
-上市中e为[自然常数](https://zh.wikipedia.org/wiki/E_(数学常数))  
-将m看做未知数，则$1 - \frac{1}{m}$ 为增函数，则$(\frac{m - 1}{m}) ^ m$为增函数$p$为减函数
+上式中e为[自然常数](https://zh.wikipedia.org/wiki/E_(数学常数)) 。将m看做未知数，则$1 - \frac{1}{m}$ 为增函数，则$(1 - \frac{1}{m}) ^ m$为增函数， 则$p$为减函数，所以当$m \rightarrow \infty$时，取得极大值
 
 能够减小训练方差  
 简单说明，考虑以下极端情况
@@ -66,6 +62,16 @@ $$
 Boosting的主要特点：弱分类器之间有依赖关系
 
 因为Boosting的误差相关联性，所以Boosting是偏向于降低误差
+
+# 随机森林  
+Random Forests，<https://zh.wikipedia.org/wiki/随机森林> ， 是Bagging的一种实现
+
+>训练n不剪枝，没棵树是有部分样本中的部分特征组成，对结果进行投票或取平均  
+>分类问题：多个ID3、C4.5、C5.0或CART分类树的方法结果进行投票  
+>回归问题：多个不剪枝CART回归树结果求平均  
+
+
+
 
 # AdaBost  
 Adaptive Boosting
