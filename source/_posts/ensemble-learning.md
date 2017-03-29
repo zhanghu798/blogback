@@ -16,38 +16,41 @@ categories:
 Bootstrap aggregating  
 
 >
-给定一个大小为$n$的训练集$D$，Bagging算法从中均匀、有放回地选出$m$个大小为$n'$的子集$D_{i}$，作为新的训练集。在这$m$个训练集上使用分类、回归等算法，则可得到 $m$个模型，再通过取平均值、投票等方法，即可得到Bagging的结果  
+给定一个大小为$m$的样本集$D$，Bagging算法从中均匀、有放回地选出$n$个大小为$s$的子集$D_{i}$，作为新的训练集。在这$t$个训练集上使用分类、回归等算法，则可得到 $t$个模型，再通过取平均值、投票等方法，即可得到Bagging的结果  
 
-对于样本总量为m，有放回的的随机抽样m次， 某一样本至少抽到一次的概率：
+对于样本总量为m，有放回的的随机抽样$t(t =n \cdot s)$次， 任一样本至少抽到一次的概率：
+$$
+P = 1 - (\frac{m - 1}{m}) ^ {t} =  1 - (1 - \frac{1}{m})^{t}
+$$
+
+特别的，当$m \rightarrow +\infty$且$t＝m$时，有如下：
 $$
 \begin{aligned}
-p = & 1 - (\frac{m - 1}{m}) ^ m \\
+P = & 1 - (1 - \frac{1}{m})^m \\
 = & 1 - \frac{1}{(1 + \frac{1}{-m})^{-m}} \\
-\geqslant & 1 - \frac{1}{e} \ \ \ \ (当m \rightarrow \infty时，取等号)\\
-\geqslant & 63.2％ 
+＝ & 1 - \frac{1}{e} \\
+\approx & 63.2％ 
 \end{aligned}
-$$
-
-
-上式中e为[自然常数](https://zh.wikipedia.org/wiki/E_(数学常数)) 。将m看做未知数，则$1 - \frac{1}{m}$ 为增函数，则$(1 - \frac{1}{m}) ^ m$为增函数， 则$p$为减函数，所以当$m \rightarrow \infty$时，取得极大值
+$$  
+上式中$e$为[自然常数](https://zh.wikipedia.org/wiki/E_(数学常数)) 。
 
 能够减小训练方差  
 简单说明，考虑以下极端情况
 
 * 假设n个模型是完全独立的，即各模型任意组合的协方差为0
-	假设各个模型的方差均为$var$， 则
+	假设各个模型的方差均为$Var(x)$， 则
 	$$
 	\begin{aligned}
-	& VAR\big[\frac{1}{n}(X_1 + X_2 + \ldots + X_n)\big]  \\
+	& Var\big[\frac{1}{n}(X_1 + X_2 + \ldots + X_n)\big]  \\
 	= & \sum_{i=1}^n var(\frac{1}{n}X_1) \\
-	= & n \cdot \frac{1}{n^2} var \\
-	= & \frac{1}{n} var \\
+	= & n \cdot \frac{1}{n^2} Var(x) \\
+	= & \frac{1}{n} Var(x) \\
 	\end{aligned}
 	$$
 
 * 假设各模型完全相同，则：
 $$
-VAR\big[\frac{1}{n}(X_1 + X_2 + \ldots + X_n)\big] = VAR(\frac{1}{n} \cdot n X_i) = var(x)
+Var\big[\frac{1}{n}(X_1 + X_2 + \ldots + X_n)\big] = Var(\frac{1}{n} \cdot n X_i) = Var(x)
 $$  
 
 现实情况介于两者之间，所以Bagging可以降低方差
@@ -67,10 +70,8 @@ Boosting的主要特点：弱分类器之间有依赖关系
 Random Forests，<https://zh.wikipedia.org/wiki/随机森林> ， 是Bagging的一种实现
 
 >训练n不剪枝，没棵树是有部分样本中的部分特征组成，对结果进行投票或取平均  
->分类问题：多个ID3、C4.5、C5.0或CART分类树的方法结果进行投票  
->回归问题：多个不剪枝CART回归树结果求平均  
-
-
+>分类问题：多个ID3、C4.5、C5.0或CART分类树结果投票 
+>回归问题：多个CART回归树结果求平均  
 
 
 # AdaBost  
@@ -98,6 +99,7 @@ multi-Grained Cascade forest
 # 参考
 
 <http://wenda.chinahadoop.cn/question/4155>
+<https://www.zhihu.com/question/26760839>
 
 
 
