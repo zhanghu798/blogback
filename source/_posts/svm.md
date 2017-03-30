@@ -7,6 +7,7 @@ date: 2017-03-20 23:52
 updated: 2017-03-26 11:26:37
 categories:
     - 机器学习
+    - SVM
 ---
 
 {% cq %} <font size=4>SVM，Support Vector Mechines，支持向量机</font>{% endcq %}
