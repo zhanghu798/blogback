@@ -73,6 +73,34 @@ Random Forests，<https://zh.wikipedia.org/wiki/随机森林> ， 是Bagging的�
 >分类问题：多个ID3、C4.5、C5.0或CART分类树结果投票 
 >回归问题：多个CART回归树结果求平均  
 
+# 向前分布算法  
++ 输入：
+	- 训练数据集：$T＝{(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)}$
+	- 损失函数：L(y, f(x))。$y$：样本标签向量，$f(x)$：预测结果向量
+	- 基函数集：${b(x, \gamma)}$。$\gamma$：模型参数向量， 一组$\gamma$对应一个子模型
++ 输出：
+	训练M个模型$b(x, \gamma_m)$，按模型权重$\beta_m$相加得到最红加法模型，如下：
+	$$
+	\boxed{
+	f(x) = \sum_{i=1}^M \beta_m b(x, \gamma_m)
+	}
+	$$
+
++ 算法流程:
+	- $f_0(x) = 0$  
+	- for m in 1, 2, $\ldots$, M:
+		- $$
+		\begin{multline}
+		(\beta_m, \gamma) = arg \min_{\beta, \gamma} \sum_{i=1}^m(y_i, f_{m-1}+\beta b(x_i;\gamma)
+		\end{multline}
+		$$
+		- $$
+		\begin{multline}
+		f_m(x) = f_{m-1}(x) + \beta_m b(x; \gamma_m)
+		\end{multline}
+		$$
+	- $f(x) = f_m(x)$
+
 
 # AdaBoost  
 Adaptive Boosting，<https://zh.wikipedia.org/wiki/AdaBoost>  
@@ -99,19 +127,33 @@ $$
 # GBDT  
 Gradient Boosting Decision Tree  
 
-## XGBoost  
-Extreme Gradient Boosting  
-<https://xgboost.readthedocs.io/en/latest/model.html>
+# XGBoost  
+eXtreme Gradient Boosting  
+XGBoost的github地址：<https://github.com/dmlc/xgboost>  
+<https://xgboost.readthedocs.io/en/latest/>
+  
+XGBoost的介绍 <https://xgboost.readthedocs.io/en/latest/model.html>
 
-## LightGBM  
+$$
+\begin{split}\hat{y}_i^{(0)} &= 0\\
+\hat{y}_i^{(1)} &= f_1(x_i) = \hat{y}_i^{(0)} + f_1(x_i)\\
+\hat{y}_i^{(2)} &= f_1(x_i) + f_2(x_i)= \hat{y}_i^{(1)} + f_2(x_i)\\
+&\dots\\
+\hat{y}_i^{(t)} &= \sum_{k=1}^t f_k(x_i)= \hat{y}_i^{(t-1)} + f_t(x_i)
+\end{split}
+$$
+
+# LightGBM  
 Light Gradient Boosting Machine  
 <http://www.msra.cn/zh-cn/news/blogs/2017/01/lightgbm-20170105.aspx>
 
 知乎地址：<https://github.com/Microsoft/LightGBM>
 
-## gcFrest  
+# gcFrest  
 multi-Grained Cascade forest  
+
 <https://arxiv.org/pdf/1702.08835.pdf>
+<http://it.sohu.com/20170302/n482153688.shtml>
 
 
 
