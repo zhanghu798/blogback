@@ -104,6 +104,27 @@ Random Forests，<https://zh.wikipedia.org/wiki/随机森林> ， 是Bagging的�
 
 # AdaBoost  
 Adaptive Boosting，<https://zh.wikipedia.org/wiki/AdaBoost>  
+AdaBoost是多个分类器组合算法，[维基百科AdaBoost算法过程](https://zh.wikipedia.org/wiki/AdaBoost)：
+
++ 输入：
+	- 训练数据集：$T＝{(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)}$
+	- 损失函数：L(y, f(x))。$y$：样本标签向量，$f(x)$：预测结果向量
+	- 基函数集：${b(x, \gamma)}$。$\gamma$：模型参数向量， 一组$\gamma$对应一个子模型
++ 输出：
+	训练M个模型$b(x, \gamma_m)$，按模型权重$\beta_m$相加得到最红加法模型，如下：
+	$$
+	\boxed{
+	f(x) = \sum_{i=1}^M \beta_m b(x, \gamma_m)
+	}
+	$$
+
++ 算法流程:
+	- 初始化训练数据权重 $w_{1i}=\frac{1}{N}，i= 1,2,\ldots,N$
+
+
+
+# AdaBoost  
+Adaptive Boosting，<https://zh.wikipedia.org/wiki/AdaBoost>  
 AdaBoost是多个分类器组合算法，[维基百科AdaBoost算法过程](https://zh.wikipedia.org/wiki/AdaBoost)：  
 <img src="/pic/ml/down/AdaBoost_process.png" width="100%" height="100%" style="margin: 0 auto">
 
@@ -152,7 +173,7 @@ Light Gradient Boosting Machine
 # gcFrest  
 multi-Grained Cascade forest  
 
-<https://arxiv.org/pdf/1702.08835.pdf>
+<https://arxiv.org/pdf/1702.08835.pdf>  
 <http://it.sohu.com/20170302/n482153688.shtml>
 
 
