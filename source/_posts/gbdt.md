@@ -1,10 +1,10 @@
 layout: post
-title: "AdaBoost"
+title: "GBDT"
 comments: true
 tags:
 	- GBDT
 	- 集成方法
-date:  2017-03-31 02:17:39
+date:  2017-03-31 02:26:30
 categories:
     - 机器学习
     - 集成方法
