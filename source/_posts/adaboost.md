@@ -3,9 +3,11 @@ title: "AdaBoost"
 comments: true
 tags:
 	- AdaBoost
+	- 集成方法
 date:  2017-03-30 22:44:27
 categories:
     - 机器学习
+    - 集成方法
 ---
 
 {% cq %} <font size=4>Adaptive Boosting</font>{% endcq %}
