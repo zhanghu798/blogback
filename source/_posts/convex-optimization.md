@@ -6,6 +6,7 @@ tags:
 date: 2017-03-18 15:56
 categories:
     - 机器学习
+    - 参数优化
 ---
 
 {% cq %} <font size=4>Convex Optimization，凸优化</font>{% endcq %}
