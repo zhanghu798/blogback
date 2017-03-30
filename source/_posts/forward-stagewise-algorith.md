@@ -3,9 +3,11 @@ title: "前向分步算法"
 comments: true
 tags:
 	- 前向分步算法
+	- 集成方法
 date: 2017-03-31 01:53:56
 categories:
     - 机器学习
+    - 集成方法
 ---
 
 
