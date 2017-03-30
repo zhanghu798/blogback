@@ -6,6 +6,7 @@ tags:
 date: 2017-03-26 11:26:22
 categories:
     - 机器学习
+    - SVM
 ---
 
 {% cq %} <font size=4>SVR，Support Vector Regression，支持向量回归</font>{% endcq %}
