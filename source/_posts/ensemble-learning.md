@@ -2,10 +2,11 @@ layout: post
 title: "集成方法"
 comments: true
 tags:
-	- 集成学习
+	- 集成方法
 date:  2017-03-29 16:55:28
 categories:
     - 机器学习
+    - 集成方法
 ---
 
 这个题目取得有点大，就当先挖个坑  
@@ -73,7 +74,7 @@ Random Forests，<https://zh.wikipedia.org/wiki/随机森林> ， 是Bagging的�
 >分类问题：多个ID3、C4.5、C5.0或CART分类树结果投票 
 >回归问题：多个CART回归树结果求平均  
 
-# 向前分布算法  
+# 前向分布算法  
 + 输入：
 	- 训练数据集：$T＝{(x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n)}$
 	- 损失函数：L(y, f(x))。$y$：样本标签向量，$f(x)$：预测结果向量
