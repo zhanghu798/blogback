@@ -9,7 +9,9 @@ categories:
     - 集成方法
 ---
 
-这个题目取得有点大，就当先挖个坑  
+{% cq %} <font size=4>Ensemble methods</font>{% endcq %}
+
+<!-- more --> 
 
 # 两种基本集成学习思路
 
