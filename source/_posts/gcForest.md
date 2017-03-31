@@ -3,16 +3,19 @@ title: "gcForest"
 comments: true
 tags:
 	- 集成方法
+	- gcForest
 date:  2017-03-31 02:29:40
 categories:
     - 机器学习
     - 集成方法
 ---
 
-multi-Grained Cascade forest  
+{% cq %} <font size=4>multi-Grained Cascade Forest</font>{% endcq %}
 
 论文地址：<https://arxiv.org/pdf/1702.08835.pdf>  
 部分翻译：<http://it.sohu.com/20170302/n482153688.shtml>
+
+<!-- more -->
 
 # 算法基本思路  
 gcForest是西瓜书作者周志华博士和冯霁博士提出的一基于随机森林的深度森林的方法，是一种“ensemble of ensembles”的方法。类似深度神经网络，深度森林是每层是由多个随机森林组成，每层的随机森林是由完全随机森林及随机森林组成  
