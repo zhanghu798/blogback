@@ -12,6 +12,17 @@ categories:
 
 {% cq %} <font size=4>multi-Grained Cascade Forest</font>{% endcq %}
 
+
+决策树模型具有可解释性强的优点，多个决策树构成随机森林，多层多个森林构成深度森林  
+
+gcForest是西瓜书作者周志华博士和冯霁博士提出的一基于随机森林的深度森林的方法，尝试用深度森林的方法解决深度神经网络中存在的问题： 
+
+- 需要大量样本才能使得深度神经网络有较好的性能
+- 调参困难
+- 对硬件性能要求较高  
+
+论文中实验了在小数据集上gcForest，取得了不错的效果  
+
 论文地址：<https://arxiv.org/pdf/1702.08835.pdf>  
 部分翻译：<http://it.sohu.com/20170302/n482153688.shtml>
 
@@ -20,10 +31,12 @@ categories:
 # 算法基本思路  
 gcForest是西瓜书作者周志华博士和冯霁博士提出的一基于随机森林的深度森林的方法，是一种“ensemble of ensembles”的方法。类似深度神经网络，深度森林是每层是由多个随机森林组成，每层的随机森林是由完全随机森林及随机森林组成  
 
+>
 - **完全随机**森林的构建：构建1000个(超参数)**完全随机**树。完全决策树的构建过程：对于所有的特征，随机选择特征，随机选择特征下的split值，一直生长，直到每个叶节点包含相同的类别或者不超过10（超参数）个时，决策树训练停止
-
 - 随机森林的构建：构建1000个(超参数）决策树。决策树的构建过程：从$d$个特征，随机抽取$\sqrt{d}$个特证，由gini系数做为特征选择及分裂的标准构建CART决策树
  
+每一层经过多个森林处理的输出作为下级的输入，当到达某一层没有明显的性能提升(超参数)时，级连森林停止生长
+
 # 算法流程  
 ## 类向量的训练
 <img src="/pic/ml/gcForest/gcForest_class_vector.png" width="80%" height="80%" style="margin: 0 auto">
@@ -91,17 +104,21 @@ def fit(x, model_list_list):
 	
 
 # 使用多粒度扫描做特征处理
-<img src="/pic/ml/gcForest/gcForest_multi-grained-scanning.png" width="80%" height="80%" style="margin: 0 auto">
+- 多粒度扫描结构
+<img src="/pic/ml/gcForest/gcForest_multi-grained-scanning.png" width="100%" height="100%" style="margin: 0 auto">
 <center>（[图3，多粒度扫描示意图](https://arxiv.org/pdf/1702.08835.pdf))</center>
-
-类似卷机神经网络的Pooling，深度森林也引入"滑动窗口"，替代pooling层的方法max-pooling, mean-pooling的计算方式为多个森林（完全随机森林和随机森林）后的类向量串行，具体过程大概如下：
-每次滑动窗口选出来的特征经过随机森林和完全随机森林  
-
-假设原始特征长度为m，滑动窗口长度为n(n < m)，滑动窗口个数：[n, m]即共有m-n+1个滑动窗口
-
-带多粒度扫描的级连森林示意图：
+  
+- 带多粒度扫描的级连森林结构
 <img src="/pic/ml/gcForest/gcForest_struct-with-grained-scanning.png" width="100%" height="100%" style="margin: 0 auto">
 <center>（[图4，带多粒度扫描的增强级连森林示意图](https://arxiv.org/pdf/1702.08835.pdf))</center>
+
+- 描述：  
+类似卷机神经网络的Pooling，深度森林也引入"滑动窗口"，替代pooling层的方法max-pooling, mean-pooling的计算方式为多个森林（完全随机森林和随机森林）后的类向量串行，具体过程大概如下：
+每次滑动窗口选出来的特征经过随机森林和完全随机森林经过多个森林建模后得到类向量，串联类向量作为新的特征作为下一级的输入层
+- 假设原始特征长度为m，滑动窗口长度为n(n < m)，滑动窗口个数：[n, m]即共有m-n+1个滑动窗口
+- 可以并行接入不同窗口做Pooling操作
+
+
 
 
 
