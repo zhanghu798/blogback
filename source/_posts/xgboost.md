@@ -52,7 +52,7 @@ $$Obj(\Theta) = L(\theta) + \Omega(\Theta)$$
 
 	- $T$：叶子节点个数
 	- $w_j$：叶子节点代表的回归值，例：CART回归树中落在某一叶子节点$y_i$的平均值
-l	- $\gamma$：超参数，叶子节点个数的惩罚系数
+	- $\gamma$：超参数，叶子节点个数的惩罚系数
 	- $\lambda$：超参数，L2-norm平方的系数  
 
 boosting算法的一般形式：
@@ -67,9 +67,14 @@ $$\begin{split}\hat{y}_i^{(0)} &= 0\\
 $$
 \begin{split}\text{obj}^{(t)} & = \sum_{i=1}^n l(y_i, \hat{y}_i^{(t)}) + \sum_{i=1}^t\Omega(f_i) \\
           & = \sum_{i=1}^n l(y_i, \hat{y}_i^{(t-1)} + f_t(x_i)) + \Omega(f_t) + constant \\
-          & = \sum_{i=1}^n (y_i - (\hat{y}_i^{(t-1)} + f_t(x_i)))^2 + \sum_{i=1}^t\Omega(f_i) + constant \\
+          & = \sum_{i=1}^n (y_i - (\hat{y}_i^{(t-1)} + f_t(x_i)))^2 + \Omega(f_t) + constant \\
           & = \sum_{i=1}^n [2(\hat{y}_i^{(t-1)} - y_i)f_t(x_i) + f_t(x_i)^2] + \Omega(f_t) + constant
 \end{split}
+$$
+
+泰勒展开：
+$$
+f(x) = f(a) + \frac{f'(a)}{1!}(x-a)+ \frac{f^{2}(a)}{2!}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n + R_n(x)
 $$
 
 
