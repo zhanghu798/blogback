@@ -42,6 +42,8 @@ gcForest是西瓜书作者周志华博士和冯霁博士提出的一基于随机
 <img src="/pic/ml/gcForest/gcForest_class_vector.png" width="80%" height="80%" style="margin: 0 auto">
 <center>（[图1，类向量生成示意图](https://arxiv.org/pdf/1702.08835.pdf))</center>
 
+图片说明：图中有两个小bug，第一个决策树"红圈"内的叶子节点少了一个"椭圆"，第三个决策树"红圈"内应该全为"正方形"
+
 假设为k分类问题   
 1，针对已经训练好的森林中的树时，记录每个叶子节点的样本类别，按类别统计叶子节点的权重得到k维向量，树模型的每个叶子节点都对应一个k维向量(带key的向量，如，label_1：0.5, label_2:0.3, lable_3=0.2)。 
 
@@ -90,7 +92,7 @@ def model(input_data_list_list, label_list):
 def fit(x, model_list_list):
     '''
     x：待预测样本
-    model_list_list：深度森林模型，model_list_list[0]：列表，代表第0层的森林模型列表
+    model_list_list：级连森林模型，model_list_list[0]：列表，代表第0层的森林模型列表
     '''
     feture_list = x
 	
@@ -106,11 +108,11 @@ def fit(x, model_list_list):
 # 使用多粒度扫描做特征处理
 - 多粒度扫描结构
 <img src="/pic/ml/gcForest/gcForest_multi-grained-scanning.png" width="100%" height="100%" style="margin: 0 auto">
-<center>（[图3，多粒度扫描示意图](https://arxiv.org/pdf/1702.08835.pdf))</center>
+<center>（[图3，多粒度扫描示结构意图](https://arxiv.org/pdf/1702.08835.pdf))</center>
   
 - 带多粒度扫描的级连森林结构
 <img src="/pic/ml/gcForest/gcForest_struct-with-grained-scanning.png" width="100%" height="100%" style="margin: 0 auto">
-<center>（[图4，带多粒度扫描的增强级连森林示意图](https://arxiv.org/pdf/1702.08835.pdf))</center>
+<center>（[图4，带多粒度扫描的增强级连森林示结构意图](https://arxiv.org/pdf/1702.08835.pdf))</center>
 
 - 描述：  
 类似卷机神经网络的Pooling，深度森林也引入"滑动窗口"，替代pooling层的方法max-pooling, mean-pooling的计算方式为多个森林（完全随机森林和随机森林）后的类向量串行，具体过程大概如下：
