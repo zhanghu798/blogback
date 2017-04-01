@@ -120,6 +120,11 @@ def fit(x, model_list_list):
 - 假设原始特征长度为m，滑动窗口长度为n(n < m)，滑动窗口个数：[n, m]即共有m-n+1个滑动窗口
 - 可以并行接入不同窗口做Pooling操作
 
+# 参考资料
+[1] Deep Forest: Towards An Alternative to Deep Neural Networks，<https://arxiv.org/pdf/1702.08835.pdf> ，Zhi-Hua ZhouandJi Feng，2017.02.28  
+[2] http://it.sohu.com/20170302/n482153688.shtml
+
+
 
 
 
