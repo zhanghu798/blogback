@@ -50,7 +50,7 @@ class AddCurrentTimeCommand(sublime_plugin.TextCommand):
 保存。"ctrl+shift+."为自动插入日期快捷键  
 
 
-# Sublime标记相对git的修改的行  
+# Sublime标记修改但未提交的行 
 2017-03-22 18:18:10  
 来源：<https://github.com/gornostal/Modific>  
 ```
