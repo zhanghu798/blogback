@@ -115,8 +115,8 @@ $$
 
 $$
 \begin{aligned}
-令： & g_i = \frac{\partial l(y_i， \hat{y}_i^{(t-1)})}{\partial \hat{y}_i^{(t-1)}}  \\
-& h_i = \frac{\partial^2 l(y_i， \hat{y}_i^{(t-1)})}{\partial \hat{y}_i^{(t-1)}}  
+令： & g_i = \frac{\partial l(y_i， \hat{y}_i)}{\partial \hat{y}_i} \ \Bigg|_{\hat{y}_i = \hat{y}_i^{(t-1)}} \\
+& h_i = \frac{\partial ^2 l(y_i， \hat{y}_i)}{\partial \hat{y}_i} \ \Bigg|_{\hat{y}_i = \hat{y}_i^{(t-1)}}
 \end{aligned}
 \tag{9}
 $$
@@ -214,8 +214,9 @@ for i in range(n)：   # 训练第i棵树
 [1] XGBoost官网：<https://xgboost.readthedocs.io/en/latest/model.html>  
 [2] XGboost的GitHub地址：<https://github.com/dmlc/xgboost>  
 [3] <http://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf>  
-[4] <https://zh.wikipedia.org/wiki/泰勒公式>  
-[5] <http://ufldl.stanford.edu/wiki/index.php/Softmax回归>  
+[4] <https://en.wikipedia.org/wiki/Gradient_boosting>
+[5] <https://zh.wikipedia.org/wiki/泰勒公式>  
+[6] <http://ufldl.stanford.edu/wiki/index.php/Softmax回归>  
 
 
 
