@@ -84,13 +84,13 @@ $$\begin{split}\hat{y}_i^{(0)} &= 0\\
 \hat{y}_i^{(2)} &= f_1(x_i) + f_2(x_i)= \hat{y}_i^{(1)} + f_2(x_i)\\
 &\dots\\
 \hat{y}_i^{(t)} &= \sum_{k=1}^t f_k(x_i)= \hat{y}_i^{(t-1)} + f_t(x_i)
-\end{split}$$
+\end{split} \tag{6}$$
 
 则
 $$
 \begin{split}\text{obj}^{(t)} & = \sum_{i=1}^n l(y_i, \hat{y}_i^{(t)}) + \sum_{i=1}^t\Omega(f_i) \\
           & = \sum_{i=1}^n l(y_i, \hat{y}_i^{(t-1)} + f_t(x_i)) + \Omega(f_t) + constant
-\end{split} \tag{6}
+\end{split} \tag{7}
 $$
 
 ## 决策树决策规则  
@@ -110,7 +110,7 @@ $\begin{aligned}
 则目标函数的二阶泰勒展开为：
 $$
 \text{obj}^{(t)} \approx 
- \sum_{i=1}^n \big[ l(y_i， \hat{y}_i^{(t-1)}) + g_i \cdot f_t(x_i) + \frac{1}{2} \cdot h_i \cdot f_t^2(x_i)\big] +\sum_{i=1}^t\Omega(f_i) \tag{7}
+ \sum_{i=1}^n \big[ l(y_i， \hat{y}_i^{(t-1)}) + g_i \cdot f_t(x_i) + \frac{1}{2} \cdot h_i \cdot f_t^2(x_i)\big] +\sum_{i=1}^t\Omega(f_i) \tag{8}
 $$
 
 $$
@@ -118,10 +118,10 @@ $$
 令： & g_i = \frac{\partial l(y_i， \hat{y}_i^{(t-1)})}{\partial \hat{y}_i^{(t-1)}}  \\
 & h_i = \frac{\partial^2 l(y_i， \hat{y}_i^{(t-1)})}{\partial \hat{y}_i^{(t-1)}}  
 \end{aligned}
-\tag{8}
+\tag{9}
 $$
 
-定义好损失函数，前$t-1$棵树训练好后，$g_i$ 和 $h_i$就确定了。$g_i$ 和 $h_i$是前$t-1$棵树和第$t$棵树之间的纽带，也体现Boosting思想
+定义好损失函数，前$t-1$棵树训练好后，$g_i$ 和 $h_i$就确定了。通过$g_i$ 和 $h_i$是调整样本权值，用于训练第$t$棵树，也体现Boosting思想
 
 考虑到是对$\text{obj}^{(t)}$求最小值，前$t-1$棵确定下来后$l(y_i， \hat{y}_i^{(t-1)})$为定值，另外前$t-1$棵树的正则项也为常数，即对于目标而言 $\sum_{i=1}^t\Omega(f_i) = constant + \Omega(f_t)$
 
@@ -131,14 +131,14 @@ $$
  \text{obj}^{(t)} 
 & \approx  \sum_{i=1}^n \big[g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x_i)\big] + \Omega(f_t) \\
 & = \sum_{i=1}^n [g_i f_t(x_i)  + \frac{1}{2} h_i f_t^2(x_i) ] + \gamma T + \frac{1}{2}\lambda \sum_{j=1}^T w_j^2\\
-\end{split} \tag{9}
+\end{split} \tag{10}
 $$
 
 其中$f_t(x_i)$表示样本$x_i$在第$t$棵树上的预测结果，假设设n个样本在第$t$棵树上的预测结果分布在$T$个叶子节点上，则某一叶子节点$I_j$上有必相同的回归值$w_j$，则有
 $$
 \begin{split}
 \sum_{i\in I_j} g_i  f_t(x_i) = (\sum_{i\in I_j} g_i) \cdot w_j \\
-\end{split} \tag{10}
+\end{split} \tag{11}
 $$
 
 则：
@@ -146,7 +146,7 @@ $$
 \begin{split}
 \text{obj}^{(t)} 
 \approx \sum^T_{j=1} [(\sum_{i\in I_j} g_i) w_j + \frac{1}{2} (\sum_{i\in I_j} h_i + \lambda) w_j^2 ] + \gamma T
-\end{split} \tag{11}
+\end{split} \tag{12}
 $$
 
 $$
@@ -154,24 +154,25 @@ $$
 令：&G_j = \sum_{i\in I_j} g_i\\
 &H_j = \sum_{i\in I_j} h_i 
 \end{aligned}
-\tag{12}
+\tag{13}
 $$
 
 $$
-\text{obj}^{(t)} \approx  \sum^T_{j=1} \big[G_jw_j + \frac{1}{2} (H_j+\lambda) w_j^2\big] +\gamma T \tag{13}
+\text{obj}^{(t)} \approx  \sum^T_{j=1} \big[G_jw_j + \frac{1}{2} (H_j+\lambda) w_j^2\big] +\gamma T \tag{14}
 $$
 
 ### 目标函数取得极值时的条件  
 
 当$\text{obj}^{(t)}$取得极小值时， $\frac{\partial \text{obj}^{(t)}}{\partial w_j} = 0$，则：
 $$
-w_j^\ast = -\frac{G_j}{H_j+\lambda} \tag{14}
+w_j^\ast = -\frac{G_j}{H_j+\lambda} \tag{15}
 $$
 
+$w_j^\ast$即为第t棵树，落在第j个叶子结点预测值$f_t(x_i)$
 
 则决策树的损失为：
 $$
-\text{obj}^\ast = -\frac{1}{2} \sum_{j=1}^T \frac{G_j^2}{H_j+\lambda} + \gamma T \tag{15}
+\text{obj}^\ast = -\frac{1}{2} \sum_{j=1}^T \frac{G_j^2}{H_j+\lambda} + \gamma T \tag{16}
 $$
 
 ### 决策树建立过程的参考依据
@@ -179,7 +180,7 @@ $$
 决策树损失越小越好，类似基尼系数或熵。则决策树某个节点分裂前后的的增益为：父节点点的损失 - 左子树的损失 - 右子树的损失。不分裂：全部样本子一个叶子结点；分裂：左子树（叶）和右子树（叶）都先看成叶子，则$T=1$，决策树分裂前后的增益为：
 $$
 Gain = \frac{1}{2} \left[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}-\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}\right] - \gamma 
-\tag{16}
+\tag{17}
 $$
 
 决策树建立过程是寻找使得增益$Gain$最大的特征及特征上的值过程
@@ -194,11 +195,12 @@ $$
 求所有样本的一阶、二阶损失
 
 for i in range(n)：   # 训练第i棵树
-    1，根据式（16）建立决策树
+    1，根据式（9）更新样样本的一阶、二阶损失
+    2，根据式（17）建立决策树
 
-    2，按叶子根据式（14）计算每个样本的预测值
+    3，按叶子根据式（15）计算每个样本在第i棵树上的预测值 f_t(x_i)
+    4，根据式（6）y_t = y_(t-1) +  f_t(x_i)
 
-    3，根据式（8）更新样样本的一阶、二阶损失
 ```
 
 
