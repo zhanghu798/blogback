@@ -4,7 +4,8 @@ comments: true
 tags:
 	- 集成方法
 	- gcForest
-date:  2017-03-31 02:29:40
+date: 2017-03-31 02:29:40
+updated: 2017-04-01 21:45:43
 categories:
     - 机器学习  
     - 集成方法
