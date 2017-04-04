@@ -87,25 +87,25 @@ Random Forests，<https://zh.wikipedia.org/wiki/随机森林> ， 是Bagging的�
 > 回归问题：多个CART回归树结果求平均  
 
 # Boosting算法  
-向前分布算法:  
+## 向前分布算法  
  <http://reset.pub/2017/03/31/forward-stagewise-algorith/>  
 
-AdaBoost:  
+## AdaBoost    
 <http://reset.pub/2017/03/30/adaboost/>   
 
-提升，梯度提升，梯度提升树:  
+## 提升，梯度提升，梯度提升树  
 <http://reset.pub/2017/04/03/gbdt/>   
 
-xgboost:  
+## xgboost  
 <http://reset.pub/2017/04/01/xgboost/>  
 
-LightGBM:  
+## LightGBM  
 微软开源的梯度提升库
 Light Gradient Boosting Machine  
 <http://www.msra.cn/zh-cn/news/blogs/2017/01/lightgbm-20170105.aspx>  
 <http://www.msra.cn/zh-cn/news/blogs/2017/01/lightgbm-20170105.aspx>  
 
-gcForest:  
+## gcForest  
 周志华博士和其学生提出的深度森林模型。
 <http://reset.pub/2017/03/31/gcForest/>  
 
