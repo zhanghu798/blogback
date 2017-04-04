@@ -2,6 +2,7 @@ layout: post
 title: "Gradient Boosting"
 comments: true
 tags:
+	- Boosting
 	- GB
 	- GBDT
 	- 集成方法
