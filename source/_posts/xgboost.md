@@ -201,13 +201,11 @@ for t in 1，2，..., n：   # 训练第i棵树
     3，按叶子根据式（15）计算每个样本在第t棵树上的预测值 f_t(x_i)
     4，根据式（6）y_t = y_(t-1) + f_t(x_i)
 
-输出n棵树的模型
+输出模型
 
 ```
 
-
-
-
+具体XGBoost实现参数见：<https://github.com/dmlc/xgboost/blob/master/doc/parameter.md>
 
 
 # 参考资料
