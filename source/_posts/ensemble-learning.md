@@ -3,7 +3,7 @@ title: "集成方法"
 comments: true
 tags:
 	- 集成方法
-date:  2017-04-04 16:55:28
+date:  2017-04-04 23:55:28
 updated: 2017-04-05 02:53:06
 categories:
     - 机器学习
@@ -12,6 +12,7 @@ categories:
 
 {% cq %} <font size=4>Ensemble methods</font>{% endcq %}
 
+集成方法是将多个基模型集成起来以提高最终模型的预测准确率或泛化能力的方法
 <!-- more --> 
 
 # 两种基本集成学习思路
@@ -104,7 +105,7 @@ Light Gradient Boosting Machine
 <http://www.msra.cn/zh-cn/news/blogs/2017/01/lightgbm-20170105.aspx>
 
 gcForest:  
-周志华教授和其学生提出的深度森林模型 
+周志华博士和其学生提出的深度森林模型。
 <http://reset.pub/2017/03/31/gcForest/>  
 
 Boosting模型在构建构成中可以对每基模型使用样本、特征抽样。所以以上算法不一定是纯粹的Boosting
@@ -113,13 +114,14 @@ Boosting模型在构建构成中可以对每基模型使用样本、特征抽样
 
 # 参考 
 [1]《统计学习方法》，李航著，2012 
-[2] https://en.wikipedia.org/wiki/Gradient_boosting  
-[3] XGboost的GitHub地址：<https://github.com/dmlc/xgboost>   
-\[4\] [Deep Forest: Towards An Alternative to Deep Neural Networks](https://arxiv.org/pdf/1702.08835.pdf)，Zhi-Hua Zhou and Ji Feng，2017.02.28  
-[5] XGBoost官网：<https://xgboost.readthedocs.io/en/latest/model.html>  
-[6] XGboost的GitHub地址：<https://github.com/dmlc/xgboost>  
-[7] <http://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf>  
-[8] <https://www.zhihu.com/question/26760839>  
-[9] <https://zh.wikipedia.org/wiki/E_(数学常数)>  
+[2]《机器学习》，周志华著，2016  
+[3] https://en.wikipedia.org/wiki/Gradient_boosting  
+[4] XGboost的GitHub地址：<https://github.com/dmlc/xgboost>   
+\[5\] [Deep Forest: Towards An Alternative to Deep Neural Networks](https://arxiv.org/pdf/1702.08835.pdf)，Zhi-Hua Zhou and Ji Feng，2017.02.28  
+[6] XGBoost官网：<https://xgboost.readthedocs.io/en/latest/model.html>  
+[7] XGboost的GitHub地址：<https://github.com/dmlc/xgboost>  
+[8] <http://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf>  
+[9] <https://www.zhihu.com/question/26760839>  
+[10] <https://zh.wikipedia.org/wiki/E_(数学常数)>  
 
 
