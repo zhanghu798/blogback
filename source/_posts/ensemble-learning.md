@@ -102,7 +102,8 @@ xgboost:
 LightGBM:  
 微软开源的梯度提升库
 Light Gradient Boosting Machine  
-<http://www.msra.cn/zh-cn/news/blogs/2017/01/lightgbm-20170105.aspx>
+<http://www.msra.cn/zh-cn/news/blogs/2017/01/lightgbm-20170105.aspx>  
+<http://www.msra.cn/zh-cn/news/blogs/2017/01/lightgbm-20170105.aspx>  
 
 gcForest:  
 周志华博士和其学生提出的深度森林模型。
@@ -123,5 +124,7 @@ Boosting模型在构建构成中可以对每基模型使用样本、特征抽样
 [8] <http://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf>  
 [9] <https://www.zhihu.com/question/26760839>  
 [10] <https://zh.wikipedia.org/wiki/E_(数学常数)>  
+[11] <https://github.com/Microsoft/LightGBM>
+[12] <http://www.msra.cn/zh-cn/news/blogs/2017/01/lightgbm-20170105.aspx>
 
 
