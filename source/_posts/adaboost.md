@@ -12,7 +12,7 @@ categories:
 ---
 
 {% cq %} <font size=4>Adaptive Boosting</font>{% endcq %}
-AdaBoost是多个分类器组合算法，[维基百科AdaBoost算法过程](https://zh.wikipedia.org/wiki/AdaBoost)：
+AdaBoost是多个分类器组合算法，[维基百科AdaBoost算法过程](https://zh.wikipedia.org/wiki/AdaBoost)
 
 <!-- more -->
 
