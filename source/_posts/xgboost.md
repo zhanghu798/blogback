@@ -9,7 +9,6 @@ updated: 2017-04-03 16:17:52
 categories:
     - 机器学习  
     - 集成方法
-    - GBDT
 ---
 
 {% cq %} <font size=4>eXtreme Gradient Boosting</font>{% endcq %}
