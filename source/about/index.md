@@ -2,7 +2,7 @@
 title: about
 date:  2017-04-05 10:23:23
 type: "about"
-comments: true
+comments: false
 top: false
 heading_index: false
 ---
@@ -36,9 +36,9 @@ heading_index: false
 >
 * 不知道自己知道
 
-共勉。（可惜没有找到源出处）
+共勉
 
-# 欢迎提出批评、建议、交流
+# 欢迎批评、建议、交流
 
-微信：@think543  
+微信：think543  
 邮箱：think543@126.com  
