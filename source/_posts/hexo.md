@@ -4,7 +4,7 @@ comments: true
 tags:
 	- Hexo
 date: 2017-03-21 15:56 
-updated: 2017-03-29 16:09:56
+updated: 2017-04-05 11:54:34
 categories:
     - Tools
 ---
@@ -17,49 +17,6 @@ Hexo
 ```bash 
 lsof -i tcp:4000  | awk '{print $2}' | xargs kill -9
 ```
-
-# Hexo 为文章添加更新日期    
-2017-03-22 18:32:20  
-来源: <http://wuchenxu.com/2015/12/13/Static-Blog-hexo-github-7-display-updated-date>
-
-1，增加主题代码  
-在hexo/themes/next/layout/_macro/post.swig的theme.post_meta.created_at 的"endif"模块后添加  
-
-```html
-{%if post.updated and post.updated > post.date%}
-  <span class="post-meta-divider">|</span>
-  <span class="post-meta-item-icon">
-  <i class="fa fa-calendar-o"></i>
-  </span>
-  <span class="post-meta-item-text">{{ __('post.updated') }}</span>
-  <span class="post-updated">
-  <time title="{{ __('post.updated') }}" itemprop="dateCreated dateUpdated" datetime="{{ moment(post.date).format() }}">
-    {{ date(post.updated, config.date_format) }}
-  </time>
-{% endif %}
-```
-
-2，配置语言文件 hexo/themes/next/languages/zh-Hans.yml  
-在key为post的value中添加"updated: 更新于"  
-
-```
-post:
-  ...
-  ...
-  updated: 更新于
-```
-
-3，主题文件配置  
-在hexo/themes/next/_config.yml添加一行  
-```
-display_updated: true
-```
-
-4，文章开头设置  
-```
-updated: 2015-12-13 20:18:54
-```
-
 
 # Hexo 数学公式问题  
 2017-03-23 18:32:41  
