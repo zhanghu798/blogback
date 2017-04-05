@@ -1,8 +1,6 @@
 # ---------------------------------------------------------------
 # Site Information Settings
 # ---------------------------------------------------------------
- 
-display_updated: true
 
 # Put your favicon.ico into `hexo-site/source/` directory.
 favicon: /assets/blogImg/zhanghu798.jpg
@@ -217,7 +215,7 @@ auto_excerpt:
 post_meta:
   item_text: true
   created_at: true
-  updated_at: false
+  updated_at: true
   categories: true
 
 # Post wordcount display settings
