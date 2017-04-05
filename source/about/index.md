@@ -1,4 +1,4 @@
-title: "about"
+title: about
 date:  2017-04-05 10:23:23
 comments: true
 top: false
@@ -20,7 +20,7 @@ heading_index: false
 
 本站系统使用disqus，没有VPN的情况下会尝试多加载数秒，可忽略  
 
-# 人对事物的认知过程
+# 人的认知状态
 >
 >
 * 不知道自己不知道
@@ -34,7 +34,7 @@ heading_index: false
 >
 * 不知道自己知道
 
-共勉
+共勉。（可惜没有找到源出处）
 
 # 欢迎提出批评、建议、交流
 
