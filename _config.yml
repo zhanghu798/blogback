@@ -83,3 +83,10 @@ heading_index:
  connector: "."
  global_prefix: ""
  global_suffix: ". "
+
+# search:
+#   path: search.xml
+#   field: post
+#   format: html
+#   limit: 10000
+

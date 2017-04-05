@@ -5,6 +5,10 @@
 # Put your favicon.ico into `hexo-site/source/` directory.
 favicon: /assets/blogImg/zhanghu798.jpg
 
+# Local search
+local_search:
+  enable: false
+
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo, NexT"
 
@@ -28,7 +32,7 @@ copyright: true
 canonical: true
 
 # Change headers hierarchy on site-subtitle (will be main site description) and on all post/pages titles for better SEO-optimization.
-seo: false
+seo: true
 
 # ---------------------------------------------------------------
 # Menu Settings
