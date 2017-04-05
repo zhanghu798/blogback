@@ -348,8 +348,14 @@ $$\kappa(x, z) = tanh(\gamma x \cdot z  + r)$$
 
 - 更多核函数见[机器学习核函数手册](https://my.oschina.net/lfxu/blog/478928)
 
-# SMO
-(待续...)
+# SMO  
+
+Sequential minimal optimization  
+
+序列最小优化算法，<https://en.wikipedia.org/wiki/Sequential_minimal_optimization>  
+
+详见《统计学习方法》，李航著，$P_{124}$  
+  
 
 # 损失函数
 考虑约束问题式(2.1)，将不等式约束部分和约束整合，可以得到线性支持向量机的损失为hinge损失，形式如下：
