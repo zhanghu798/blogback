@@ -38,7 +38,7 @@ heading_index: false
 
 共勉
 
-# 欢迎批评、建议、交流
+# 欢迎吐槽、交流
 
 微信：think543  
 邮箱：think543@126.com  
