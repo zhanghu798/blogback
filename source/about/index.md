@@ -1,5 +1,7 @@
+---
 title: about
 date:  2017-04-05 10:23:23
+type: "about"
 comments: true
 top: false
 heading_index: false
