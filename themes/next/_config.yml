@@ -186,13 +186,13 @@ sidebar:
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggler.
   # display: post
-  # display: always
-  display: hide
+  display: always
+  # display: hide
 #  display: remove
 
 
 # Blogrolls
-links_title: 链接
+links_title: 友情链接
 #links_layout: block
 #links_layout: inline
 links:
