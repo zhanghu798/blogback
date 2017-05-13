@@ -37,7 +37,7 @@ enable: true
 npm uninstall hexo-renderer-marked --save
 npm install hexo-renderer-pandoc --save
 ```
-执行以上命令配置生效，git clean -> hexo s
+执行以上命令配置生效，hexo clean -> hexo s
 
 - 方案1(麻烦):在不该配置文件的情况下，用二分法在'\_'、 '['、'('、'{'、'*'、'\'等处加转义尝试，如'\_'
 
