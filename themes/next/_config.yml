@@ -7,7 +7,7 @@ favicon: /assets/blogImg/zhanghu798.jpg
 
 # Local search
 local_search:
-  enable: false
+  enable: true
 
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo, NexT"
@@ -55,7 +55,7 @@ menu:
 #   Key is the name of menu item and value is the name of FontAwsome icon. Key is case-senstive.
 #   When an question mask icon presenting up means that the item has no mapping icon.
 menu_icons:
-  enable: true
+  enable: false
   #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
   home: home
   about: user
