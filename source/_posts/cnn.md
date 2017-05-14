@@ -9,8 +9,13 @@ categories:
     - DL
 ---
 
+
 {% cq %} <font size=4>Convolutional Neural Networks</font>{% endcq %}
 
+
+<iframe src='http://cs231n.github.io/assets/conv-demo/index.html' width='100%' height='700px' style="border:none;">"http://cs231n.github.io/convolutional-networks/#overview"</iframe>>
+
+<center><http://cs231n.github.io/convolutional-networks/#overview></center>>
 
 
 # 参考 
