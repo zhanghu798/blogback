@@ -84,9 +84,16 @@ heading_index:
  global_prefix: ""
  global_suffix: ". "
 
-# search:
-#   path: search.xml
-#   field: post
-#   format: html
-#   limit: 10000
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+algolia:
+  applicationID: '49YSP050FE'
+  apiKey: 'dcca29b3b14f21decd6cab3544e195fe'
+  adminApiKey: '6b77e6b464a219d64e5e453ab774c7ae'
+  indexName: 'reset.pub'
+  chunkSize: 5000
 
