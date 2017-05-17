@@ -1,4 +1,4 @@
-layout: post
+eslayout: post
 title: "深度神经网络简介"
 comments: true
 tags:
@@ -110,7 +110,7 @@ Backpropagation，BP
 		O_{i, j_{i}} = 
 		\left\{
 		\begin{aligned}
-		& f\Bigg(\sum_{j_{i-1}\ \ =1}^{J_{i-1}} W_{i-1\ \ , j_{i-1}\ \ ,\ \  j_{i}} \cdot O_{i, j_{i-1}\ \ , \ \ j_{i}} + b_{i\ \ ,\ \ j_{i}} \Bigg) \ \ \ & &  当O_{i\ ,\ \  j_{i}}为神经元  \\
+		& f\Bigg(\sum_{j_{i-1}\ \ =1}^{J_{i-1}} W_{i-1\ \ , \ \ j_{i-1}\ \ ,\ \  j_{i}} \cdot O_{i, j_{i-1}\ \ , \ \ j_{i}} + b_{i\ \ ,\ \ j_{i}} \Bigg) \ \ \ & &  当O_{i\ ,\ \  j_{i}}为神经元  \\
 		& x_{i\ ,\ j_{i}} & & 当O_{i\ ,\  j_{i}}为原始输入时 
 		\end{aligned}
 		\right. \tag{1}
@@ -120,7 +120,7 @@ Backpropagation，BP
 		
 	- $IN_{i,\ j_i}$： 第$i$层的第$j_i$个神经元激励函数输入值的**数学表达式**，图2中激励函数f输入部分的数学表达式
 	$$
-	\sum_{j_{i-1}\ \ =1}^{J_{i-1}} W_{i-1\ \ , j_{i-1}\ \ ,\ \  j_{i}} \cdot O_{i, j_{i-1}\ \ , \ \ j_{i}} + b_{i\ \ ,\ \ j_{i}} 
+	IN_{i,\ j_i} = \sum_{j_{i-1}\ \ =1}^{J_{i-1}} W_{i-1\ \ , \ \ j_{i-1}\ \ ,\ \  j_{i}} \cdot O_{i, j_{i-1}\ \ , \ \ j_{i}} + b_{i\ \ ,\ \ j_{i}} 
 	\tag{2}
 	$$
 	
@@ -133,36 +133,36 @@ Backpropagation，BP
 
 $$
 \begin{aligned}
-&\frac{\partial{O_{n,\ k} }}{\partial W_{i,\ j,\ k}} \\
+&\frac{\partial{O_{n,\ j_{n}} }}{\partial W_{i,\ j,\ k}} \\
 = & \left.\frac
 	{\partial f(x)}
 	{\partial x } 
-   \right|_{x=V_{IN_{n, k}}}
+   \right|_{x=V_{IN_{n\ ,\  j_{n}}}}
    \ \cdot \ 
    \frac
-   	{\partial \Big( b_{n, k}  + \ \sum_{j_{n-1}\ =1}^{J_{n-1}} O_{n-1, \ j} \   \cdot \  W_{n-1,\ j_{n-1}\ \ ,\ k} \ \Big) } 
+   	{\partial \Big( b_{n, x}  + \ \sum_{j_{n-1}\ =1}^{J_{n-1}} O_{n-1, \ j_{n-1}} \   \cdot \  W_{n-1,\ j_{n-1}\ \ ,\ j_{n}} \ \Big) } 
    	{\partial W_{i,\ j,\ k}} \\
-= & f^\prime \big(V_{IN_{n,\ k}} \ \big) \ \cdot \ \sum_{j_{n-1}\ \ =1}^{J_{n-1}} W_{n-1,\ j_{n-1}\ \ , \ k} \ \cdot \ \frac{\partial{O_{n-1,\ j_{n-1}} }}{\partial W_{i,\  j,\ k}} \\
+= & f^\prime \big(V_{IN_{n,\ j_{n}}} \ \big) \ \cdot \ \sum_{j_{n-1}\ \ =1}^{J_{n-1}} W_{n-1,\ j_{n-1}\ \ , \ j_{n}} \ \cdot \ \frac{\partial{O_{n-1,\ j_{n-1}} }}{\partial W_{i,\  j,\ k}} \\
 \end{aligned} \tag{3}
 $$
 
 直接推导（剃度的通项公式）：
 $$
 \begin{aligned}
-\frac{\partial{O_{n\ ,\ k} }}{\partial W_{i\ ,\ j\ ,\ k}} 
-= & f^\prime \big(V_{IN_{n\ ,\ k}} \ \big) \ 
+\frac{\partial{O_{n\ ,\ j_{n}} }}{\partial W_{i\ ,\ j\ ,\ k}} 
+= & f^\prime \big(V_{IN_{n\ ,\ j_{n}}} \ \big) \ 
 	\cdot \  
-	\sum_{j_{n-1}\ \ =1}^{J_{n-1}} W_{n-1\ ,\ j\ , \ k} \ 
+	\sum_{j_{n-1}\ \ =1}^{J_{n-1}} W_{n-1\ ,\ j_{n-1}\ , \ x} \ 
 	\cdot \ 
-	\frac{\partial{O_{n-1\ ,\ j} }}{\partial W_{i\ ,\ j\ ,\ k}} \\
-= & \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}} f^\prime \big(V_{IN_{n\ ,\ k}} \ \big)  \ 
+	\frac{\partial{O_{n-1\ ,\ j_{n-1}} }}{\partial W_{i\ ,\ j\ ,\ k}} \\
+= & \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}} f^\prime \big(V_{IN_{n\ ,\ j_{n}}} \ \big)  \ 
 	\cdot \  
-	W_{n-1\ ,\ j_{n-1}\ \ , \ k} \ 
+	W_{n-1\ ,\ j_{n-1}\ \ , \ j_{n}} \ 
 	\cdot \ 
 	\frac{\partial{O_{n-1\ ,\ j_{n-1}} }}{\partial W_{i\ ,\ j\ \ ,\ k}} \\
-= & \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}} f^\prime \big(V_{IN_{n\ ,\ k}} \ \ \ \big)  \  
+= & \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}} f^\prime \big(V_{IN_{n\ ,\ j_{n}}} \ \ \ \big)  \  
 	\cdot \  
-	W_{n-1\ ,\ j_{n-1}\ \ , \ k} \ 
+	W_{n-1\ ,\ j_{n-1}\ \ , \ j_{n}} \ 
 	\cdot \  
 	\Bigg( \sum_{j_{n-2}\ \ = \ 1}^{J_{n-2}} f^\prime \big(V_{IN_{n-1,\ j_{n-1}}} \ \ \ \big)  \ 
 	\cdot \  	
@@ -171,9 +171,9 @@ $$
 	\frac{\partial{O_{n-2\ ,\ j_{n-2}} }}{\partial W_{i\ ,\ j\ \ ,\ k}} \Bigg) \\
 = & \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}} \ \ \sum_{j_{n-2}\ \ = \ 1}^{J_{n-2}}  \ 
 	\cdot\ 
-	f^\prime \big(V_{IN_{n\ ,\ k}} \ \ \ \big)  \ 
+	f^\prime \big(V_{IN_{n\ ,\ j_{n}}} \ \ \ \big)  \ 
 	\cdot \    
-	W_{n-1\ ,\ j_{n-1}\ \ , \ k} \ 
+	W_{n-1\ ,\ j_{n-1}\ \ , \ j_{n}} \ 
 	\cdot \ 
 	f^\prime \big(V_{IN_{n-1,\ j_{n-1}}} \ \ \ \big)  \ 
 	\cdot \  	
@@ -183,16 +183,16 @@ $$
 = & \dots \\
 = & \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}}\ \  \sum_{j_{n-2}\ \ = \ 1}^{J_{n-2}} \dots   \sum_{j_{i+2}\ \ = \ 1}^{J_{i+2}}  \ 
 	\cdot\ 
-	 f^\prime \big(V_{IN_{n\ ,\ k}} \ \ \ \big) \\
+	 f^\prime \big(V_{IN_{n\ ,\ j_{n}}} \ \ \ \big) \\
   & \cdot 
-	  \Big(W_{n-1\ ,\ j_{n-1} \ \ , \ k}  \ 
+	  \Big(W_{n-1\ ,\ j_{n-1} \ \ , \ j_{n}}  \ 
 	 \cdot\
 	  f^\prime \big(V_{IN_{n-1\ ,\ j_{n-1}}} \ \ \ \big) \Big) \\
-	& \cdot 
+  & \cdot 
 	  \Big(W_{n-2\ ,\ j_{n-2} \ \ , \ j_{n-1}}  \ 
 	 \cdot\
 	  f^\prime \big(V_{IN_{n-2\ ,\ j_{n-2}}} \ \ \ \big) \Big) \\
-	&\cdot \dots \cdot\ 
+  &\cdot \dots \cdot\ 
 	  \Big(W_{x\ ,\ j_{x} \ \ , \ j_{x+1}} 
   		\cdot  
   	 	f^\prime \big(V_{IN_{x\ ,\ j_{x}}} \ \ \ \big)  \Big) \cdot \dots \cdot\ \\
@@ -202,76 +202,63 @@ $$
   	f^\prime \big(V_{IN_{i+2\ ,\ j_{i+2}}} \ \ \ \big)  \Big) \\
   & \cdot \
   		\Big(
-  		W_{i+1\ ,\ j_{i+1} \ \ , \ j_{k}}
+  		W_{i+1\ ,\ k \ \ , \ j_{i+2}}
   		\cdot \ 
-  		\frac{\partial{O_{i+1\ ,\ j_k} }}{\partial W_{i\ ,\ j\ ,\ j_k}}  \Big) \ 
+  		\frac{\partial{O_{i+1\ ,\ k} }}{\partial W_{i\ ,\ j\ ,\ k}}  
+  \Big) \\
+= & \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}}\ \  \sum_{j_{n-2}\ \ = \ 1}^{J_{n-2}} \dots   \sum_{j_{i+2}\ \ = \ 1}^{J_{i+2}}  \
+	\cdot\ 
+	 f^\prime \big(V_{IN_{n\ ,\ j_{n}}} \ \ \ \big) \\
+  & \cdot 
+  	\prod_{x={i+2}}^{n-1}\Big(W_{x\ ,\ j_{x} \ \ , \ j_{x+1}} 
+  		\cdot  
+  	 	f^\prime \big(V_{IN_{x\ ,\ j_{x}}} \ \ \ \big)  \Big)  \\
+  & \cdot \
+  	\Big(
+  		W_{i+1\ ,\ k \ \ , \ j_{i+2}}
+  		\cdot \ 
+  		\frac{\partial{O_{i+1\ ,\ k} }}{\partial W_{i\ ,\ j\ ,\ k}}  
+  	\Big) 
 \end{aligned} \tag{4}
 $$
 
 BP算法推导（剃度的由后往前的递推公式）：
+	
 
 $$
 \begin{aligned}
-\frac{\partial{O_{n\ ,\ k} }}{\partial O_{i+1\ ,\ j_{i+1}}} 
-= & \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}} \ \  \sum_{j_{n-2}\ \ = \ 1}^{J_{n-2}} \dots   \sum_{j_{i+2}\ \ = \ 1}^{J_{i+2}}  \ 
+\frac{\partial{O_{n\ ,\ j_{n}} }}{\partial O_{i+1\ ,\ j_{i+1}}} 
+= & \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}}\ \  \sum_{j_{n-2}\ \ = \ 1}^{J_{n-2}} \dots   \sum_{j_{i+2}\ \ = \ 1}^{J_{i+2}}  \
 	\cdot\ 
-	 f^\prime \big(V_{IN_{n\ ,\ k}} \ \big) \\
+	 f^\prime \big(V_{IN_{n\ ,\ j_{n}}} \ \ \ \big) \\
   & \cdot 
-	  \Big(W_{n-1\ ,\ j_{n-1} \ \ , \ k}  \ 
-	 \cdot\
-	  f^\prime \big(V_{IN_{n-1\ ,\ j_{n-1}}} \ \ \ \big) \Big) \\
-	& \cdot 
-	  \Big(W_{n-2\ ,\ j_{n-2} \ \ , \ j_{n-1}}  \ 
-	 \cdot\
-	  f^\prime \big(V_{IN_{n-2\ ,\ j_{n-2}}} \ \ \ \big) \Big) \\
-	&\cdot \dots \cdot\ 
-	  \Big(W_{x\ ,\ j_{x} \ \ , \ j_{x+1}} 
+  	\prod_{x={i+2}}^{n-1}\Big(W_{x\ ,\ j_{x} \ \ , \ j_{x+1}} 
   		\cdot  
-  	 	f^\prime \big(V_{IN_{x\ ,\ j_{x}}} \ \ \ \big)  \Big) \cdot \dots \cdot\ \\
-  &  \cdot\
-  \Big( W_{i+2\ ,\ j_{i+2} \ \ , \ j_{i+3}}
-  	\cdot  
-  	f^\prime \big(V_{IN_{i+2\ ,\ j_{i+2}}} \ \ \ \big)  \Big) \\
+  	 	f^\prime \big(V_{IN_{x\ ,\ j_{x}}} \ \ \ \big)  \Big)  \\
   & \cdot \
-  		\Bigg(
-  		W_{i+1\ ,\ j_{i+1} \ \ , \ j_{i+2}}
-  		\cdot \ 
-  		\frac{\partial{O_{i+1\ ,\ j_{i+1}} }}{\partial O_{i+1\ ,\ j_{i+1}}}  \Bigg) \ 
+  	\Big(
+  		W_{i+1\ ,\ j_{i+1} \ \ , \ j_{i+2}} \cdot \ 1 
+  	\Big) 
 \end{aligned} \tag{5}
 $$
 
 $$
 \begin{aligned}
-\frac{\partial{O_{n\ ,\ k} }}{\partial O_{i\ ,\ j_{i}}} 
+\frac{\partial{O_{n\ ,\ j_{n}} }}{\partial O_{i\ ,\ j_{i}}} 
 = & \sum_{j_{i+1}\ \ = \ 1}^{J_{i+1}} \ \cdot \  \sum_{j_{n-1}\ \ = \ 1}^{J_{n-1}} \sum_{j_{n-2}\ \ = \ 1}^{J_{n-2}} \dots   \sum_{j_{i+2}\ \ = \ 1}^{J_{i+2}}  \ 
 	\cdot\ 
 	 f^\prime \big(V_{IN_{n\ ,\ k}} \ \big) \\
   & \cdot 
-	  \Big(W_{n-1\ ,\ j_{n-1} \ \ , \ k}  \ 
-	 \cdot\
-	  f^\prime \big(V_{IN_{n-1\ ,\ j_{n-1}}} \ \ \ \big) \Big) \\
-	& \cdot 
-	  \Big(W_{n-2\ ,\ j_{n-2} \ \ , \ j_{n-1}}  \ 
-	 \cdot\
-	  f^\prime \big(V_{IN_{n-2\ ,\ j_{n-2}}} \ \ \ \big) \Big) \\
-	&\cdot \dots \cdot\ 
-	  \Big(W_{x\ ,\ j_{x} \ \ , \ j_{x+1}} 
+  	\prod_{x={i+2}}^{n-1}\Big(W_{x\ ,\ j_{x} \ \ , \ j_{x+1}} 
   		\cdot  
-  	 	f^\prime \big(V_{IN_{x\ ,\ j_{x}}} \ \ \ \big)  \Big) \cdot \dots \cdot\ \\
-  &  \cdot\
-  \Big( W_{i+2\ ,\ j_{i+2} \ \ , \ j_{i+3}}
-  	\cdot  
-  	f^\prime \big(V_{IN_{i+2\ ,\ j_{i+2}}} \ \ \ \big)  \Big) \\
-  	& \cdot 
-  		\Big(
-  		W_{i+1\ ,\ j_{i+1} \ \ , \ j_{i+2}}
-  		\cdot \ 
-  		f^\prime \big(V_{IN_{i+1\ ,\ j_{i+1}}} \ \ \ \big)  \Big) \\
+  	 	f^\prime \big(V_{IN_{x\ ,\ j_{x}}} \ \ \ \big)  \Big)  \\
+  & \cdot \Big(W_{i+1\ ,\ j_{i+1} \ \ , \ j_{x+2}} 
+  		\cdot  
+  	 	f^\prime \big(V_{IN_{i+1\ ,\ j_{i+1}}} \ \ \ \big)  \Big)  \\
   & \cdot \
-  		\Big(
-  		W_{i\ ,\ j_{i} \ \ , \ j_{i+1}}
-  		\cdot \ 
-  		1 \Big)\\
+  	\Big(
+  		W_{i\ ,\ j_{i} \ \ , \ j_{i+1}} 
+  	\Big)
 \end{aligned} \tag{6}
 $$
  
@@ -309,6 +296,7 @@ $$
 \tag{10}
 $$
 
+针对最后一层隐层到输出层的梯度为：
 $$
 \frac{\partial{\ell}}{\partial W_{n\ ,\ j_{n}}} 
 = \ell^\prime \big(V_{IN_{\ell}} \ \big) \cdot \ V_{O_{n\ ,\ j_{n} }}
@@ -323,8 +311,8 @@ $$
 \tag{12}
 $$
 
+则，针对任意层的神经元反向传播梯度为：
 $$
-\left\{
 \begin{aligned}
 & \frac{\partial{\ell}}{\partial O_{i\ ,\ j_{i}}} 
 	= \sum_{j_{i+1}\ \ = \ 1}^{J_{i+1}} \ 
@@ -332,15 +320,12 @@ $$
 		\cdot \ 
 		W_{i\ ,\ j_{i} \ \ , \ j_{i+1}} \ 
 		\cdot \
-		\frac{\partial{\ell}}{\partial O_{i+1\ ,\ j_{i+1}}} \\
-& i = 2, 3, \dots, n-1 \\
-& j_i = 1, 2, 3, \dots, J_i \\
-& j_{i+1} = 1, 2, 3, \dots, J_{i+1}
+		\frac{\partial{\ell}}{\partial O_{i+1\ ,\ j_{i+1}}}
 \end{aligned}
-\right.
 \tag{13}
 $$
 
+任意层权值$w$的反向传播梯度为：
 $$
 \begin{aligned}
 \frac{\partial{\ell}}{\partial W_{i-1\ \ ,\ j_{i-1}\ \ , \ \ j_{i}}} 
@@ -359,6 +344,18 @@ f^\prime \big(V_{IN_{i\ ,\ j_{i}}} \ \big)
 V_{O_{i-1\ \ ,\ j_{i-1}\ \ , \ \ j_{i}}}
 \end{aligned}
 \tag{14}
+$$
+
+参数范围：
+$$
+\left\{
+\begin{aligned}
+& i = 2, 3, \dots, n-1 \\
+& j_i = 1, 2, 3, \dots, J_i \\
+& j_{i+1} = 1, 2, 3, \dots, J_{i+1}
+\end{aligned}
+\right.
+\tag{13}
 $$
 
 将偏移项对应的输入值看看成1，即$V_{O_{i-1\ \ ,\ j_{i-1}\ \ , \ \ j_{i}}} = 1$，则上式中$W_{i-1\ \ ,\ j_{i-1}\ \ , \ \ j_{i}}$可看成是常数1的权重，并且这个权重影响到的是$O_{i,\ \ j{i}}$, 那么将此权重写作$b_{i,\ \ j{i}}$表示第$i$层$j_{i}$个神经元求和项的偏置
