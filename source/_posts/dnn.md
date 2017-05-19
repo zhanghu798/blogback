@@ -662,15 +662,15 @@ max-norm
 
 
 # 参考 
-\[1\]2016.11.11 Ian Goodfellow, Yoshua Bengio, Aaron Courville 《Deep Learning》   
-\[2\]2017.03.15《Deep Learning翻译》(https://exacity.github.io/deeplearningbook-chinese/)  
-\[3\]2015.03.02 Google Inc [Batch Normalization](https://arxiv.org/pdf/1502.03167.pdf)  
-\[4\]2014, Hintorn,etc[Dropout:  A Simple Way to Prevent Neural Networks from Overfitting](http://www.jmlr.org/papers/volume15/srivastava14a.old/source/srivastava14a.pdf)   
-\[5\]<https://en.wikipedia.org/wiki/Backpropagation>   
-\[6\][CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/optimization-2/)  
+\[1\] 2016.11.11 Ian Goodfellow, Yoshua Bengio, Aaron Courville 《Deep Learning》   
+\[2\] 2017.03.15《Deep Learning翻译》(https://exacity.github.io/deeplearningbook-chinese/)  
+\[3\] 2015.03.02 Google Inc [Batch Normalization](https://arxiv.org/pdf/1502.03167.pdf)  
+\[4\] 2014, Hintorn,etc[Dropout:  A Simple Way to Prevent Neural Networks from Overfitting](http://www.jmlr.org/papers/volume15/srivastava14a.old/source/srivastava14a.pdf)   
+\[5\] <https://en.wikipedia.org/wiki/Backpropagation>   
+\[6\] [CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/optimization-2/)  
 \[7\] 2010 Xavier Glorot， Yoshua Bengio Understanding the difficulty of training deep feedforward neural networks, <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>  
-\[8\][TensorFlow.contrib.layers.xavier_initializer](https://www.tensorflow.org/versions/r0.11/api_docs/python/contrib.layers/initializers)    
-\[9\][权重初始化Xavier](http://blog.csdn.net/app_12062011/article/details/57956920)   
-\[10\][Must Know Tips/Tricks in Deep Neural Networks](http://lamda.nju.edu.cn/weixs/project/CNNTricks/CNNTricks.html)  
+\[8\] [TensorFlow.contrib.layers.xavier_initializer](https://www.tensorflow.org/versions/r0.11/api_docs/python/contrib.layers/initializers)    
+\[9\] [权重初始化Xavier](http://blog.csdn.net/app_12062011/article/details/57956920)   
+\[10\] [Must Know Tips/Tricks in Deep Neural Networks](http://lamda.nju.edu.cn/weixs/project/CNNTricks/CNNTricks.html)  
 
 
