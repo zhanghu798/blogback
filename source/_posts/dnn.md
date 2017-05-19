@@ -6,14 +6,14 @@ tags:
 	- BP
 	- xavier
 	- BN
-date: 2017-04-23 23:42:57
+date: 2017-05-19 23:28:23
+updated: 
 categories:
     - 机器学习
     - DL
 ---
 
 {% cq %} <font size=4>Deep Neural Networks</font>{% endcq %}
-
 
 
 # 人工神经网络介绍
