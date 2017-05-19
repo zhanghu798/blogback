@@ -14,7 +14,7 @@ categories:
 
 {% cq %} <font size=4>Deep Neural Networks</font>{% endcq %}
 
-<!-- more -->
+
 
 # 人工神经网络介绍
 
@@ -29,6 +29,8 @@ categories:
 	- 黑盒模型
 	- 需要大样本支撑		
 	- 对硬件要求高 
+
+<!-- more -->
 
 # DNN基本结构
 
@@ -389,56 +391,62 @@ $$f(\boldsymbol{x}) = \frac{1}{1 + \exp^{-(w_{0} x_{0} + w_{1} x_{1} + w_{2})}}�
 <img src="/pic/ml/dnn/dnn_bp_example.png" border="0" width="80%" height="80%" style="margin: 0 auto"><center>[图2，BP示意图](http://cs231n.github.io/optimization-2/)</center>  
 
 
-## 参数初始化  
+## Xavier参数初始化 
 
-<https://zhuanlan.zhihu.com/p/22028079>  
+2010 Xavier Glorot， Yoshua Bengio Understanding the difficulty of training deep feedforward neural networks, <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>  
+<https://www.tensorflow.org/versions/r0.11/api_docs/python/contrib.layers/initializers>   
+<http://blog.csdn.net/app_12062011/article/details/57956920>  
 
-<http://deepdish.io/2015/02/24/network-initialization/>  
+### 问什么要使用初始化 
+主要目的是使的训练更容易进行下去
 
-[Very deep convolutional networks for large-scale image recognition](https://arxiv.org/pdf/1409.1556.pdf)
-
-https://arxiv.org/abs/1502.01852
-
-2010 Xavier Glorot， Yoshua Bengio Understanding the difficulty of training deep feedforward neural networks, <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>
-
-<http://machinelearning.wustl.edu/mlpapers/paper_files/AISTATS2010_GlorotB10.pdf>  
-
-xavier
-
-<http://www.jianshu.com/p/4e53d3c604f6>
-
-<https://www.tensorflow.org/versions/r0.11/api_docs/python/contrib.layers/initializers>  
-
-<http://blog.csdn.net/app_12062011/article/details/57956920>
+为避免方差过大导致剃度爆炸及剃度消失
 
 ### 基本假设
 
-<http://blog.csdn.net/app_12062011/article/details/57956920>
-
 输入样本x，权重w，偏置b分别服从均值为0的分布，所有样本属于独立同分布，所有权重属于独立同分布
 
-关于原点对称的激活函数
-$f^\prime(x) \approx 1$，即满足该条件的激励函数有Softsig， tanh， relu，所以以下讨论只是针对这些激励函数，而不包括sigmoid函数
+关于原点对称的激活函数，即满足$f^\prime(x) \approx 1$，满足该条件的激励函数有Softsig， tanh， relu，所以以下讨论只是针对这些激励函数，而不包括sigmoid函数。
 
-因为激励函数的0导数为1，且在x,w,b均值为0的假设下，每个神经元激励的输入也在0附近。为了方便推导，将激励函数近似成**线性函数**
+
+
+因为激励函数的0导数为1，且在x，w，b均值为0的假设下，每个神经元激励的输入的均值0附近。为了方便推导，将激励函数近似成*线性函数*
 即，对于激励函数的输入$In$,激励函数的出处$Out$
-$$Out=f(In)=In$$
+$$Out=f(In)=In \tag{18}$$
 
 ### 方差公式
-用到的几个[方差公式](https://en.wikipedia.org/wiki/Variance#Product_of_independent_variables)
-
-如果有均值为0的两个互相独立的变量$x$, $y$
-则$Var(xy) = Var(x) Var(y)$  
+用到的几个[方差公式](https://en.wikipedia.org/wiki/Variance#Product_of_independent_variables)  
+如果有均值为0的两个互相独立的变量$x$, $y$。则$Var(xy) = Var(x) Var(y)$  
 对于常数$a$，有$Var(x+a) = Var(x)$
 
 
 
 ### 目标函数
-#### 任意两层网络激励层之后的输出方差相等. 
-根据式2，
+#### 保证正向传播方差一致
+
+任意两层网络激励函数的输出方差相等. 
+
+目标函数
+$$
+\forall(i, i^\prime)，\ \  Var[O^{i}] = Var[O^{i^\prime}] \tag{19}
+$$
+
+根据式（2），
+$$
+IN_{i,\ j_i} = \sum_{j_{i-1}\ \ =1}^{J_{i-1}} W_{i-1\ \ , \ \ j_{i-1}\ \ ,\ \  j_{i}} \cdot O_{i-1\ \ , \ \ j_{i-1}} + b_{i\ ,\ j_{i}} 
+$$
+
+激励函数输入经过经过激励函数后得到激励函数的输出：
+$$
+O_{i,\ j_i} = f(IN_{i,\ j_i})
+$$
+
+利用式（19）的激励函数的近似得
 $$
 O_{i,\ j_i} = \sum_{j_{i-1}\ \ =1}^{J_{i-1}} W_{i-1\ \ , \ \ j_{i-1}\ \ ,\ \  j_{i}} \cdot O_{i-1\ \ , \ \ j_{i-1}} + b_{i\ ,\ j_{i}} 
 $$
+
+
 计算方差
 $$
 Var(O_{i,\ j_i}) = \sum_{j_{i-1}\ \ =1}^{J_{i-1}} Var(W_{i-1\ \ , \ \ j_{i-1}\ \ ,\ \  j_{i}}) \cdot Var(O_{i-1\ \ , \ \ j_{i-1}} )
@@ -452,21 +460,25 @@ $$
 可以将以上递推公式展开得到论文中的形式，但是使用递推公式既可得到结论
 
 
-目标函数
-$$
-\forall(i, i^\prime)，\ \  Var[O^{i}] = Var[O^{i^\prime}]
-$$
 
 要使得目标函数成立，需使得每一层的神经元输出的方差都和下一层相同，即，需使得
 $$
 J_{i} Var(W_{i}) = 1 ， \ \ i = 1, 2, \cdots, n
-\tag{10}
+\tag{20}
 $$
 
 
 
-#### 任意两层网络的损失损失对激励层输入的导数相等
-在式（5），式（6），式（7）的基础上轻松可以得到：
+#### 保证反向传播的方差一致
+
+任意两层网络的损失损失对激励层输入的导数相等
+
+目标函数：  
+$$
+\forall(i, i^\prime)，\ \   \frac{\partial{\ell}}{\partial IN_{i}} = \frac{\partial{\ell}}{\partial IN_{i^\prime}} \tag{21}
+$$
+
+在式（5），式（6），式（7）的基础上可以容易得到：
 $$
 \frac{\partial{\ell }}{\partial IN_{i\ ,\ j_{i}}} 
     = \sum_{j_{i+1}\ \ = \ 1}^{J_{i+1}} \ 
@@ -498,25 +510,19 @@ Var(\frac{\partial{\ell }}{\partial IN_{i}})
 $$
 
 
-则，要使得：
-$$
-\frac{\partial{\ell}}{\partial IN_{i}} = \frac{\partial{\ell}}{\partial IN_{i^\prime}}
-$$
-需使得
+则，要使得式（20）成立，需使得
 $$
 J_{i+1}Var(W_{i}) = 1， \ \ i = 1, 2, \cdots, n
-\tag{11}
+\tag{22}
 $$
 
 
 ### 结论
 
-当$J_{i} \neq J_{i+1}$ 时式（10）和式（11）同时满足的话是矛盾的，但是论文中提出了一种折中方法，使用两种情况的**调和平均数**
+当$J_{i} \neq J_{i+1}$ 时式（20）和式（22）同时满足的话是矛盾的，但是论文中提出了一种折中方法，使用两种情况的**调和平均数**
 $$
 Var(W_{i}) = \frac{2}{J_{i} + J_{i+1}}
 $$
-
-
 
 
 均值为0的均匀分布可以表示为[-a, a]。令其方差为$\frac{2}{J_{i} + J_{i+1}}$，则有
@@ -531,6 +537,63 @@ $$
 则
 $$
 w \sim U\Bigg[-\frac{\sqrt{6}}{\sqrt{J_{i} + J_{i+1}}}, \frac{\sqrt{6}}{\sqrt{J_{i} + J_{i+1}}}\Bigg]
+\tag{23}
+$$
+
+### 特别说明
+
+- 式（23）是针对激励函数$f$，有$f^\prime(x) \approx 1$，且有$f(0)=0$条件的推导。基于以上两个条件近似f(x)=x。所以上面推导并不适用于sigmoid激励函数
+- 因为推导过程中激励函数使用了近似，另外正反向传播方差方差的不一致使用了折中的调和平均，所以针对特别深的网络Xavier初始化并不总是有用
+
+## Batch Normalization 
+主要参考：<https://arxiv.org/abs/1502.03167>
+
+为了避免梯度消失导致深度神经网络无法训练的情况，通常使用relu激励函数+vavier的权值初始化方式
+
+如果使用sigmoid的情况下，尽量使得各个神经元求和之后尽量为均值为0的高斯分布中，
+
+将过激励函数的输入数据的每一个维的数据标准化到均值为0，方差为1的正太分布。即，使得$\hat{x}^{(k)} \scriptsize{\sim} N(0, 1)$
+
+
+### BN的作用
+
+Batch Normalizaiton作用基本同Xavier初始化，不同的是，BN层不是从初始化考虑的，而是更直接在激励层输入之前强制标准化成固定均值及方差的高斯分布中。  
+
+整体来说有以下特点：  
+1，对初始化权重参数没有要求
+2，允许训练过程以高学习率来训练网络而不至于提督消失或剃度爆炸
+3，可以提高网络的泛化能力，降低对dropout的依赖
+
+### BN基本思想
+
+1，将每一个维度的数据分布标准化到均值为0，方差为1的高斯分布中去  
+2，针对强行把数据分布拉到高斯分布的数据再进行线形变换，补偿一部分标准化过程中数据压缩。大概思维同卷积神经网络的卷积和池化层之后接全链接层
+
+
+### BN层的训练过程中的正向传播
+
+使用m个样本更新参数时，m个样本的的某一个维度为例，下式中$x_i$代表第$i$个样本的第$k$个分量。$\beta$，$\gamma$为未知参数，每层每个分量的共享，需要通过训练。$\mu$，$\sigma^2$:是由参与更新的的这个batch决定的
+
+<img src="/pic/ml/dnn/bn_transform.png" border="0" width="50%" height="50%" style="margin: 0 auto"><center>[BN训练过程中的正向传播](https://arxiv.org/pdf/1502.03167.pdf)</center> 
+
+
+### BN层的使用  
+使用过程同正向传播，只是针对输入样本是其均值和方差由多个mini-batch的均值和方差的期望组成，既有N次mini-batch时：
+
+$$
+\mu = E_B[\mu_{B}] 
+$$
+
+$$
+\sigma ^ 2 = \frac{m}{m-1}E_B[\sigma_{B} ^ 2]
+$$
+
+$$
+x_i = \frac{x_i - \mu}{\sqrt{\sigma ^ 2 + \epsilon}}
+$$
+
+$$
+y_i = \gamma x_i + \beta
 $$
 
 
@@ -583,57 +646,6 @@ $$
 
 假设训练结果得到某链接的权值为$w$，预测过程中该神经元的贡献为$w \cdot x$， 使用过程中该链接对应的值为$p  \cdot w \cdot x$， 假设$w = \frac{1}{p} \cdot w^\prime$。则训练过程可以为$\frac{1}{p} \cdot w^\prime$，模型使用过程中$w^\prime \cdot x$。这样可以在使用过程中保证在含有Dropout网络输出的一致性，而不用单独处理
 
-## Batch Normalization 
-主要参考：<https://arxiv.org/abs/1502.03167>
-
-为了避免梯度消失导致深度神经网络无法训练的情况，通常使用relu激励函数+vavier的权值初始化方式
-
-如果使用sigmoid的情况下，尽量使得各个神经元求和之后尽量为均值为0的高斯分布中，
-
-将过激励函数的输入数据的每一个维的数据标准化到均值为0，方差为1的正太分布。即，使得$\hat{x}^{(k)} \scriptsize{\sim} N(0, 1)$
-
-
-### BN的作用
-
-Batch Normalizaiton的最主要的作用是保证深层神经网络的快速训练  
-
-在激励层之前加入BN层，可以保证深度神经网络的可训练性及训练速度
-
-1，对初始化权重参数没有要求
-2，允许训练过程以高学习率来训练网络而不至于提督消失或剃度爆炸
-3，可以提高网络的泛化能力，降低对dropout的依赖
-
-### BN基本思想
-
-1，将每一个维度的数据分布标准化到均值为0，方差为1的高斯分布中去  
-2，针对强行把数据分布拉到高斯分布的数据再进行线形变换，补偿一部分标准化过程中数据压缩。大概思维同卷积神经网络的卷积和池化层之后接全链接层
-
-
-### BN层的训练过程中的正向传播
-
-使用m个样本更新参数时，m个样本的的某一个维度为例，下式中$x_i$代表第$i$个样本的第$k$个分量。$\beta$，$\gamma$为未知参数，每层每个分量的共享，需要通过训练。$\mu$，$\sigma^2$:是由参与更新的的这个batch决定的
-
-<img src="/pic/ml/dnn/bn_transform.png" border="0" width="50%" height="50%" style="margin: 0 auto"><center>[BN训练过程中的正向传播](https://arxiv.org/pdf/1502.03167.pdf)</center> 
-
-
-### BN层的使用  
-使用过程同正向传播，只是针对输入样本是其均值和方差由多个mini-batch的均值和方差的期望组成，既有N次mini-batch时：
-
-$$
-\mu = E_B[\mu_{B}] 
-$$
-
-$$
-\sigma ^ 2 = \frac{m}{m-1}E_B[\sigma_{B} ^ 2]
-$$
-
-$$
-x_i = \frac{x_i - \mu}{\sqrt{\sigma ^ 2 + \epsilon}}
-$$
-
-$$
-y_i = \gamma x_i + \beta
-$$
 
 
 
@@ -646,25 +658,19 @@ L1-norm
 L2-norm  
 max-norm
 
- 
-
-
-
-
+[adsf](www.baidu.com)
 
 
 # 参考 
-《Deep Learning》Ian Goodfellow, Yoshua Bengio, Aaron Courville。2016.11.11  
-《Deep Learning翻译》<https://exacity.github.io/deeplearningbook-chinese/> 2017.03.15  
-<https://arxiv.org/pdf/1502.03167.pdf>  
-<http://www.jmlr.org/papers/volume15/srivastava14a.old/source/srivastava14a.pdf>  
-<http://papers.nips.cc/paper/4882-dropout-training-as-adaptive-regularization>  
-<https://en.wikipedia.org/wiki/Activation_function>  
-<https://en.wikipedia.org/wiki/Backpropagation>  
-2014, Hintorn,etc 《Dropout: A simple Way to Prevent Neural Networks from overfitting》  
-2013, Stefan Wager, etc 《Dropout Training as Adaptive Regularization》  
-<http://cs231n.github.io/optimization-2/>   
-[Must Know Tips/Tricks in Deep Neural Networks](http://lamda.nju.edu.cn/weixs/project/CNNTricks/CNNTricks.html)  
-<https://www.tensorflow.org/versions/r0.11/api_docs/python/contrib.layers/initializers>
+\[1\]2016.11.11 Ian Goodfellow, Yoshua Bengio, Aaron Courville 《Deep Learning》   
+\[2\]2017.03.15《Deep Learning翻译》(https://exacity.github.io/deeplearningbook-chinese/)  
+\[3\]2015.03.02 Google Inc [Batch Normalization](https://arxiv.org/pdf/1502.03167.pdf)  
+\[4\]2014, Hintorn,etc[Dropout:  A Simple Way to Prevent Neural Networks from Overfitting](http://www.jmlr.org/papers/volume15/srivastava14a.old/source/srivastava14a.pdf)   
+\[5\]<https://en.wikipedia.org/wiki/Backpropagation>   
+\[6\][CS231n Convolutional Neural Networks for Visual Recognition](http://cs231n.github.io/optimization-2/)  
+\[7\] 2010 Xavier Glorot， Yoshua Bengio Understanding the difficulty of training deep feedforward neural networks, <http://proceedings.mlr.press/v9/glorot10a/glorot10a.pdf>  
+\[8\][TensorFlow.contrib.layers.xavier_initializer](https://www.tensorflow.org/versions/r0.11/api_docs/python/contrib.layers/initializers)    
+\[9\][权重初始化Xavier](http://blog.csdn.net/app_12062011/article/details/57956920)   
+\[10\][Must Know Tips/Tricks in Deep Neural Networks](http://lamda.nju.edu.cn/weixs/project/CNNTricks/CNNTricks.html)  
 
 
