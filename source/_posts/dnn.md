@@ -582,20 +582,63 @@ Batch Normalizaiton作用基本同Xavier初始化，不同的是，BN层不是�
 使用过程同正向传播，只是针对输入样本是其均值和方差由多个mini-batch的均值和方差的期望组成，既有N次mini-batch时：
 
 $$
-\mu = E_B[\mu_{B}] 
+\mu = E_B[\mu_{B}]  \tag{24}
 $$
 
 $$
-\sigma ^ 2 = \frac{m}{m-1}E_B[\sigma_{B} ^ 2]
+\sigma ^ 2 = \frac{m}{m-1}E_B[\sigma_{B} ^ 2]  \tag{25}
 $$
 
 $$
-x_i = \frac{x_i - \mu}{\sqrt{\sigma ^ 2 + \epsilon}}
+\hat{x_i} = \frac{x_i - \mu}{\sqrt{\sigma ^ 2 + \epsilon}}  \tag{26}
 $$
 
 $$
-y_i = \gamma x_i + \beta
+y_i = \gamma \hat{x_i} + \beta  \tag{27}
 $$
+
+
+其中$\epsilon$为较小的数，防止分母为0的情况发生
+
+### 含有BN层的BP传播
+
+<img src="/pic/ml/dnn/bn_gradient.png" border="0" width="60%" height="60%" style="margin: 0 auto"><center>[BN层的导数](https://arxiv.org/pdf/1502.03167.pdf)</center> 
+
+则根据式（13）
+$$
+\begin{aligned}
+& \frac{\partial{\ell}}{\partial y_{i\ ,\ j_{i}}} 
+    = \sum_{j_{i+1}\ \ = \ 1}^{J_{i+1}} \ 
+        f^\prime \big(V_{IN_{i+1\ ,\ j_{i+1}}} \ \big) \ 
+        \cdot \ 
+        W_{i\ ,\ j_{i} \ \ , \ j_{i+1}} \ 
+        \cdot \
+        \frac{\partial{\ell}}{\partial O_{i+1\ ,\ j_{i+1}}}
+\end{aligned}
+\tag{28}
+$$
+
+则根据BN层的导数计算公式容易得到：
+
+$$
+\frac{\partial{\ell}}{\partial x_{i\ ,\ j_{i}}}   \tag{29}
+$$
+
+$$
+\frac{\partial{\ell}}{\partial  \gamma_{i\ ,\ j_{i}}}  \tag{30} 
+$$
+
+$$
+\frac{\partial{\ell}}{\partial \beta_{i\ ,\ j_{i}}}  \tag{31}
+$$
+
+为了和式（13）保持一致，更新式（13）为
+$$
+\frac{\partial{\ell}}{\partial O_{i\ ,\ j_{i}}}
+= \frac{\partial{\ell}}{\partial x_{i\ ,\ j_{i}}}   \tag{32}
+$$
+上式表示，损失对经过激励函数输出的剃度，至此含有BN层和没有BN层的反向传播从形式上得到统一
+
 
 
 ## Dropout 
