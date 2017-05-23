@@ -126,7 +126,9 @@ BN层，<http://reset.pub/2017/05/19/dnn/>
 
 ## 全链接层
 
-作用：扩张特征表达能力
+层级之间的链接是完全的，同dnn<http://reset.pub/2017/05/19/dnn/>
+
+作用：增强特征表达能力
 
 [^_^]:
 	# 数据链接规律
@@ -176,12 +178,12 @@ BN层，<http://reset.pub/2017/05/19/dnn/>
 
 详见：<http://cs231n.github.io/convolutional-networks/#norm>
 
-[LeNet] 1990 <http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf>  
-[AlexNet] 2012 <http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks>  
-[ZF Net] 2013 <https://arxiv.org/abs/1311.2901>  
-[GoogLeNet] 2014 <https://arxiv.org/abs/1409.4842>  
-[VGGNet] 2014 <http://www.robots.ox.ac.uk/~vgg/research/very_deep/>  
-[ResNet] 2015，残差网络<https://arxiv.org/abs/1512.03385>  
+LeNet: 1990 <http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf>  
+AlexNet: 2012 <http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks>  
+ZF Net: 2013 <https://arxiv.org/abs/1311.2901>  
+GoogLeNet: 2014 <https://arxiv.org/abs/1409.4842>  
+VGGNet: 2014 <http://www.robots.ox.ac.uk/~vgg/research/very_deep/>  
+ResNet: 2015，残差网络<https://arxiv.org/abs/1512.03385>  
 
 
 
