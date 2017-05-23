@@ -15,7 +15,9 @@ categories:
 
 
 <iframe src='http://cs231n.github.io/assets/conv-demo/index.html' width='100%' height='700px' style="border:none;">"http://cs231n.github.io/convolutional-networks/#overview"</iframe>
-<center>[gif 1.卷积层卷积过程的动态示意图](http://cs231n.github.io/convolutional-networks/#overview)</center>
+<center>[动图 1.卷积层卷积过程的动态示意图](http://cs231n.github.io/convolutional-networks/#overview)</center>
+
+图片中"Output"是指<http://reset.pub/2017/05/19/dnn/>中$V_{IN}$，即激励层的输入数据  $\boldsymbol{W} \cdot \boldsymbol{X} + b$
 
 本文以图片问题中的CNN为例
 
@@ -25,13 +27,10 @@ CNN是DNN的一种特殊形式
 考虑使用DNN做图像分类问题，可以将图片的每个像素上每个通道上的数据看成是一个神经元
 
 问题一：
-假设对于$n \times n$大小的图片，每个像素3个颜色通道，则数据输入层为$n \times n \times 3$
-假设有M层隐层，每层有N个神经元则一共有$3 n^2 N^M + MN$个参数。参数量较大
-
+假设对于$n \times a$大小的图片，每个像素点有RGB共3个颜色通道，则数据输入层为$3 \times a \times a$
+假设有M层隐层，每层有N个神经元则一共有$3 a^2 N^M + MN$个参数。参数量较大。  
 问题二：
-人眼观察图片上时对单独的像素点是不敏感的，但是多个像素点一起观察的时候就会好很多
-
-
+人眼观察图片上时对单独的像素点是不敏感的，但是多个像素点一起观察的时候就会好很多。
 针对以上两种情况有了卷积神经网络，卷积神经网络主要的特点是使用了卷积核，卷积核观察数据是以区块进行的，相当与对像素点按块的做了特征整理。另外为了解决训练参数庞大的参数量级，使用了共享参数概念，即使用同一个卷积窗口观察通过一小块一小块的方式观察完一整张图片。每个卷积窗口观察图片的角度是有限的，通过多个不同的窗口（尺寸相同，但是处理观察到数据的方式不同）来使的观察更全面。  
 以上就CNN中最重要的思想：卷积核及共享权值
 
@@ -39,11 +38,15 @@ CNN是DNN的一种特殊形式
 
 <img src="/pic/ml/cnn/cnn_struct.png" border="0" width="90%" height="90%" style="margin: 0 auto"><center>[图2，CNN框架示意图](http://cs231n.github.io/convolutional-networks/#overview)</center>  
 
-其中：
-RELU为激励层  
-FC为全链接层
+INPUT -> [[CONV -> RELU]*N -> POOL?]*M -> [FC -> RELU]*K -> FC
 
-# CNN结果说明
+其中：  
+CONV：代表卷积层 
+RELU：代表激励层 
+POOL：池化层 
+FC：全链接层  
+
+# CNN结构说明
 
 ## 数据输入层  
 图片中每个颜色通道代表一个维度的数据，每个通道上为一张含有位置信息的二维表
@@ -53,10 +56,10 @@ FC为全链接层
 
 卷积层主要作用是降维和聚焦视野
 
-### 滑动窗口
-卷积窗口尺寸：f
-卷积窗口滑动间隔：s
-卷积深度：d
+### 滑动窗口  
+卷积窗口尺寸：f  
+卷积窗口滑动间隔：s  
+卷积深度：d  
 
 ### 数据对齐
 
@@ -70,6 +73,9 @@ $$n = \frac{a-f}{s} + 1$$
 每行最少填充个数
 $$q=f+(\lceil n \rceil-1)s - a$$
 其中$\lceil n \rceil$为$n$的向上取整
+
+则经过调整后
+$$n = \frac{a + q -f}{s} + 1$$
 
 另外<http://cs231n.github.io/convolutional-networks/#overview>中"no zero-padding"的P是指填充圈数，则$q$与$P$的关系为
 $$P=\frac{1}{2}q$$
@@ -88,29 +94,97 @@ $$
 
 '$\%$'：取余符号
 
-### 卷积计算过程  
-给定超参数是滑动窗口大小参数，滑动步长，
+### 卷积过程及计算 
 
-如gif（1） 
+全部过程如动图（1）所示 
+
+针对每一个固定卷积窗口，按照超参数左右，上下方向$s$移动，最终得到$n^2$（式（1））组数据。针对某颜色通道上$i$上，对于给定的参数$\boldsymbol{W_i}$，假设滑动窗口内的数据为$\boldsymbol{X_i}$，在feture map中相应位置的值为$\boldsymbol{W_i}\cdot \boldsymbol{X_i}$，综合考虑此次滑动是的对应输出为
+$$O_{j, k} = \sum_{i=1}^{d} \cdot \boldsymbol{W_i}\cdot \boldsymbol{X_i}$$
+其中$d$为输出feture map中二维表的个数为$d$，一般指原始输入的颜色通道个数3，或者是前一层卷积单元的个数（前一层卷积的深度）
+
+对于输入数数据维度$\boldsymbol{X}$的大小为$(K, a, a)$，其对应的下标分别为 $k$，$i$，$j$。 如果是数据输入层，$K$为颜色通道个数3。这个表示方法和动图（1）中的表示方法有点不一样，主要是考虑高纬度矩阵表示习惯，将最高维放在第一维
+卷积窗口的权重矩阵$\boldsymbol{W}$的大小为$(K, f, f)$, 同一卷积层有$m$个filter，则卷积过后形成的feture map大小为$m \times n \times n$
+
 
 ## pooling层  
-pooling层主要是降低维度，pool是给定观察窗口大小和滑动长度，每次滑动一个位置，对该位置所有点做运算，如下：
 
-- Max pooling
-  	求最大值
 
-- Average pooling
-	求平均
+<img src="/pic/ml/cnn/cnn_pooling.png" border="0" width="90%" height="90%" style="margin: 0 auto"><center>[图3，max pooling示意图](http://cs231n.github.io/convolutional-networks/#overview)</center>  
 
-## 全链接 
+池化层，通过采样的方式对数据进行降维。pool是给定观察窗口大小和滑动长度，每次滑动一个位置，对窗口选择的数据进行一次下采样：
 
-作用：特征处理
+- Max pooling  
+  	求二维表中的最大值
 
-# CNN的反向传播  
+- Average pooling  
+	求二维表中的平均
 
-<http://0.0.0.0:4000/2017/05/19/dnn/>
+## BN层
 
-# ImageNet冠军模型
+BN层，<http://reset.pub/2017/05/19/dnn/>
+
+
+## 全链接层
+
+作用：扩张特征表达能力
+
+[^_^]:
+	# 数据链接规律
+
+	# CNN的反向传播  
+
+	<http://reset.pub/2017/05/19/dnn/>
+
+	可以将动图（1）展开成传统DNN的结构，由于共享权值，为了方便推导，将权值看成输入神经元，输入看成链接权值可以很好结合dnn中式（13）可以得到，
+
+	## 卷积层的反向传播
+
+	$$
+	\begin{aligned}
+	& \frac{\partial{\ell}}{\partial O_{dd\ ,\ i\ ,\ j_{i}}} 
+		= \sum_{j_{i+1}\ \ = \ 1}^{J_{i+1}} \ 
+			f^\prime \big(V_{IN_{dd\ ,\ i+1\ ,\ j_{i+1}}} \ \ \  \big) \ 
+			\cdot \ 
+			W_{dd\ ,\ i\ ,\ j_{i} \ \ , \ j_{i+1}} \ 
+			\cdot \
+			\frac{\partial{\ell}}{\partial O_{dd\ ,\ i+1\ ,\ j_{i+1}}}
+	\end{aligned}
+	\tag{13}
+	$$
+
+	$$
+	\begin{aligned}
+	& \frac{\partial{\ell}}{\partial W_{dd\ ,\ i\ ,\ j_{i}}} 
+	    = \sum_{j_{i+1}\ \ = \ 1}^{J_{i+1}} \ 
+	        f^\prime \big(V_{IN_{dd\ ,\ i+1\ ,\ j_{i+1}}} \ \ \  \big) \ 
+	        \cdot \ 
+	        X_{dd\ ,\ i\ ,\ j_{i} \ \ , \ j_{i+1}} \ 
+	        \cdot \
+	        \frac{\partial{\ell}}{\partial O_{dd\ ,\ i+1\ ,\ j_{i+1}}}
+	\end{aligned}
+	\tag{13}
+	$$
+
+	## Pooling层的反向传播
+
+	### Max pooling反向传播
+
+	### Average pooling反向传播
+
+
+# 经典CNN模型
+
+详见：<http://cs231n.github.io/convolutional-networks/#norm>
+
+[LeNet] 1990 <http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf>  
+[AlexNet] 2012 <http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks>  
+[ZF Net] 2013 <https://arxiv.org/abs/1311.2901>  
+[GoogLeNet] 2014 <https://arxiv.org/abs/1409.4842>  
+[VGGNet] 2014 <http://www.robots.ox.ac.uk/~vgg/research/very_deep/>  
+[ResNet] 2015，残差网络<https://arxiv.org/abs/1512.03385>  
+
+
+
 
 
 # 参考 
