@@ -11,27 +11,30 @@ categories:
 ---
 
 
+
 {% cq %} <font size=4>Convolutional Neural Networks</font>{% endcq %}
+
+卷积神经网络简介
+
+<!-- more -->
 
 
 <iframe src='http://cs231n.github.io/assets/conv-demo/index.html' width='100%' height='700px' style="border:none;">"http://cs231n.github.io/convolutional-networks/#overview"</iframe>
 <center>[动图 1.卷积层卷积过程的动态示意图](http://cs231n.github.io/convolutional-networks/#overview)</center>
 
-图片中"Output"是指<http://reset.pub/2017/05/19/dnn/>中$V_{IN}$，即激励层的输入数据  $\boldsymbol{W} \cdot \boldsymbol{X} + b$
+图片中"Output"是指<http://reset.pub/2017/05/19/dnn/>中$V_{IN}$，即激励层的输入数据  $\boldsymbol{W} \cdot \boldsymbol{X} + \boldsymbol{b}$
 
 本文以图片问题中的CNN为例
 
 # CNN基本思想
 CNN是DNN的一种特殊形式
 
-考虑使用DNN做图像分类问题，可以将图片的每个像素上每个通道上的数据看成是一个神经元
-
-问题一：
+考虑使用DNN做图像分类问题，可以将图片的每个像素上每个通道上的数据看成是一个神经元  
 假设对于$n \times a$大小的图片，每个像素点有RGB共3个颜色通道，则数据输入层为$3 \times a \times a$
-假设有M层隐层，每层有N个神经元则一共有$3 a^2 N^M + MN$个参数。参数量较大。  
-问题二：
-人眼观察图片上时对单独的像素点是不敏感的，但是多个像素点一起观察的时候就会好很多。
-针对以上两种情况有了卷积神经网络，卷积神经网络主要的特点是使用了卷积核，卷积核观察数据是以区块进行的，相当与对像素点按块的做了特征整理。另外为了解决训练参数庞大的参数量级，使用了共享参数概念，即使用同一个卷积窗口观察通过一小块一小块的方式观察完一整张图片。每个卷积窗口观察图片的角度是有限的，通过多个不同的窗口（尺寸相同，但是处理观察到数据的方式不同）来使的观察更全面。  
+假设有M层隐层，每层有N个神经元则一共有$3 a^2 N^M + MN$个参数。参数量较大。   
+
+针对参数量庞大问题有了卷积神经网络，如以上动态图所示，同一个卷积窗口在遍历一张图片时，参数是共享的
+ 
 以上就CNN中最重要的思想：卷积核及共享权值
 
 # CNN结构基本框架
@@ -41,7 +44,7 @@ CNN是DNN的一种特殊形式
 INPUT -> [[CONV -> RELU]*N -> POOL?]*M -> [FC -> RELU]*K -> FC
 
 其中：  
-CONV：代表卷积层 
+CONV：卷积层 
 RELU：代表激励层 
 POOL：池化层 
 FC：全链接层  
@@ -54,7 +57,9 @@ FC：全链接层
 
 ## 卷积层
 
-卷积层主要作用是降维和聚焦视野
+卷积层主要作用是降维
+
+另一种理解是，图片信息中相连区域内的像素点比较相关，通过选定位置相关的区域进行处理可以提高网络的泛化能力
 
 ### 滑动窗口  
 卷积窗口尺寸：f  
@@ -176,7 +181,7 @@ BN层，<http://reset.pub/2017/05/19/dnn/>
 
 # 经典CNN模型
 
-详见：<http://cs231n.github.io/convolutional-networks/#norm>
+说明见：<http://cs231n.github.io/convolutional-networks/#norm> 及相关论文
 
 LeNet: 1990， <http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf>  
 AlexNet: 2012， <http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks>  
@@ -194,6 +199,5 @@ ResNet: 2015，残差网络<https://arxiv.org/abs/1512.03385>
 \[2\] 2017.03.15《Deep Learning翻译》<https://exacity.github.io/deeplearningbook-chinese/>  
 \[3\] 2015.03.02 Google Inc [Batch Normalization](https://arxiv.org/pdf/1502.03167.pdf)   
 \[4\] [CNN浅析和历年ImageNet冠军模型解析](https://mp.weixin.qq.com/s/fhJbE6V7r0nhVU3Vu0EGbw)  
-\[5\] <http://cs231n.github.io/convolutional-networks/#overview>  
 
 
