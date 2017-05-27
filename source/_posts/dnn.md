@@ -321,7 +321,7 @@ $$
 \begin{aligned}
 & \frac{\partial{\ell}}{\partial O_{i\ ,\ j_{i}}} 
 	= \sum_{j_{i+1}\ \ = \ 1}^{J_{i+1}} \ 
-		f^\prime \big(V_{IN_{i+1\ ,\ j_{i+1}}} \ \big) \ 
+		f^\prime \big(V_{IN_{i+1\ ,\ j_{i+1}}} \ \ \  \big) \ 
 		\cdot \ 
 		W_{i\ ,\ j_{i} \ \ , \ j_{i+1}} \ 
 		\cdot \
@@ -346,7 +346,7 @@ f^\prime \big(V_{IN_{i\ ,\ j_{i}}} \ \big)
 \ \cdot \ 
 f^\prime \big(V_{IN_{i\ ,\ j_{i}}} \ \big) 
 \ \cdot \ 
-V_{O_{i-1\ \ ,\ j_{i-1}\ \ , \ \ j_{i}}}
+V_{O_{i-1\ \ ,\ j_{i-1}}}
 \end{aligned}
 \tag{14}
 $$
