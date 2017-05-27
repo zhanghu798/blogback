@@ -197,7 +197,8 @@ $$
 	- $kk$：$k$的索引
 	- $O_{i\ ,\  j_{i} \ \ \leftrightarrow \ \ s_{i}\ ,\  s_{j}}$: 数据层的第$kk$层的第$i$行$j_{i}$列与卷积层的第$kk$维的第$s_{i}$行，第$s_{j}$列对齐时内积经过激励函数的后的输出
 	- $f$：激励函数
-	- $\boldsymbol{W}_{kk}$： 第$kk$维的二维权重矩阵
+	- $\boldsymbol{W}_{kk}$: 第$kk$维的二维权重矩阵
+	- $\boldsymbol{X}_{kk\ ,\ area=i\ ,\  j_{i} \ \ \leftrightarrow \ \ s_{i}\ ,\  s_{j}}$: 当卷积窗口滑动时选中数据窗口中$(i, j_{i}位置$与卷积窗口$s_{i}\ ,\  s_{j}$的位置重合时所选区域在第$kk$维的二维数据矩阵
 
 ### 数据层(上层结构输出)++Max pooling反向传播  
 
