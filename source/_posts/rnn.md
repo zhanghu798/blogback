@@ -1,3 +1,4 @@
+
 layout: post
 title: "循环神经网络简介"
 comments: true
@@ -25,6 +26,29 @@ DNN或者CNN都是对于数据输入，都是顺序无关的。而很多任务�
 
 # 循环神经网络的训练
 
+BackPropagation Through Time，BPTT
+
+$$
+\begin{align}
+\frac{\partial{\mathrm{s}_{t-1}}}{\partial{\mathrm{net}_{t-1}}}&=
+\begin{bmatrix}
+\frac{\partial{s_1^{t-1}}}{\partial{net_1^{t-1}}}& \frac{\partial{s_1^{t-1}}}{\partial{net_2^{t-1}}}& ...&  \frac{\partial{s_1^{t-1}}}{\partial{net_n^{t-1}}}\\
+\frac{\partial{s_2^{t-1}}}{\partial{net_1^{t-1}}}& \frac{\partial{s_2^{t-1}}}{\partial{net_2^{t-1}}}& ...&  \frac{\partial{s_2^{t-1}}}{\partial{net_n^{t-1}}}\\
+&.\\&.\\
+\frac{\partial{s_n^{t-1}}}{\partial{net_1^{t-1}}}& \frac{\partial{s_n^{t-1}}}{\partial{net_2^{t-1}}}& ...&  \frac{\partial{s_n^{t-1}}}{\partial{net_n^{t-1}}}\\
+\end{bmatrix}\\
+&=\begin{bmatrix}
+f'(net_1^{t-1}) & 0 & ... & 0\\
+0 & f'(net_2^{t-1}) & ... & 0\\
+&.\\&.\\
+0 & 0 & ... & f'(net_n^{t-1})\\
+\end{bmatrix}\\
+&=diag[f'(\mathrm{net}_{t-1})]
+\end{align}
+$$
+
+
+
 # 循环神经网络可能出现的问题
 
 # 参考 
@@ -35,6 +59,12 @@ DNN或者CNN都是对于数据输入，都是顺序无关的。而很多任务�
 \[\] <http://www.wildml.com/2015/09/recurrent-neural-networks-tutorial-part-1-introduction-to-rnns/>  
 \[\] <http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/>
 
+\[\] <https://zybuluo.com/hanbingtao/note/541458>
+
+\[\] <http://www.cnblogs.com/wacc/p/5341670.html>  
+\[\] <ir.hit.edu.cn/~jguo/docs/notes/bptt.pdf>
+
 
 <https://arxiv.org/abs/1409.2329>  
 <https://www.tensorflow.org/tutorials/recurrent>  
+
