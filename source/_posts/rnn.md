@@ -139,7 +139,6 @@ $$
 
 2014
 
-![gru](./gru.jpg)<center>[gru内部结构示意图](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)</center>
 
 <img src="/pic/ml/rnn/gru.jpg" border="0" width="90%" height="90%" style="margin: 0 auto"><center>[gru内部结构示意图](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)</center> 
 
