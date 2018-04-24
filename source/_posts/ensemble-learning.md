@@ -77,6 +77,10 @@ Boosting的主要特点：弱分类器之间有依赖关系
 
 因为Boosting的误差相关联性，所以Boosting是偏向于降低误差
 
+## Stacking
+
+常见stacking方法如：GBDT+LR、随机森林+LR
+
 
 # Bagging算法
 随机森林:  
