@@ -189,7 +189,7 @@ $$C_t = \overline{h}_s \odot a_t   	           			  \tag{9}$$
 ### global-attention(soft attention)
 
 
-<img src="/pic/ml/rnn/attention-global.jpg" border="0" width="90%" height="90%" style="margin: 0 auto"><center>[attention-global基本示意图](https://arxiv.org/abs/1508.04025)</center> 
+<img src="/pic/ml/rnn/attention-global.jpg" border="0" width="60%" height="60%" style="margin: 0 auto"><center>[attention-global基本示意图](https://arxiv.org/abs/1508.04025)</center> 
 
 
 <img src="/pic/ml/rnn/attention_1.jpeg" border="0" width="40%" height="40%" style="margin: 0 auto"><center>[得分指数化、归一化](https://arxiv.org/abs/1508.04025)</center> 
@@ -203,7 +203,7 @@ $$C_t = \overline{h}_s \odot a_t   	           			  \tag{9}$$
 
 ### local-attention(hard attention)
 
-![](./attection-local.jpg)<center>[attention-local基本示意图](https://arxiv.org/abs/1508.04025)</center>
+<img src="/pic/ml/rnn/attection-local.jpg" border="0" width="60%" height="30%" style="margin: 0 auto"><center>[attion-local基本示意图](https://arxiv.org/abs/1508.04025)</center> 
 
 <img src="/pic/ml/rnn/attention_3.jpeg" border="0" width="40%" height="40%" style="margin: 0 auto"><center>[attention](https://arxiv.org/abs/1508.04025)</center> 
 
@@ -218,7 +218,7 @@ $$C_t = \overline{h}_s \odot a_t   	           			  \tag{9}$$
 
 
 
-<img src="/pic/ml/rnn/feed-intput.jpg" border="0" width="40%" height="30%" style="margin: 0 auto"><center>[feed-input](https://arxiv.org/abs/1508.04025)</center> 
+<img src="/pic/ml/rnn/feed-intput.jpg" border="0" width="60%" height="30%" style="margin: 0 auto"><center>[feed-input](https://arxiv.org/abs/1508.04025)</center> 
 
 
 
