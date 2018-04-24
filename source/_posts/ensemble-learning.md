@@ -77,11 +77,6 @@ Boosting的主要特点：弱分类器之间有依赖关系
 
 因为Boosting的误差相关联性，所以Boosting是偏向于降低误差
 
-## Stacking
-
-常见stacking方法如：GBDT+LR、随机森林+LR
-
-
 # Bagging算法
 随机森林:  
 Random Forests，<https://zh.wikipedia.org/wiki/随机森林> ， 是Bagging的一种实现 
@@ -114,6 +109,10 @@ Light Gradient Boosting Machine
 <http://reset.pub/2017/03/31/gcForest/>  
 
 Boosting模型在构建构成中可以对每基模型使用样本、特征抽样。所以以上算法不一定是纯粹的Boosting
+
+# Stacking（融合模型）
+
+常见stacking方法如：GBDT+LR、随机森林+LR
 
 
 
