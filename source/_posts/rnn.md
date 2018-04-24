@@ -14,7 +14,7 @@ categories:
 
 {% cq %} <font size=4>Recurrent Neural Network</font>{% endcq %}
 
-介绍从RNN到Seq2Seq的基本组件
+简单介绍从RNN到Seq2Seq用到组件及方法
 
 <!-- more -->
 
