@@ -76,9 +76,7 @@ $$
 RNN的训练方法： Backpropagation Through Time
 
 
-
-
-<img src="/pic/ml/rnn/BPTT.jpeg" border="0" width="90%" height="90%" style="margin: 0 auto"><center>[BPTT示意图](http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/)</center>  
+<img src="/pic/ml/rnn/BPTT.jpeg" border="0" width="60%" height="60%" style="margin: 0 auto"><center>[BPTT示意图](http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/)</center>  
 
 
 $$
@@ -131,9 +129,6 @@ LSTM通过引入“遗忘门”及“记忆叠加门”使得记忆更加灵活�
 
 <img src="/pic/ml/rnn/lstm.jpg" border="0" width="80%" height="80%" style="margin: 0 auto"><center>[单层LSTM内部结构示意图](http://colah.github.io/posts/2015-08-Understanding-LSTMs/)</center></center>  
     
-
-### RNN的反向传播BPTT	（Backpropagation Through Time）	
-<img src="/pic/ml/rnn/BPTT.jpeg" border="0" width="80%" height="80%" style="margin: 0 auto"><center>[BPTT示意图](http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/)</center>   
  
 ### LSTM内部示意图及计算方法   
     
