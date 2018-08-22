@@ -149,9 +149,9 @@ $$
 & \widetilde{C}_t = \text{tanh}\big(W_C \cdot  [h_{t-1}, x_t] + b_c\big) &  & 新的记忆 ，决定增强的记忆  \\
 &C_t = f_t \odot C_{t-1} + i_t \odot \widetilde{C}_t   & & 更新记忆：t-1时刻状态 \times 选择保留系数 + 新记忆 \times 新记忆系数\\  
 & o_t = \sigma \big(W_O[h_{t-1}, x_t] + b_O\big)  & & 上一时刻的隐层状态和本次输入决定本次输出\\
-& h_t= o_t \cdot \text{tanh} \big(C_t\big) & & 前一时刻输出和当前网络状态决定当前隐层状态  \\
+& h_t= o_t \cdot \text{tanh} \big(C_t\big) & & 前一时刻输出和当前网络状态决定当前t时刻隐层状态  \\
 \end{aligned}
-\right. \tag{7}
+\right. 
 $$
 
 ## GRU
