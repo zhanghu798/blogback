@@ -103,7 +103,7 @@ $$\left\{
 \begin{aligned}
 obj: &  \min_{\boldsymbol{w}，b} \frac{1}{2}\lVert\boldsymbol{w}\rVert^2 & \\
 st: & 1 - y_i(\boldsymbol{w}^T\boldsymbol{x_i} + b)\leqslant
- 1，\ i\in[1， m]&
+ 0，\ i\in[1， m]&
 \end{aligned}
 \right.
 $$
