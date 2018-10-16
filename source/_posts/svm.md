@@ -49,8 +49,8 @@ $$
 
 $$目标函数与约束条件(最大间隔条件)\left\{
 \begin{aligned}
-obj: &  \max_{\boldsymbol{w}，b} \frac{\left|\boldsymbol{w}^T\boldsymbol{x_0} + b\right|}{\lVert\boldsymbol{w}\rVert} & \\
-st: & \frac{\left|\boldsymbol{w}^T\boldsymbol{x_i} + b\right|}{\lVert\boldsymbol{w}\rVert} \geqslant  \frac{\left|\boldsymbol{w}^T\boldsymbol{x_0}+ b\right|}{\lVert \boldsymbol{w}\rVert} ，\ i\in[1, m]& \\
+obj: &  \max_{\boldsymbol{w}，b} \frac{\left|\boldsymbol{w}^T\boldsymbol{x_0} + b\right|}{\lVert\boldsymbol{w}\rVert} & & (支撑向量到超平面的距离最大) \\
+st: & \frac{\left|\boldsymbol{w}^T\boldsymbol{x_i} + b\right|}{\lVert\boldsymbol{w}\rVert} \geqslant  \frac{\left|\boldsymbol{w}^T\boldsymbol{x_0}+ b\right|}{\lVert \boldsymbol{w}\rVert} ，\ i\in[1, m]& & (任意点到对应超平面的距离大于等于支撑向量到超平面的距离) \\
 & \boldsymbol{x_0}代表所有支撑向量 &
 \end{aligned}
 \right.

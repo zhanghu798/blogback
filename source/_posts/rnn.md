@@ -83,7 +83,7 @@ RNN的训练方法： Backpropagation Through Time
 
 $$
 \begin{aligned}
- \frac{\partial{\text{loss}_t}}{\partial{W}} 
+ \frac{\partial{\text{Loss}}}{\partial{W}} 
   = &  \sum_{k=0}^{T}  \frac{\partial{\text{loss}_t}}{\partial{\text{W}_{k}}}  \\
   = &  \sum_{k=0}^{T}  \frac{\partial{\text{loss}_t}}{\partial{\hat{\text{y}}_t}} \
         \frac{\partial{\hat{\text{y}}_t}}{\partial{\hat{\text{h}}_{t}}} \
