@@ -119,7 +119,7 @@ F_m(x) =  F_{m-1}(x) + \sum_{j=1}^{J_m} \gamma_{jm} I (x \in R_{jm}) \tag{7}
 $$
 
 $$
-\gamma_m = \mathop{\arg\min}\limits_{\gamma} \sum_{x_i \in R_{jm}} L(y_i, F_{m-1}(x_i) + \gamma)
+\gamma_{jm} = \mathop{\arg\min}\limits_{\gamma} \sum_{x_i \in R_{jm}} L(y_i, F_{m-1}(x_i) + \gamma)
 \tag{8}
 $$
 	
