@@ -166,7 +166,7 @@ $$
     & \min_{\boldsymbol{w}, b} L(\boldsymbol{w}, b, \boldsymbol{\alpha}) \\
     = & \frac{1}{2}\lVert\boldsymbol{w^*}\rVert^2 + \sum_{i=1}^m \alpha_i \big(1 - y_i(\boldsymbol{w^*} \cdot \boldsymbol{x_i} + b^*)\big) \\
     = & \frac{1}{2}\lVert\boldsymbol{w^*} \rVert^2 + \sum_{i=1}^m \alpha_i -  \boldsymbol{w^*} \cdot \sum_{i=1}^m     \alpha_i y_i \boldsymbol{x_i} - \sum_{i=1}^m \alpha_i y_i b^* \\
-  　\ = & \frac{1}{2}\lVert\boldsymbol{w^*} \rVert^2 + \sum_{i=1}^m \alpha_i -  \boldsymbol{w^*} \cdot \boldsymbol{w}  - \sum_{i=1}^m \alpha_i y_i b^*  \ \ \ \because 式(6)： \boldsymbol{w^*} = \sum_{i=1}^m \alpha_i y_i \boldsymbol{x_i}：\\
+  　\ = & \frac{1}{2}\lVert\boldsymbol{w^*} \rVert^2 + \sum_{i=1}^m \alpha_i -  \boldsymbol{w^*} \cdot \boldsymbol{w^*}  - \sum_{i=1}^m \alpha_i y_i b^*  \ \ \ \because 式(6)： \boldsymbol{w^*} = \sum_{i=1}^m \alpha_i y_i \boldsymbol{x_i} \\
     = & -\frac{1}{2}\lVert\boldsymbol{w^*} \rVert^2 + \sum_{i=1}^m \alpha_i -  b^*  \sum_{i=1}^m \alpha_i y_i \\
     = & - \frac{1}{2} \sum_{i=1}^m\sum_{j=1}^m \alpha_i \alpha_j y_i y_j(\boldsymbol{x_i} \cdot \boldsymbol{x_j}) + \sum_{i=1}^m \alpha_i \ \ \ \ \because 式(6)， 式(7)： \sum_{i=1}^m \alpha_i y_i  = 0
 \end{aligned}
