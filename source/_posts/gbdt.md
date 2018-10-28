@@ -104,7 +104,7 @@ F_m(x) = F_{m-1}(x) + \gamma_m h_m(x)
 $$
 将$h_m(x)$带入上式得：
 $$
-\gamma_m = \mathop{\arg\min}\limits_{\gamma} \sum_{i = 1}^n L(y_i, F_{m-1(x_i) + \gamma h_m(x_i)})
+\gamma_m = \mathop{\arg\min}\limits_{\gamma} \sum_{i = 1}^n L(y_i, F_{m-1(x_i)} + \gamma h_m(x_i))
 $$
 	
 

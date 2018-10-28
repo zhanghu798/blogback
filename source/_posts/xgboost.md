@@ -128,7 +128,7 @@ $$
 $$
 \begin{split}
  \text{obj}^{(t)} 
-& \approx  \sum_{i=1}^n \big[g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x_i)\big] + \Omega(f_t) \\
+& \approx  \sum_{i=1}^n l(y_i， \hat{y}_i^{(t-1)})  +  \sum_{i=1}^n \big[g_i f_t(x_i) + \frac{1}{2} h_i f_t^2(x_i)\big] + \Omega(f_t) \\
 & = \sum_{i=1}^n [g_i f_t(x_i)  + \frac{1}{2} h_i f_t^2(x_i) ] + \gamma T + \frac{1}{2}\lambda \sum_{j=1}^T w_j^2\\
 \end{split} \tag{10}
 $$
@@ -144,7 +144,7 @@ $$
 $$
 \begin{split}
 \text{obj}^{(t)} 
-\approx \sum^T_{j=1} [(\sum_{i\in I_j} g_i) w_j + \frac{1}{2} (\sum_{i\in I_j} h_i + \lambda) w_j^2 ] + \gamma T
+\approx \sum_{i=1}^n l(y_i， \hat{y}_i^{(t-1)})  + \sum^T_{j=1} [(\sum_{i\in I_j} g_i) w_j + \frac{1}{2} (\sum_{i\in I_j} h_i + \lambda) w_j^2 ] + \gamma T
 \end{split} \tag{12}
 $$
 
@@ -157,7 +157,7 @@ $$
 $$
 
 $$
-\text{obj}^{(t)} \approx  \sum^T_{j=1} \big[G_jw_j + \frac{1}{2} (H_j+\lambda) w_j^2\big] +\gamma T \tag{14}
+\text{obj}^{(t)} \approx  \sum_{i=1}^n l(y_i， \hat{y}_i^{(t-1)})  + \sum^T_{j=1} \big[G_jw_j + \frac{1}{2} (H_j+\lambda) w_j^2\big] +\gamma T \tag{14}
 $$
 
 ### 目标函数取得极值时的条件  
