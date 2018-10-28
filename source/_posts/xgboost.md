@@ -169,7 +169,7 @@ $$
 
 $w_j^\ast$即为第t棵树，落在第j个叶子结点预测值$f_t(x_i)$
 
-则决策树的损失为：
+将$w_j^\ast$带入14式，忽略常数项，即前$t-1$课树的结果$\sum_{i=1}^n l(y_i， \hat{y}_i^{(t-1)})$，则得到决策树的损失为：
 $$
 \text{obj}^\ast = -\frac{1}{2} \sum_{j=1}^T \frac{G_j^2}{H_j+\lambda} + \gamma T \tag{16}
 $$
@@ -211,7 +211,7 @@ for t in 1，2，..., n：   # 训练第i棵树
 [1] XGBoost官网：<https://xgboost.readthedocs.io/en/latest/model.html>  
 [2] XGboost的GitHub地址：<https://github.com/dmlc/xgboost>  
 [3] <http://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf>  
-[4] <https://en.wikipedia.org/wiki/Gradient_boosting>
+[4] <https://en.wikipedia.org/wiki/Gradient_boosting>  
 [5] <https://zh.wikipedia.org/wiki/泰勒公式>  
 [6] <http://ufldl.stanford.edu/wiki/index.php/Softmax回归>  
 
